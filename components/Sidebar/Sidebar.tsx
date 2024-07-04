@@ -1,5 +1,7 @@
 import { linklist } from "@/data/navbarLinks";
 import {
+  Box,
+  Divider,
   List,
   ListItem,
   ListItemIcon,
@@ -27,17 +29,28 @@ const Sidebar = () => {
       <Typography variant="h5">
         <span style={{ fontWeight: "bold" }}>Horizon</span> Free
       </Typography>
-      <List>
+      <Divider
+        variant="middle"
+        sx={{
+          m: "20px",
+          backgroundColor: "lightgray",
+          height: "1px",
+          width: "80%",
+        }}
+      />
+      <List sx={{ width: "100%" }} className="main_list">
         {linklist.map((link) => (
           <ListItem
             sx={{
-              width: "100%",
+              width: "80%",
               display: "flex",
               alignItems: "center",
-              padding: "10px",
-              fontSize: "8px",
-              color: "gray",
+              padding: "5px",
+              margin: "auto",
+              fontSize: "4px",
+              color: "#A5AFC8",
             }}
+            className={router.pathname === link.to ? "active_styles" : ""}
             key={link.to}
             disablePadding
             color="grey"

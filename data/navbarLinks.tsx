@@ -12,7 +12,7 @@ export type Linkies = {
   };
   
   export const linklist: Linkies[] = [
-    { to: '/', name: 'home',icon:<DashboardIcon /> },
+    { to: '/', name: 'Main Dashboard',icon:<HomeIcon /> },
        { to: '/nft_marketplace', name: 'NFT Marketplace', icon: <StorefrontIcon /> },
        { to: '/data_tables', name: 'Data Tables', icon: <TableChartIcon /> }, 
        { to: '/profile', name: 'Profile', icon: <PersonIcon /> },

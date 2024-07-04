@@ -1,7 +1,8 @@
 import React, { ReactNode } from "react";
 import Header from "../Header/Header";
 import Sidebar from "../Sidebar/Sidebar";
-import { Stack } from "@mui/material";
+import { Box, Stack } from "@mui/material";
+import Footer from "../Footer/Footer";
 
 interface LayoutProps {
   children: ReactNode;
@@ -14,8 +15,12 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       sx={{ backgroundColor: "#F1F1F1", height: "100vh" }}
     >
       <Sidebar />
-      <Header />
-      {children}
+      <Box>
+        <Header />
+        {children}
+
+        <Footer />
+      </Box>
     </Stack>
   );
 };

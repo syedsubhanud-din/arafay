@@ -1,10 +1,12 @@
 import { Typography } from "@mui/material";
 import React from "react";
-
-const PageTitle = () => {
+interface MyComponentProps {
+  linkTitle: string;
+}
+const PageTitle: React.FC<MyComponentProps> = ({ linkTitle }) => {
   return (
     <Typography variant="h6" color="initial">
-      Main Dashboard
+      {linkTitle}
     </Typography>
   );
 };

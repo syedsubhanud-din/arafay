@@ -4,11 +4,8 @@ import { Stack } from "@mui/material";
 
 export default function Home() {
   return (
-    <Stack direction={"row"} sx={{backgroundColor: "#F1F1F1", height: "100vh"}}>
-      {/* <Sidebar />
-      <div>
-        <Header />
-      </div> */}
-    </Stack>
+    <div>
+      Home
+    </div>
   );
 }
