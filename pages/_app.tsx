@@ -7,7 +7,7 @@ import type { AppProps } from "next/app";
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <Layout>
-      <Stack direction={"row"} mt={12} p={3}>
+      <Stack direction={"row"} sx={{width: '100%'}}>
         <Component {...pageProps} />
       </Stack>
     </Layout>

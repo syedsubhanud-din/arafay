@@ -20,9 +20,12 @@ const Header: React.FC = () => {
       direction="row"
       spacing={2}
       justifyContent={"space-between"}
-      sx={{ width: "80%", padding: "10px", marginTop: "10px", zIndex: 10 }}
+      sx={{ width: "calc(100vw - 300px)", padding: "10px", marginTop: "10px", zIndex: 10 }}
       className="navbar"
-      position={"fixed"}
+      position={"sticky"}
+      top={0}
+      left={0}
+      right={0}
     >
       <Box
         sx={{

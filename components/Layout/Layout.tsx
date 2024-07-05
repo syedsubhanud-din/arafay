@@ -15,7 +15,13 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       sx={{ backgroundColor: "#F1F1F1", height: "100vh" }}
     >
       <Sidebar />
-      <Box>
+      <Box
+        sx={{ flexGrow: 1 , overflowX: "hidden" , overflowY: "auto" }}
+        display={"flex"}
+        flexDirection="column"
+        alignItems="center"
+        height={'100vh'}
+      >
         <Header />
         {children}
 
