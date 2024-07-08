@@ -14,7 +14,6 @@ const Header: React.FC = () => {
     return link.to === router.asPath;
   });
 
-  console.log(breadcrumbs[0]);
   return (
     <Stack
       direction="row"

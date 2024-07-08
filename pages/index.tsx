@@ -1,6 +1,7 @@
 import Cards from "@/components/CardsSection/Cards";
 import Charts from "@/components/ChartsSection/Charts";
 import { Stack } from "@mui/material";
+import { useEffect } from "react";
 
 export default function Home() {
   return (

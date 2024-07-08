@@ -1,75 +1,152 @@
-import React from "react";
-import {
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-  ResponsiveContainer,
-} from "recharts";
-// import { LineChart } from '@mui/x-charts/LineChart';
+import React, { useState } from "react";
+import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
+import BarChartIcon from "@mui/icons-material/BarChart";
+import { Box, Typography, Button } from "@mui/material";
+// import ReactApexChart from "react-apexcharts";
+import dynamic from "next/dynamic";
+const ReactApexChart = dynamic(() => import("react-apexcharts"), {
+  ssr: false,
+});
+import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 
-import { Box, Typography } from "@mui/material";
-
-interface DataPoint {
-  name: string;
-  Revenue: number;
-  Profit: number;
-}
-
-const data: DataPoint[] = [
-  { name: "Sep", Revenue: 50, Profit: 30 },
-  { name: "Oct", Revenue: 64, Profit: 40 },
-  { name: "Nov", Revenue: 48, Profit: 24 },
-  { name: "Dec", Revenue: 66, Profit: 46 },
-  { name: "Jan", Revenue: 49, Profit: 20 },
-  { name: "Feb", Revenue: 68, Profit: 46 },
-];
+const initialState: any = {
+  series: [
+    {
+      name: "Revenue",
+      data: [50, 64, 48, 66, 49, 68],
+    },
+    {
+      name: "Profit",
+      data: [30, 40, 24, 46, 20, 46],
+    },
+  ],
+  options: {
+    legend: {
+      show: false,
+    },
+    chart: {
+      toolbar: {
+        show: false,
+      },
+      height: 350,
+      type: "line",
+      zoom: {
+        enabled: true,
+      },
+      stacked: true,
+    },
+    grid: {
+      show: false,
+    },
+    dataLabels: {
+      enabled: false,
+    },
+    stroke: {
+      curve: "smooth",
+      colors: ["#5E3AFF", "#56C3FF"],
+    },
+    colors: ["#5E3AFF", "#56C3FF"],
+    xaxis: {
+      lines: {
+        show: false,
+      },
+      categories: ["Sep", "Oct", "Nov", "Dec", "Jan", "Feb"],
+      axisBorder: {
+        show: false, // Hide the x-axis line
+      },
+      axisTicks: {
+        show: false, // Hide the x-axis ticks
+      },
+    },
+    dataLables: {
+      enabled: false,
+    },
+    yaxis: {
+      show: false,
+    },
+  },
+};
 
 const LinesChart: React.FC = () => {
+  const [state, setState] = useState(initialState);
+
   return (
-    <Box>
-      <Typography variant="h6">Main Dashboard</Typography>
+    <Box display="flex" flexDirection={"column"} mb={2}>
       <Box
         display="flex"
         justifyContent="space-between"
         alignItems="center"
-        mb={2}
+        mb={5}
       >
-        <Typography variant="h4">$37.5K</Typography>
-        <Typography variant="body1" color="green">
-          +2.45%
-        </Typography>
+        <Button
+          startIcon={<CalendarTodayIcon />}
+          sx={{
+            backgroundColor: "#F4F7FE",
+            color: "#AFB9D7",
+            padding: "10px 20px",
+            borderRadius: "10px",
+          }}
+        >
+          This Month
+        </Button>
+        <Button
+          sx={{
+            backgroundColor: "#F4F7FE",
+            color: "#422AFB",
+            padding: "10px 5px",
+            borderRadius: "10px",
+          }}
+        >
+          <BarChartIcon />
+        </Button>
       </Box>
-      <ResponsiveContainer
-        width="70%"
-        height={400}
-        
-        // sx={{
-        //   [`& .${lineElementClasses.root}`]: {
-        //     stroke: "#8884d8",
-        //     strokeWidth: 2,
-        //   },
-        //   [`& .${markElementClasses.root}`]: {
-        //     stroke: "#8884d8",
-        //     scale: "0.6",
-        //     fill: "#fff",
-        //     strokeWidth: 2,
-        //   },
-        // }}
-      >
-        <LineChart data={data}>
-          {/* <CartesianGrid strokeDasharray="3 3" /> */}
-          {/* <XAxis dataKey="name" />
-          <YAxis /> */}
-          <Tooltip />
-          <Legend />
-          <Line type="monotone" dataKey="Revenue" stroke="#8884d8" />
-          <Line type="monotone" dataKey="Profit" stroke="#82ca9d" />
-        </LineChart>
-      </ResponsiveContainer>
+      <Box display="flex">
+        <Box>
+          <Typography variant="h4" sx={{ fontWeight: "bolder" }}>
+            $37.5K
+          </Typography>
+          <Box display={"flex"} alignItems={"center"}>
+            <Typography
+              variant="body1"
+              textAlign={"center"}
+              margin={1}
+              fontSize={14}
+              sx={{ color: "#A2AED0" }}
+            >
+              Total <br /> Spent
+            </Typography>
+            <Typography
+              variant="body1"
+              sx={{ fontWeight: "bolder", color: "#01B574" }}
+            >
+              <ArrowDropUpIcon />
+              +2.45%
+            </Typography>
+          </Box>
+          <Typography
+            variant="body1"
+            sx={{ fontWeight: "bolder", color: "#01B574" }}
+            display={"flex"}
+            alignItems={"center"}
+            gap={2}
+          >
+            <CheckCircleIcon />
+            On track
+          </Typography>
+        </Box>
+        <Box flexGrow={1}>
+          {/* //? ApexChart Js Start */}
+          <ReactApexChart
+            options={state.options}
+            series={state.series}
+            type="line"
+            height={250}
+            width={"100%"}
+          />
+          {/* //? ApexChart Js End */}
+        </Box>
+      </Box>
     </Box>
   );
 };
