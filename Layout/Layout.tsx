@@ -1,8 +1,8 @@
 import React, { ReactNode } from "react";
-import Header from "../Header/Header";
-import Sidebar from "../Sidebar/Sidebar";
+import Header from "../components/Header/Header";
+import Sidebar from "../components/Sidebar/Sidebar";
 import { Box, Stack } from "@mui/material";
-import Footer from "../Footer/Footer";
+import Footer from "../components/Footer/Footer";
 
 interface LayoutProps {
   children: ReactNode;
@@ -16,11 +16,11 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
     >
       <Sidebar />
       <Box
-        sx={{ flexGrow: 1 , overflowX: "hidden" , overflowY: "auto" }}
+        sx={{ flexGrow: 1, overflowX: "hidden", overflowY: "auto" }}
         display={"flex"}
         flexDirection="column"
         alignItems="center"
-        height={'100vh'}
+        height={"100vh"}
       >
         <Header />
         {children}

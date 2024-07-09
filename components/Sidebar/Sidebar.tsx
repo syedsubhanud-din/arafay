@@ -1,6 +1,5 @@
 import { linklist } from "@/data/navbarLinks";
 import {
-  Box,
   Divider,
   List,
   ListItem,
@@ -21,7 +20,7 @@ const Sidebar = () => {
   return (
     <Stack
       direction={"column"}
-      width={300}
+      width={"400px"}
       alignItems={"center"}
       pt={5}
       sx={{ backgroundColor: "white", boxShadow: "5px 5px 5px gray" }}
