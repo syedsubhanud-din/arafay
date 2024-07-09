@@ -1,5 +1,5 @@
 import Cards from "@/components/CardsSection/Cards";
-import Charts from "@/components/ChartsSection/Charts";
+import Charts from "@/components/ChartsAndTablesSection/Charts";
 import { Stack } from "@mui/material";
 import { useEffect } from "react";
 

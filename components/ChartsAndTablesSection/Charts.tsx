@@ -1,9 +1,10 @@
 import { Grid, Paper, Typography, styled } from "@mui/material";
 import React from "react";
-import LinesChart from "./LinesChart";
-import BarsChart from "./BarsChart";
-import CheckTable from "./CheckTable";
-import Trafic from "./Trafic";
+import LinesChart from "./Charts/LinesChart";
+import BarsChart from "./Charts/BarsChart";
+import Trafic from "./Charts/Trafic";
+import DataTable from "./DataTables/DataTable";
+import PiesChart from "./Charts/PiesChart";
 
 const Card = styled(Paper)({
   padding: "16px",
@@ -26,26 +27,19 @@ const Charts = () => {
       </Grid>
       <Grid item xs={6}>
         <Card>
-          <Typography variant="h5" marginY={2}>
-            Check Table
-          </Typography>
-          <CheckTable />
+          <DataTable />
         </Card>
       </Grid>
       <Grid item xs={3}>
         <Card>
           <Trafic />
-          {/* <CheckTable /> */}
         </Card>
       </Grid>
-      {/* <Grid item xs={3}>
+      <Grid item xs={3}>
         <Card>
-          <Typography variant="h5" marginY={2}>
-            Check Table
-          </Typography>
-          <CheckTable />
+          <PiesChart />
         </Card>
-      </Grid> */}
+      </Grid>
     </Grid>
   );
 };

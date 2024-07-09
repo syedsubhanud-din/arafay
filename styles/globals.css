@@ -8,6 +8,10 @@
   box-sizing: border-box;
 }
 
+body{
+  background-color: #EDF1FA !important;
+}
+
 .main_list span {
   font-size: 12px !important;
 }
@@ -58,6 +62,28 @@
 
 .MuiChartsLegend-root {
   display: none;
+}
+
+.MuiDataGrid-checkboxInput {
+  transform: scale(0.7); /* Decrease size */
+}
+
+.MuiCheckbox-root{
+  padding: 0 !important;
+}
+
+/* .MuiDataGrid-cell--textCenter {
+  width: 30px !important;
+  padding: 0;
+  margin: 0;
+  background-color: red;
+}  */
+
+.MuiDataGrid-checkboxInput.Mui-checked .MuiSvgIcon-root {
+  color: '#1976d2'
+}
+.MuiDataGrid-root {
+  border: none; /* Remove the outer border */
 }
 
 /* .apexcharts-xaxistooltip {
