@@ -46,6 +46,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginHorizontal: 8,
+    elevation: 20
   },
   text: {
     fontFamily: 'InknutAntiqua-Medium',
