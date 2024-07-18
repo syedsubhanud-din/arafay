@@ -1,12 +1,24 @@
 // src/screens/HomeScreen.js
-import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import React, { useEffect } from 'react';
+import {View, Text, StyleSheet, BackHandler} from 'react-native';
 import {Buttons} from '../../components/HomeScreenComponents/Buttons';
 import MainHeading from '../../components/HomeScreenComponents/MainHeading';
 import ArabicText from '../../components/HomeScreenComponents/ArabicText';
 import HomeDetails from '../../components/HomeScreenComponents/HomeDetails';
 
-function HomeScreen({navigation}) {
+function HomeScreen() {
+  useEffect(() => {
+    const backAction = () => {
+      BackHandler.exitApp()
+    };
+
+    const backHandler = BackHandler.addEventListener(
+      'hardwareBackPress',
+      backAction,
+    );
+
+    return () => backHandler.remove();
+  }, []);
   return (
     <View style={styles.MainHomeContainer}>
       <View style={{alignItems: 'center'}}>
@@ -14,10 +26,6 @@ function HomeScreen({navigation}) {
         <ArabicText />
         <HomeDetails />
         <Buttons />
-        {/* <Button
-        title="Go to Details"
-        onPress={() => navigation.navigate('Details')}
-      /> */}
       </View>
     </View>
   );

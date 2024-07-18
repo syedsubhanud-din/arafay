@@ -1,5 +1,6 @@
 // src/navigation/AppNavigator.js
 import * as React from 'react';
+// import AsyncStorage from '@react-native-async-storage/async-storage';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import HomeScreen from '../screens/homeScreen/HomeScreen';
@@ -10,11 +11,13 @@ import GuestScreen from '../screens/homeScreen/guestScreens/GuestScreen';
 const Stack = createNativeStackNavigator();
 
 function AppNavigator() {
+  // const hasShownSplashScreen = AsyncStorage.getItem('hasShownSplashScreen');
   return (
     <NavigationContainer>
       <Stack.Navigator
         screenOptions={{headerShown: false}}
         initialRouteName="SplashScreen">
+        {/* {hasShownSplashScreen && <Stack.Screen name="SpashScreen" component={SplashScreen} />} */}
         <Stack.Screen name="SpashScreen" component={SplashScreen} />
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="guest" component={GuestScreen} />
