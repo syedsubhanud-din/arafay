@@ -1,25 +1,20 @@
-import {
-  Image,
-  ImageBackground,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import {ImageBackground, StyleSheet, View, ScrollView} from 'react-native';
 import React from 'react';
-import AppBar from '../../../components/MasjidScreenComponents/AppBar';
-import Details from '../../../components/MasjidScreenComponents/Details';
+import AppBar from '../../components/MasjidScreenComponents/AppBar';
+import Details from '../../components/MasjidScreenComponents/Details';
 
 const MasjidScreen = () => {
   return (
     <ImageBackground
-      source={require('../../../assets/images/masjidDetailsBg.png')}
+      source={require('../../assets/images/masjidDetailsBg.png')}
       style={styles.background}>
       <View style={styles.main}>
         <AppBar />
-        <View style={styles.details}>
-          <Details />
-        </View>
+        <ScrollView>
+          <View style={styles.details}>
+            <Details />
+          </View>
+        </ScrollView>
       </View>
     </ImageBackground>
   );

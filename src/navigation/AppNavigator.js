@@ -5,8 +5,8 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import HomeScreen from '../screens/homeScreen/HomeScreen';
 import SplashScreen from '../screens/splashScreen/SplashScreen';
-import MasjidScreen from '../screens/homeScreen/masjidScreens/MasjidScreen';
-import GuestScreen from '../screens/homeScreen/guestScreens/GuestScreen';
+import MasjidScreen from '../screens/masjidScreens/MasjidScreen';
+import GuestScreen from '../screens/guestScreens/GuestScreen';
 
 const Stack = createNativeStackNavigator();
 
