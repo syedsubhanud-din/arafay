@@ -8,7 +8,6 @@ import HomeDetails from '../../components/HomeScreenComponents/HomeDetails';
 import {useFocusEffect} from '@react-navigation/native';
 
 function HomeScreen() {
-  
   useFocusEffect(
     useCallback(() => {
       const backAction = () => {

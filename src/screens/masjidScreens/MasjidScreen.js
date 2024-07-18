@@ -21,6 +21,10 @@ const MasjidScreen = () => {
 };
 
 const styles = StyleSheet.create({
+  background: {
+    height: '100%',
+    width: '100%',
+  },
   main: {
     flex: 1,
   },
@@ -29,12 +33,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     padding: 20,
-  },
-
-  textColor: {backgroundColor: 'red', color: '#000000'},
-  background: {
-    height: '100%',
-    width: '100%',
   },
 });
 

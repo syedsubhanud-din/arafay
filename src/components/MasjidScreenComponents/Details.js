@@ -1,7 +1,6 @@
 import {
   Image,
   KeyboardAvoidingView,
-  ScrollView,
   StyleSheet,
   Text,
   TextInput,
@@ -15,8 +14,6 @@ const Details = () => {
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       style={styles.keyboard}>
-      {/* <ScrollView>
-      </ScrollView> */}
       <View style={styles.container}>
         <View style={styles.dateTime}>
           <Text style={styles.islamicDate}>Muharram 5, 1446 AH</Text>
@@ -167,9 +164,6 @@ const styles = StyleSheet.create({
   image: {
     height: 25,
     width: 25,
-    // resizeMode: "contain",
-    // alignSelf: "center",
-    // tintColor: "#ffffff"
   },
   namazTimeCardText: {
     fontFamily: 'InknutAntiqua-Medium',
