@@ -14,7 +14,7 @@ export default ArabicText;
 const styles = StyleSheet.create({
   ArabicText: {
     fontFamily: 'IslandMoments-Regular',
-    fontSize: 12,
+    fontSize:10,
     color: '#7fa8e9',
     marginBottom: 10,
   },

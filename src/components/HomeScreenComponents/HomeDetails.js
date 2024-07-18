@@ -19,12 +19,12 @@ export default HomeDetails;
 
 const styles = StyleSheet.create({
   container: {
-    width: 240,
+    width: 180,
     margin: 'auto',
   },
   homeDetails: {
     fontFamily: 'IslandMoments-Regular',
-    fontSize: 23,
+    fontSize: 18,
     textAlign: 'center',
     color: '#7fa8e9',
     marginBottom: 25,

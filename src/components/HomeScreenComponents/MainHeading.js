@@ -9,8 +9,7 @@ export default MainHeading;
 const styles = StyleSheet.create({
   mainHeading: {
     fontFamily: 'InknutAntiqua-Regular',
-    fontSize: 40,
+    fontSize: 35,
     color: '#7fa8e9',
-    marginBottom: 10,
   },
 });

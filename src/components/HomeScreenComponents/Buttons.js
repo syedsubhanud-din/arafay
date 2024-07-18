@@ -1,6 +1,6 @@
 import {useNavigation} from '@react-navigation/native';
 import React from 'react';
-import {Button, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 
 export const Buttons = () => {
   const navigation = useNavigation();
@@ -15,17 +15,6 @@ export const Buttons = () => {
           <Text style={styles.text}>{item}</Text>
         </TouchableOpacity>
       ))}
-
-      {/* <TouchableOpacity
-        style={styles.button}
-        onPress={() => navigation.navigate(`guest`)}>
-        <Text style={styles.text}>guest</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => navigation.navigate(`masjid`)}>
-        <Text style={styles.text}>masjid</Text>
-      </TouchableOpacity> */}
     </View>
   );
 };
@@ -33,11 +22,11 @@ export const Buttons = () => {
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    rowGap: 10,
+    marginBottom: 30
   },
   button: {
-    paddingHorizontal: 30,
-    paddingVertical: 5,
+    paddingHorizontal: 25,
+    paddingVertical: 2,
     backgroundColor: '#6A89C3',
     color: 'white',
     borderBottomEndRadius: 15,
@@ -46,9 +35,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginHorizontal: 8,
-    elevation: 20
+    elevation: 20,
   },
   text: {
     fontFamily: 'InknutAntiqua-Medium',
+    fontSize: 12,
   },
 });
