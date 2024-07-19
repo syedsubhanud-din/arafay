@@ -11,8 +11,8 @@ const NearByMasjidCard = ({item}) => {
       </View>
       <View style={styles.textContainer}>
         <View>
-          <Text style={styles.textBlack}>{item.name}</Text>
-          <Text style={styles.textBlack}>{item.location}</Text>
+          <Text style={styles.textBlack} numberOfLines={1} ellipsizeMode="tail">{item.name}</Text>
+          <Text style={styles.textBlack} numberOfLines={1} ellipsizeMode="tail">{item.address}</Text>
         </View>
         <View>
           <Text style={styles.textTheme}>Show on Map</Text>
@@ -51,6 +51,7 @@ const styles = StyleSheet.create({
     color: '#000',
     fontFamily: 'InknutAntiqua-SemiBold',
     fontSize: 10,
+    lineHeight: 20,
   },
   textTheme: {
     color: 'rgba( 118 ,158 ,209 , 0.85)',
@@ -59,4 +60,5 @@ const styles = StyleSheet.create({
     textDecorationLine: 'underline',
     marginBottom: 5,
   },
+  
 });

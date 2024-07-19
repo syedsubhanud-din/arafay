@@ -8,6 +8,7 @@ import {
 import React from 'react';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {useNavigation} from '@react-navigation/native';
+import SearchInput from './SearchInput';
 const AppBar = () => {
   const navigation = useNavigation();
   return (
@@ -24,7 +25,8 @@ const AppBar = () => {
       <View style={styles.searchSection}>
         <View style={styles.searchBar}>
           <Icon name="search" size={15} style={styles.searchIcon} />
-          <TextInput style={styles.searchInput} selectionColor="#7CA4D7" />
+          {/* <TextInput style={styles.searchInput} selectionColor="#7CA4D7" /> */}
+          <SearchInput />
         </View>
       </View>
       <View>

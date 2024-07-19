@@ -1,6 +1,7 @@
 import {StyleSheet, Text, View, FlatList} from 'react-native';
 import React from 'react';
 import NearByMasjidCard from './NearByMasjidCard';
+import {useSelector} from 'react-redux';
 
 const DATA = [
   {
@@ -34,6 +35,7 @@ const DATA = [
 ];
 
 const NearBySection = () => {
+  const MasjidData = useSelector(state => state.masjidInfo);
   return (
     <View style={styles.container}>
       <View style={styles.nextPrayerBox}>
@@ -47,10 +49,10 @@ const NearBySection = () => {
           Masjid's Near by
         </Text>
         <FlatList
-          data={DATA}
-          keyExtractor={item => item.id}
+          data={MasjidData.slice(0, 5)}
+          keyExtractor={item => item._id}
           renderItem={({item}) => <NearByMasjidCard item={item} />}
-        /> 
+        />
         {/* <NearByMasjidCard /> */}
       </View>
     </View>
@@ -69,13 +71,17 @@ const styles = StyleSheet.create({
     height: 430,
   },
   nextPrayerBox: {
-    backgroundColor: 'rgba( 118 ,158 ,209 , 0.85)',
+    backgroundColor: 'rgb( 118 ,158 ,209)',
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
     paddingHorizontal: 20,
     paddingVertical: 10,
-    marginBottom: 20,
-    // elevation: 10,
+    marginBottom: 8,
+    shadowColor: '#000',
+    shadowOffset: {width: 0, height: 2},
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 10,
   },
   textNextPrayer: {
     fontFamily: 'InknutAntiqua-SemiBold',
@@ -84,6 +90,7 @@ const styles = StyleSheet.create({
   textTime: {
     fontFamily: 'InknutAntiqua-Medium',
     fontSize: 30,
+    lineHeight: 50,
   },
   masjidNearByBox: {
     flex: 1,
