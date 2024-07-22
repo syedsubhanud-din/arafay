@@ -1,61 +1,40 @@
 import {StyleSheet, Text, View, FlatList} from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
 import NearByMasjidCard from './NearByMasjidCard';
 import {useSelector} from 'react-redux';
-
-const DATA = [
-  {
-    id: '1',
-    name: 'Quba Masjid',
-    location: 'Karachi',
-    showMapLink: '',
-    imageSource: require('../../assets/images/Masjid.png'),
-  },
-  {
-    id: '2',
-    name: 'Minara Masjid',
-    location: 'Hyderabad',
-    showMapLink: '',
-    imageSource: require('../../assets/images/Masjid.png'),
-  },
-  {
-    id: '3',
-    name: 'Roshan Masjid',
-    location: 'Hyderabad',
-    showMapLink: '',
-    imageSource: require('../../assets/images/Masjid.png'),
-  },
-  {
-    id: '4',
-    name: 'Faisal Masjid',
-    location: 'Faislabad',
-    showMapLink: '',
-    imageSource: require('../../assets/images/Masjid.png'),
-  },
-];
+import Popup from './Popup';
 
 const NearBySection = () => {
+  const [showPopUp, setShowPopUp] = useState(true);
   const MasjidData = useSelector(state => state.masjidInfo);
   return (
-    <View style={styles.container}>
-      <View style={styles.nextPrayerBox}>
-        <Text style={[styles.textNextPrayer, styles.textWhite]}>
-          Next Prayer
-        </Text>
-        <Text style={[styles.textTime, styles.textWhite]}>12:52 pm</Text>
+    <>
+      <View style={styles.container}>
+        <View style={styles.nextPrayerBox}>
+          <Text style={[styles.textNextPrayer, styles.textWhite]}>
+            Next Prayer
+          </Text>
+          <Text style={[styles.textTime, styles.textWhite]}>12:52 pm</Text>
+        </View>
+        <View style={styles.masjidNearByBox}>
+          <Text style={[styles.masjidNearByText, styles.textTheme]}>
+            Masjid's Near by
+          </Text>
+          <FlatList
+            data={MasjidData.slice(0, 5)}
+            keyExtractor={item => item._id}
+            renderItem={({item}) => (
+              <NearByMasjidCard
+                item={item}
+                showPopUp={showPopUp}
+                setShowPopUp={setShowPopUp}
+              />
+            )}
+          />
+        </View>
       </View>
-      <View style={styles.masjidNearByBox}>
-        <Text style={[styles.masjidNearByText, styles.textTheme]}>
-          Masjid's Near by
-        </Text>
-        <FlatList
-          data={MasjidData.slice(0, 5)}
-          keyExtractor={item => item._id}
-          renderItem={({item}) => <NearByMasjidCard item={item} />}
-        />
-        {/* <NearByMasjidCard /> */}
-      </View>
-    </View>
+      {showPopUp && <Popup showPopUp={showPopUp} setShowPopUp={setShowPopUp} />}
+    </>
   );
 };
 

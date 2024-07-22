@@ -1,21 +1,30 @@
-import {Image, StyleSheet, Text, View} from 'react-native';
+import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 
-const NearByMasjidCard = ({item}) => {
+const NearByMasjidCard = ({item, showPopUp, setShowPopUp}) => {
   return (
     <View style={styles.container}>
       <View style={styles.imageContainer}>
         {/* <Image source={require(`${item.ImageSource}`)} style={styles.image} /> */}
         {/* <Image source={{ uri: item.ImageSource }} style={styles.image} /> */}
-        <Image source={require('../../assets/images/Masjid.png')} style={styles.image} />
+        <Image
+          source={require('../../assets/images/Masjid.png')}
+          style={styles.image}
+        />
       </View>
       <View style={styles.textContainer}>
         <View>
-          <Text style={styles.textBlack} numberOfLines={1} ellipsizeMode="tail">{item.name}</Text>
-          <Text style={styles.textBlack} numberOfLines={1} ellipsizeMode="tail">{item.address}</Text>
+          <Text style={styles.textBlack} numberOfLines={1} ellipsizeMode="tail">
+            {item.name}
+          </Text>
+          <Text style={styles.textBlack} numberOfLines={1} ellipsizeMode="tail">
+            {item.address}
+          </Text>
         </View>
         <View>
-          <Text style={styles.textTheme}>Show on Map</Text>
+          <TouchableOpacity onPress={() => setShowPopUp(!showPopUp)}>
+            <Text style={styles.textTheme}>Show on Map</Text>
+          </TouchableOpacity>
         </View>
       </View>
     </View>
@@ -60,5 +69,4 @@ const styles = StyleSheet.create({
     textDecorationLine: 'underline',
     marginBottom: 5,
   },
-  
 });

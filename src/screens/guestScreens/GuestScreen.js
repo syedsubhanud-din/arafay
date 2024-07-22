@@ -6,17 +6,11 @@ import Map from '../../components/GuestScreenComponents/Map';
 
 const GuestScreen = () => {
   return (
-    <ImageBackground
-      source={require('../../assets/images/masjidDetailsBg.png')}
-      style={styles.background}>
-      {/* <ScrollView style={styles.scrollableContainer}>
-      </ScrollView> */}
-      <View style={styles.main}>
-        <AppBar />
-        <Map />
-        <NearBySection />
-      </View>
-    </ImageBackground>
+    <View style={styles.main}>
+      <AppBar />
+      <Map />
+      <NearBySection />
+    </View>
   );
 };
 
