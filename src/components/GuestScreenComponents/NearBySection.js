@@ -5,7 +5,7 @@ import {useSelector} from 'react-redux';
 import Popup from './Popup';
 
 const NearBySection = () => {
-  const [showPopUp, setShowPopUp] = useState(true);
+  const [showPopUp, setShowPopUp] = useState(false);
   const MasjidData = useSelector(state => state.masjidInfo);
   return (
     <>

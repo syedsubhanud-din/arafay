@@ -1,4 +1,4 @@
-import {ImageBackground, StyleSheet, View} from 'react-native';
+import { StyleSheet, View} from 'react-native';
 import React from 'react';
 import AppBar from '../../components/GuestScreenComponents/AppBar';
 import NearBySection from '../../components/GuestScreenComponents/NearBySection';

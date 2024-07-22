@@ -1,7 +1,9 @@
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
+import {useNavigation} from '@react-navigation/native';
 
 const NearByMasjidCard = ({item, showPopUp, setShowPopUp}) => {
+  const navigatation = useNavigation();
   return (
     <View style={styles.container}>
       <View style={styles.imageContainer}>
@@ -21,9 +23,12 @@ const NearByMasjidCard = ({item, showPopUp, setShowPopUp}) => {
             {item.address}
           </Text>
         </View>
-        <View>
+        <View style={styles.getRegistered}>
           <TouchableOpacity onPress={() => setShowPopUp(!showPopUp)}>
             <Text style={styles.textTheme}>Show on Map</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => navigatation.navigate('Register')}>
+            <Text style={styles.textTheme}>Get Registered</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -42,7 +47,6 @@ const styles = StyleSheet.create({
     padding: 10,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center',
   },
   imageContainer: {},
   textContainer: {
@@ -50,7 +54,11 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'space-between',
     paddingHorizontal: 10,
-    // borderWidth: 1,
+  },
+  getRegistered: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
   image: {
     // height: '100%',
@@ -68,5 +76,6 @@ const styles = StyleSheet.create({
     fontSize: 10,
     textDecorationLine: 'underline',
     marginBottom: 5,
+    lineHeight: 20,
   },
 });
