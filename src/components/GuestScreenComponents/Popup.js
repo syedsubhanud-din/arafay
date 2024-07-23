@@ -8,7 +8,9 @@ import {
 import React from 'react';
 import Icon from 'react-native-vector-icons/AntDesign';
 import PrayerTimes from './PrayerTimes';
+import {useNavigation} from '@react-navigation/native';
 const Popup = ({showPopUp, setShowPopUp}) => {
+  const navigation = useNavigation();
   return (
     <View style={styles.main}>
       <View style={styles.overlay}></View>
@@ -38,7 +40,15 @@ const Popup = ({showPopUp, setShowPopUp}) => {
           </View>
         </ImageBackground>
         <PrayerTimes />
-        <Text style={styles.viewDetails}>View Details</Text>
+        <View style={styles.viewDetailsContainer}>
+          <TouchableOpacity
+            onPress={() => {
+              setShowPopUp(!showPopUp);
+              navigation.navigate('MasjidDetails');
+            }}>
+            <Text style={styles.viewDetails}>View Details</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </View>
   );
@@ -119,13 +129,20 @@ const styles = StyleSheet.create({
     fontFamily: 'InknutAntiqua-Regular',
     fontSize: 14,
   },
+  viewDetailsContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    backgroundColor: '#fff',
+    paddingBottom: 15,
+  },
   viewDetails: {
     textAlign: 'center',
-    fontFamily: 'InknutAntiqua-Regular',
-    fontSize: 15,
+    fontFamily: 'Poppins-Semibold',
+    fontSize: 20,
+    fontWeight: 'bold',
     color: '#2473D8',
-    backgroundColor: "#fff",
-    paddingBottom: 10,
+    backgroundColor: '#fff',
+
     textDecorationLine: 'underline',
   },
 

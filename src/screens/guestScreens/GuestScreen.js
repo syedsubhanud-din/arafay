@@ -1,4 +1,4 @@
-import { StyleSheet, View} from 'react-native';
+import {KeyboardAvoidingView, StyleSheet, View} from 'react-native';
 import React from 'react';
 import AppBar from '../../components/GuestScreenComponents/AppBar';
 import NearBySection from '../../components/GuestScreenComponents/NearBySection';
@@ -10,11 +10,19 @@ const GuestScreen = () => {
       <AppBar />
       <Map />
       <NearBySection />
+      {/* <KeyboardAvoidingView
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
+        <NearBySection />
+      </KeyboardAvoidingView> */}
     </View>
   );
 };
 
 const styles = StyleSheet.create({
+  // keyboard: {
+  //   flex: 1,
+  //   width: '100%',
+  // },
   background: {
     flex: 1,
   },

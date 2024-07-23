@@ -8,6 +8,7 @@ import SplashScreen from '../screens/splashScreen/SplashScreen';
 import MasjidScreen from '../screens/masjidScreens/MasjidScreen';
 import GuestScreen from '../screens/guestScreens/GuestScreen';
 import RegisterScreen from '../screens/registerScreen/RegisterScreen';
+import MasjidDetailScreen from '../screens/masjidDetailScreen/MasjidDetailScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -24,6 +25,7 @@ function AppNavigator() {
         <Stack.Screen name="Register" component={RegisterScreen} />
         <Stack.Screen name="guest" component={GuestScreen} />
         <Stack.Screen name="masjid" component={MasjidScreen} />
+        <Stack.Screen name="MasjidDetails" component={MasjidDetailScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
