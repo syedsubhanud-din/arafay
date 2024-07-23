@@ -7,7 +7,7 @@ const SearchInput = () => {
       <GooglePlacesAutocomplete
         placeholder="Enter Location"
         onPress={(data, details = null) => {
-          console.warn(data, details);
+          console.log(data, details);
         }}
         query={{
           key: GOOGLE_MAPS_API_KEY,
@@ -16,7 +16,7 @@ const SearchInput = () => {
         styles={{
           textInput: {
             // color: '#000000',
-            backgroundColor: 'transparent',
+            backgroundColor: 'black',
             height: 50,
             borderRadius: 0,
             paddingVertical: 0,
