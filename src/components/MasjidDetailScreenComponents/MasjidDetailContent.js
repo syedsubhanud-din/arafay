@@ -1,10 +1,17 @@
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import React from 'react';
 // import GetRegisteredButton from './Buttons/GetRegisteredButton';
 // import ApprovedButton from './Buttons/ApprovedButton';
 // import RequestPendingButton from './Buttons/RequestPendingButton';
 // import EditDetailsButton from './Buttons/EditDetailsButton';
 import PrayerTimes from './PrayerTimes';
+import ImagesSlider from './ImagesSlider';
 
 const MasjidDetailContent = () => {
   return (
@@ -25,6 +32,8 @@ const MasjidDetailContent = () => {
         </Text>
       </View>
       <PrayerTimes />
+        <Text style={[styles.textgray, styles.pictureText]}>Pictures</Text>
+        <ImagesSlider />
     </View>
   );
 };
@@ -45,6 +54,13 @@ const styles = StyleSheet.create({
 
   content: {
     marginTop: 10,
+  },
+  pictureText: {
+    textAlign: 'start',
+    fontSize: 18,
+    fontWeight: '700',
+    lineHeight: 18,
+    marginBottom: 15
   },
   textBlack: {
     color: 'black',
