@@ -78,10 +78,10 @@ const styles = StyleSheet.create({
   },
   textBlack: {
     color: 'black',
-    fontSize: 8,
+    fontSize: 10,
     marginBottom: 10,
     fontFamily: 'InknutAntiqua-Medium',
-    lineHeight: 15,
+    lineHeight: 20,
     textAlign: 'center',
   },
 });

@@ -16,19 +16,10 @@ const MasjidDetailScreen = () => {
         <View style={styles.masjidBg}>
           <AppBar />
           <Image
-            source={require('../../assets/images/RegisterBG.jpeg')}
-            style={styles.masjidBg}
-            resizeMode="cover"
+            source={require('../../assets/images/masjidDetailBanner.png')}
+            style={styles.masjidBgImage}
           />
         </View>
-        {/* <ImageBackground
-        source={require('../../assets/images/RegisterBG.jpeg')}
-        style={styles.masjidBg}
-        resizeMode="cover">
-        <View style={styles.masjidBg}>
-          <AppBar />
-        </View>
-      </ImageBackground> */}
         <MasjidDetailCard />
       </View>
     </ScrollView>
@@ -49,7 +40,7 @@ const styles = StyleSheet.create({
   // },
   masjidBg: {
     // flex: 2,
-    height: 600,
+    height: 550,
     width: '100%',
     resizeMode: 'center',
   },

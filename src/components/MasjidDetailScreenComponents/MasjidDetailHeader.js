@@ -1,7 +1,10 @@
-import {StyleSheet, Text, View} from 'react-native';
-import React from 'react';
+import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
+import React, {useState} from 'react';
 import LocationIcon from 'react-native-vector-icons/Ionicons';
+import Heart from 'react-native-vector-icons/Ionicons';
+
 const MasjidDetailHeader = () => {
+  const [favorite, setFavorite] = useState(false);
   return (
     <View style={styles.headerSection}>
       <View style={styles.sectionHeadingContainer}>
@@ -12,14 +15,27 @@ const MasjidDetailHeader = () => {
           <Text>
             <LocationIcon name="location-outline" />
           </Text>
-          <Text style={{borderWidth: 2}}>Karachi , Pakistan</Text>
+          <Text>Karachi, Pakistan</Text>
         </Text>
       </View>
       <View style={styles.bullet}>
-        <Text style={[styles.textWhite, styles.distance]}>3.5 km</Text>
-        <Text style={[styles.textWhite]}>
-          from your current {'\n'} location
-        </Text>
+        <View>
+          <Text style={[styles.textWhite, styles.distance]}>3.5 km</Text>
+          <Text style={[styles.textWhite]}>
+            from your current {'\n'} location
+          </Text>
+        </View>
+        <View style={{paddingLeft: 10}}>
+          {favorite ? (
+            <TouchableOpacity onPress={() => setFavorite(!favorite)}>
+              <Heart name="heart" size={25} color="#FFF" />
+            </TouchableOpacity>
+          ) : (
+            <TouchableOpacity onPress={() => setFavorite(!favorite)}>
+              <Heart name="heart-outline" size={25} color="#FFF" />
+            </TouchableOpacity>
+          )}
+        </View>
       </View>
     </View>
   );
@@ -31,10 +47,6 @@ const styles = StyleSheet.create({
   headerSection: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginBottom: 10,
-    paddingBottom: 10,
-    // borderBottomWidth: 1,
-    // borderColor: '#E0E0E0',
   },
   sectionHeadingContainer: {
     paddingLeft: 20,
@@ -45,10 +57,12 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   location: {
-    // borderWidth: 1,
-    // justifyContent: 'center',
-    textAlignVertical: 'center',
-    alignItems: 'center',
+    // textAlignVertical: 'center',
+    flexDirection: 'row',
+    alignItems: 'baseline',
+    gap: 4,
+    fontWeight: '600',
+    gap: 2,
     marginTop: 2,
   },
   bullet: {
@@ -57,12 +71,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: 30,
     borderTopLeftRadius: 50,
     borderBottomLeftRadius: 50,
-    flexDirection: 'column',
+    flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     position: 'relative',
     right: 0,
-    // marginBottom: 10,
   },
   textBlack: {
     color: 'black',
@@ -74,7 +87,7 @@ const styles = StyleSheet.create({
   textWhite: {
     color: 'white',
     textAlign: 'center',
-    fontSize: 7,
+    fontSize: 8,
   },
   textgray: {
     color: '#696464',

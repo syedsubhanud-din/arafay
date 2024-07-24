@@ -12,7 +12,7 @@ function HomeScreen() {
     useCallback(() => {
       const backAction = () => {
         BackHandler.exitApp();
-        return true; // Return true to indicate that the back action is handled
+        return true;
       };
 
       const backHandler = BackHandler.addEventListener(

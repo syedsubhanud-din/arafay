@@ -1,20 +1,20 @@
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
-import GetRegisteredButton from './Buttons/GetRegisteredButton';
-import ApprovedButton from './Buttons/ApprovedButton';
-import RequestPendingButton from './Buttons/RequestPendingButton';
-import EditDetailsButton from './Buttons/EditDetailsButton';
+// import GetRegisteredButton from './Buttons/GetRegisteredButton';
+// import ApprovedButton from './Buttons/ApprovedButton';
+// import RequestPendingButton from './Buttons/RequestPendingButton';
+// import EditDetailsButton from './Buttons/EditDetailsButton';
 import PrayerTimes from './PrayerTimes';
 
 const MasjidDetailContent = () => {
   return (
     <View style={styles.container}>
-      <View style={styles.status}>
+      {/* <View style={styles.status}>
         <GetRegisteredButton />
-        {/* <RequestPendingButton /> */}
-        {/* <ApprovedButton /> */}
-        {/* <EditDetailsButton /> */}
-      </View>
+        <RequestPendingButton />
+        <ApprovedButton />
+        <EditDetailsButton />
+      </View> */}
       <View style={styles.content}>
         <Text style={styles.textgray}>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
     flex: 1,
     // backgroundColor: '#F6F6F6',
     paddingHorizontal: 20,
-    paddingVertical: 15,
+    // paddingVertical: 15,
   },
   status: {
     flexDirection: 'row',
@@ -50,12 +50,12 @@ const styles = StyleSheet.create({
     color: 'black',
   },
   textgray: {
-    color: '#696464',
-    fontSize: 10,
+    fontFamily: 'Poppins-SemiBold',
+    color: '#8B8686',
+    fontSize: 11,
     lineHeight: 15,
     marginTop: 5,
-    marginBottom: 10,
     textAlign: 'center',
-    paddingHorizontal: 5,
+    paddingHorizontal: 2,
   },
 });

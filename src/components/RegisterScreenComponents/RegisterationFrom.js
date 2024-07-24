@@ -7,8 +7,6 @@ import {
   Image,
 } from 'react-native';
 import React, {useState} from 'react';
-import GoogleIcon from 'react-native-vector-icons/AntDesign';
-import SvgUri from 'react-native-svg';
 const RegisterationFrom = () => {
   const [formData, setFormData] = useState({
     email: '',
@@ -48,7 +46,7 @@ const RegisterationFrom = () => {
             required
             placeholderTextColor={'#B8B1B1'}
             style={styles.textInput}
-            secureTextEntry={true} 
+            secureTextEntry={true}
             name="password"
             value={formData.password}
             onChangeText={text => handleChange('password', text)}
@@ -60,19 +58,12 @@ const RegisterationFrom = () => {
           <View style={styles.subDivider}></View>
         </View>
         <View style={styles.textGoogleFieldContainer}>
-          <GoogleIcon name="google" fontSize={20} color="black" />
-          {/* <Image
-                  source={'../../assets/images/google_logo.svg'}
-                  width={20}
-                  height={20}
-                /> */}
-          {/* <View style={styles.googleLogo}>
-            <SvgUri
-              width={20}
-              height={20}
-              source={require('../../assets/images/google_logo.svg')}
+          <View style={styles.googleImageContainer}>
+            <Image
+              source={require('../../assets/images/google_logo.png')}
+              style={styles.googleImage}
             />
-          </View> */}
+          </View>
           <Text style={[styles.textGray, styles.textLabelsGoogle]}>
             Continue With Google
           </Text>
@@ -122,6 +113,17 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: 5,
   },
+  googleImageContainer: {
+    width: 25,
+    height: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 50,
+  },
+  googleImage: {
+    width: 18,
+    height: 18,
+  },
   divider: {
     flex: 1,
     flexDirection: 'row',
@@ -132,17 +134,11 @@ const styles = StyleSheet.create({
   },
   subDivider: {
     width: '30%',
-    height: 2,
+    height: 1.5,
     backgroundColor: '#594C3B',
   },
   dividerText: {
     fontWeight: '600',
-  },
-  googleLogo: {
-    // flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#fff',
   },
   textLabels: {
     marginBottom: 5,

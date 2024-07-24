@@ -1,10 +1,26 @@
-import {KeyboardAvoidingView, StyleSheet, View} from 'react-native';
-import React from 'react';
+import {BackHandler, KeyboardAvoidingView, StyleSheet, View} from 'react-native';
+import React, { useCallback } from 'react';
 import AppBar from '../../components/GuestScreenComponents/AppBar';
 import NearBySection from '../../components/GuestScreenComponents/NearBySection';
 import Map from '../../components/GuestScreenComponents/Map';
+import { useFocusEffect } from '@react-navigation/native';
 
 const GuestScreen = () => {
+  useFocusEffect(
+    useCallback(() => {
+      const backAction = () => {
+        BackHandler.exitApp();
+        return true;
+      };
+
+      const backHandler = BackHandler.addEventListener(
+        'hardwareBackPress',
+        backAction,
+      );
+
+      return () => backHandler.remove();
+    }, []),
+  );
   return (
     <View style={styles.main}>
       <AppBar />

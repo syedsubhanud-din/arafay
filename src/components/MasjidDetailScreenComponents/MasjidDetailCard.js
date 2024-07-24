@@ -13,6 +13,9 @@ const MasjidDetailCard = () => {
           <TouchableOpacity style={styles.mapViewButton}>
             <Text style = {styles.mapViewButtonText}>View Location on Map</Text>
           </TouchableOpacity>
+          <TouchableOpacity style={styles.mapViewButton}>
+            <Text style = {styles.mapViewButtonText}>Claim Masjid</Text>
+          </TouchableOpacity>
         </View>
       </View>
     </View>
@@ -35,7 +38,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     position: 'relative',
     top: -40,
-    paddingVertical: 25,
+    paddingTop: 25,
   },
   mapViewButtonContainer: {
     paddingHorizontal: 20,
@@ -51,5 +54,8 @@ const styles = StyleSheet.create({
   },
   mapViewButtonText: {
     textAlign: 'center',
+    fontSize: 12,
+    fontFamily: 'Poppins-Semibold',
+    color: '#ffffff',
   },
 });
