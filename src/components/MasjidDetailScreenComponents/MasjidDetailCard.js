@@ -2,19 +2,25 @@ import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 import MasjidDetailHeader from './MasjidDetailHeader';
 import MasjidDetailContent from './MasjidDetailContent';
+import {useNavigation} from '@react-navigation/native';
 
 const MasjidDetailCard = () => {
+  const navigation = useNavigation();
   return (
     <View style={styles.masjidDetailsContainer}>
       <View style={styles.masjidDetailsSection}>
         <MasjidDetailHeader />
         <MasjidDetailContent />
         <View style={styles.mapViewButtonContainer}>
-          <TouchableOpacity style={styles.mapViewButton}>
-            <Text style = {styles.mapViewButtonText}>View Location on Map</Text>
+          <TouchableOpacity
+            style={styles.mapViewButton}
+            onPress={() => navigation.navigate('guest')}>
+            <Text style={styles.mapViewButtonText}>View Location on Map</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.mapViewButton}>
-            <Text style = {styles.mapViewButtonText}>Claim Masjid</Text>
+          <TouchableOpacity
+            style={styles.mapViewButton}
+            onPress={() => navigation.navigate('Claim')}>
+            <Text style={styles.mapViewButtonText}>Claim Masjid</Text>
           </TouchableOpacity>
         </View>
       </View>

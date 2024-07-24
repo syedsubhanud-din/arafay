@@ -8,7 +8,7 @@ const AppBar = () => {
   return (
     <View style={styles.bar}>
       <TouchableOpacity
-        onPress={() => navigation.navigate('guest')}
+        onPress={() => navigation.navigate('MasjidDetails')}
         style={styles.button}>
         <Icon name="arrow-back" size={18} style={styles.icon}></Icon>
       </TouchableOpacity>

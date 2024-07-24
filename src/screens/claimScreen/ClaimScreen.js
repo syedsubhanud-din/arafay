@@ -1,14 +1,9 @@
-import {
-  StyleSheet,
-  View,
-  ImageBackground,
-  ScrollView,
-} from 'react-native';
+import {StyleSheet, View, ImageBackground, ScrollView} from 'react-native';
 import React from 'react';
-import AppBar from '../../components/RegisterScreenComponents/AppBar';
-import RegisterationFrom from '../../components/RegisterScreenComponents/RegisterationFrom';
+import AppBar from '../../components/ClaimScreenComponents/AppBar';
+import ClaimForm from '../../components/ClaimScreenComponents/ClaimForm';
 
-const RegisterScreen = () => {
+const ClaimScreen = () => {
   return (
     <View style={styles.main}>
       <ImageBackground
@@ -17,14 +12,14 @@ const RegisterScreen = () => {
         <View style={styles.overlay}></View>
         <AppBar />
         <ScrollView>
-          <RegisterationFrom />
+          <ClaimForm />
         </ScrollView>
       </ImageBackground>
     </View>
   );
 };
 
-export default RegisterScreen;
+export default ClaimScreen;
 
 const styles = StyleSheet.create({
   main: {
