@@ -40,6 +40,8 @@ const ImagesSlider = () => {
       horizontal
       pagingEnabled
       showsHorizontalScrollIndicator={false}
+      snapToInterval={width}
+      decelerationRate="normal"
       style={styles.scrollView}>
       <View style={styles.imagesContainer}>
         {images.map(image => (
@@ -73,6 +75,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: '',
     gap: 4,
+    // marginRight: 20
     // marginTop: 20
     // paddingHorizontal: 10,
   },
