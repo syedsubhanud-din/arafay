@@ -19,7 +19,7 @@ const MasjidDetailCard = () => {
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.mapViewButton}
-            onPress={() => navigation.navigate('Claim')}>
+            onPress={() => navigation.navigate('Register')}>
             <Text style={styles.mapViewButtonText}>Claim Masjid</Text>
           </TouchableOpacity>
         </View>

@@ -1,15 +1,16 @@
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
+import LoginSignupScreen from '../../screens/login_signupScreen/LoginSignupScreen';
 
 const Drawer = ({drawer , setDrawer}) => {
   return (
     <View style={styles.main}>
-      <Text>Drawer</Text>
-      <TouchableOpacity onPress={() => setDrawer(!drawer)}>
+      <LoginSignupScreen drawer = {drawer} setDrawer = {setDrawer}/>
+      {/* <TouchableOpacity onPress={() => setDrawer(!drawer)}>
         <Text style={{color: 'white'}} onPress={() => setDrawer(false)}>
           Close
         </Text>
-      </TouchableOpacity>
+      </TouchableOpacity> */}
     </View>
   );
 };

@@ -12,6 +12,7 @@ import React from 'react';
 // import EditDetailsButton from './Buttons/EditDetailsButton';
 import PrayerTimes from './PrayerTimes';
 import ImagesSlider from './ImagesSlider';
+import EditableTable from './EditableTable';
 
 const MasjidDetailContent = () => {
   return (
@@ -32,8 +33,11 @@ const MasjidDetailContent = () => {
         </Text>
       </View>
       <PrayerTimes />
+      {/* <EditableTable /> */}
+      <View>
         <Text style={[styles.textgray, styles.pictureText]}>Pictures</Text>
         <ImagesSlider />
+      </View>
     </View>
   );
 };
@@ -60,7 +64,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: '700',
     lineHeight: 18,
-    marginBottom: 15
+    marginBottom: 15,
   },
   textBlack: {
     color: 'black',
