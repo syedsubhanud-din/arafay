@@ -1,12 +1,14 @@
 import {Text, StyleSheet, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 import BackIcon from 'react-native-vector-icons/MaterialIcons';
+import { useNavigation } from '@react-navigation/native';
 
-const AppBar = ({drawer, setDrawer, state, setState}) => {
+const AppBar = ({state, setState}) => {
+  const navigation = useNavigation()
   return (
     <View style={styles.main}>
       <View style={styles.container}>
-        <TouchableOpacity onPress={() => setDrawer(!drawer)}>
+        <TouchableOpacity onPress={() => navigation.navigate('guest')}>
           <BackIcon name="keyboard-backspace" size={30} color="black" />
         </TouchableOpacity>
         <View style={styles.tabButtonsContainer}>

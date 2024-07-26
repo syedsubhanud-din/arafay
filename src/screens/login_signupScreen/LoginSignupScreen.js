@@ -4,17 +4,15 @@ import AppBar from '../../components/LoginSignupScreenComponents/AppBar';
 import Login from '../../components/LoginSignupScreenComponents/Login';
 import Signup from '../../components/LoginSignupScreenComponents/Signup';
 
-const LoginSignupScreen = ({drawer, setDrawer}) => {
-  const [state, setState] = useState('login');
+const LoginSignupScreen = () => {
+  const [state, setState] = useState('signup');
   return (
     <View style={styles.main}>
       <AppBar
         state={state}
         setState={setState}
-        drawer={drawer}
-        setDrawer={setDrawer}
       />
-      {state === 'login' ? <Login /> : <Signup />}
+      {state === 'signup' ? <Signup /> : <Login />}
     </View>
   );
 };

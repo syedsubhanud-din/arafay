@@ -10,6 +10,8 @@ import GuestScreen from '../screens/guestScreens/GuestScreen';
 import RegisterScreen from '../screens/registerScreen/RegisterScreen';
 import MasjidDetailScreen from '../screens/masjidDetailScreen/MasjidDetailScreen';
 import ClaimScreen from '../screens/claimScreen/ClaimScreen';
+import LoginSignupScreen from '../screens/login_signupScreen/LoginSignupScreen';
+import UserProfileScreen from '../screens/userProfileScreen/UserProfileScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -28,6 +30,8 @@ function AppNavigator() {
         <Stack.Screen name="guest" component={GuestScreen} />
         <Stack.Screen name="masjid" component={MasjidScreen} />
         <Stack.Screen name="MasjidDetails" component={MasjidDetailScreen} />
+        <Stack.Screen name="Login_SignUp" component={LoginSignupScreen} />
+        <Stack.Screen name="Profile" component={UserProfileScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

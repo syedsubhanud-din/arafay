@@ -9,11 +9,13 @@ import IconBellRing from 'react-native-vector-icons/MaterialCommunityIcons';
 import Drawer from './Drawer';
 const AppBar = () => {
   const [alert, setAlert] = useState(false);
-  const [drawer, setDrawer] = useState(true);
+  const [drawer, setDrawer] = useState(false);
   const navigation = useNavigation();
   return (
     <>
       {drawer && <Drawer drawer={drawer} setDrawer={setDrawer} />}
+      {drawer && <View style={styles.backDrop}></View>}
+
       <View style={styles.bar}>
         <View>
           <TouchableOpacity
@@ -36,11 +38,6 @@ const AppBar = () => {
           </View>
         </View>
         <View>
-          {/* <TouchableOpacity style={styles.button}>
-          <Text>
-            <Icon name="notifications" size={22} style={styles.icon}></Icon>
-          </Text>
-        </TouchableOpacity> */}
           {!alert ? (
             <TouchableOpacity
               style={styles.button}
@@ -66,6 +63,15 @@ const AppBar = () => {
 export default AppBar;
 
 const styles = StyleSheet.create({
+  backDrop: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    width: '100%',
+    height: '100%',
+    backgroundColor: 'rgba(0,0,0,0.5)',
+    zIndex: 2
+  },
   bar: {
     flexDirection: 'row',
     justifyContent: 'space-between',

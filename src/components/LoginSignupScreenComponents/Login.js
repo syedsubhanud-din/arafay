@@ -9,7 +9,9 @@ import {
 import React, {useState} from 'react';
 import UserIcon from 'react-native-vector-icons/FontAwesome';
 import PencilIcon from 'react-native-vector-icons/SimpleLineIcons';
+import {useNavigation} from '@react-navigation/native';
 const Login = () => {
+  const navigation = useNavigation();
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -48,10 +50,15 @@ const Login = () => {
               style={styles.textInput}
               placeholder="Password (required)"
               placeholderTextColor={'#7E7B7B'}
-              name="email"
-              value={formData.email}
-              onChangeText={text => handleChange('email', text)}
+              name="password"
+              value={formData.password}
+              onChangeText={text => handleChange('password', text)}
             />
+          </View>
+          <View>
+            <TouchableOpacity onPress={() => navigation.navigate('Home')}>
+              <Text style={styles.forgetPasswordText}>forgot password?</Text>
+            </TouchableOpacity>
           </View>
           <View style={styles.divider}>
             <View style={styles.subDivider}></View>
@@ -72,11 +79,14 @@ const Login = () => {
           <View style={styles.loginContainer}>
             <View style={styles.buttonFieldContainer}>
               <TouchableOpacity onPress={handleSubmit}>
-                <Text style={[styles.buttonText, styles.textBlack]}>
-                  Log In
-                </Text>
+                <Text style={styles.buttonText}>Log In</Text>
               </TouchableOpacity>
             </View>
+          </View>
+          <View style={styles.claimedTextContainer}>
+            <TouchableOpacity onPress={() => navigation.navigate('Claim')}>
+              <Text style={styles.claimedText}>View Your Claimed Masjid</Text>
+            </TouchableOpacity>
           </View>
         </View>
       </View>
@@ -131,15 +141,24 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     marginBottom: 10,
   },
+  textInput: {
+    color: '#594C3B',
+    fontSize: 12,
+  },
+  forgetPasswordText: {
+    color: '#3BB0E2',
+    fontSize: 13,
+    fontWeight: 'bold',
+    textDecorationLine: 'underline',
+  },
   divider: {
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
     gap: 10,
-    marginBottom: 20,
   },
   subDivider: {
-    width: '30%',
+    flex: 1,
     height: 1.5,
     backgroundColor: '#594C3B',
   },
@@ -173,15 +192,28 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   buttonFieldContainer: {
-    backgroundColor: 'white',
+    backgroundColor: '#005E9D',
     fontSize: 12,
-    paddingHorizontal: 40,
-    paddingVertical: 10,
-    borderTopRightRadius: 10,
-    borderBottomLeftRadius: 10,
+    width: "70%",
+    borderRadius: 10,
     textAlign: 'center',
     elevation: 10,
-    color: 'black',
+  },
+  buttonText: {
+    color: 'white',
+    fontWeight: 'bold',
+    paddingVertical: 10,
+    textAlign: 'center',
+  },
+  claimedTextContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+  },
+  claimedText: {
+    color: '#594C3B',
+    fontSize: 13,
+    fontWeight: 'bold',
+    textDecorationLine: 'underline',
   },
   textGray: {
     color: '#594C3B',
