@@ -5,68 +5,73 @@ import ForwardIcon from 'react-native-vector-icons/Ionicons';
 import ArrowForwardIcon from 'react-native-vector-icons/FontAwesome6';
 import UserIcon from 'react-native-vector-icons/AntDesign';
 import {useNavigation} from '@react-navigation/native';
+import {useSelector} from 'react-redux';
 const Drawer = ({drawer, setDrawer}) => {
+  const isLoggedIn = useSelector(state => state.UserInfo.isLoggedIn);
   const navigation = useNavigation();
   return (
     <View style={styles.main}>
       <View style={styles.backDrop}></View>
       <View style={styles.container}>
         <View style={styles.topBar}>
-          <TouchableOpacity style={styles.topBarButton}>
-            <BackIcon
-              name="chevron-back"
-              size={20}
-              color="#FFF"
-              // onPress={() => drawer.current.closeDrawer()}
-            />
-            <Text style={styles.textWhite}>More</Text>
+          <TouchableOpacity
+            style={styles.topBarButton}
+            onPress={() => setDrawer(!drawer)}>
+            <BackIcon name="chevron-back" size={20} color="#FFF" />
+            <Text style={styles.textWhite}>Masjid</Text>
           </TouchableOpacity>
         </View>
-        <View style={styles.usernameContainer}>
-          <View style={styles.profileImageContainer}>
-            <Image
-              source={require('../../assets/images/profile.png')}
-              style={styles.image}
-            />
+        {isLoggedIn && (
+          <View style={styles.usernameContainer}>
+            <View style={styles.profileImageContainer}>
+              <Image
+                source={require('../../assets/images/profile.png')}
+                style={styles.image}
+              />
+            </View>
+            <Text style={styles.usernameText}>Username</Text>
           </View>
-          <Text style={styles.usernameText}>Username</Text>
-        </View>
+        )}
         <View style={styles.navLinksContainer}>
-          <TouchableOpacity
-            onPress={() => {
-              navigation.navigate('Login_SignUp');
-              setDrawer(!drawer);
-            }}>
-            <View style={styles.navLink}>
-              <View style={styles.navLinkTitle}>
-                <ArrowForwardIcon
-                  name="arrow-right-to-bracket"
-                  size={20}
-                  color="#000"
-                  // onPress={() => drawer.current.closeDrawer()}
-                />
-                <Text style={styles.textBlack}>Login / Sign up</Text>
+          {!isLoggedIn && (
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate('Login_SignUp');
+                setDrawer(!drawer);
+              }}>
+              <View style={styles.navLink}>
+                <View style={styles.navLinkTitle}>
+                  <ArrowForwardIcon
+                    name="arrow-right-to-bracket"
+                    size={20}
+                    color="#000"
+                    // onPress={() => drawer.current.closeDrawer()}
+                  />
+                  <Text style={styles.textBlack}>Login / Sign up</Text>
+                </View>
+                <View>
+                  <ForwardIcon name="chevron-forward" size={20} color="#000" />
+                </View>
               </View>
-              <View>
-                <ForwardIcon name="chevron-forward" size={20} color="#000" />
+            </TouchableOpacity>
+          )}
+          {isLoggedIn && (
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate('Profile');
+                setDrawer(!drawer);
+              }}>
+              <View style={styles.navLink}>
+                <View style={styles.navLinkTitle}>
+                  <UserIcon name="user" size={20} color="#000" />
+                  <Text style={styles.textBlack}>User Profile</Text>
+                </View>
+                <View>
+                  <ForwardIcon name="chevron-forward" size={20} color="#000" />
+                </View>
               </View>
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => {
-              navigation.navigate('Profile');
-              setDrawer(!drawer);
-            }}>
-            <View style={styles.navLink}>
-              <View style={styles.navLinkTitle}>
-                <UserIcon name="user" size={20} color="#000" />
-                <Text style={styles.textBlack}>User Profile</Text>
-              </View>
-              <View>
-                <ForwardIcon name="chevron-forward" size={20} color="#000" />
-              </View>
-            </View>
-          </TouchableOpacity>
+            </TouchableOpacity>
+          )}
         </View>
       </View>
     </View>

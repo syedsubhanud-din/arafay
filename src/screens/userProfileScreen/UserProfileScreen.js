@@ -3,7 +3,7 @@ import React from 'react';
 
 const UserProfileScreen = () => {
   return (
-    <View>
+    <View style = {styles.container}>
       <Text style={{color: '#000'}}>UserProfileScreen</Text>
     </View>
   );
@@ -11,4 +11,10 @@ const UserProfileScreen = () => {
 
 export default UserProfileScreen;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+});

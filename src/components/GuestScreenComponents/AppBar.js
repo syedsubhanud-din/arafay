@@ -14,7 +14,7 @@ const AppBar = () => {
   return (
     <>
       {drawer && <Drawer drawer={drawer} setDrawer={setDrawer} />}
-      {drawer && <View style={styles.backDrop}></View>}
+      {drawer && <TouchableOpacity style={styles.backDrop} onPress={() => setDrawer(!drawer)}></TouchableOpacity>}
 
       <View style={styles.bar}>
         <View>
@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
     backgroundColor: 'rgba(0,0,0,0.5)',
-    zIndex: 2
+    zIndex: 2,
   },
   bar: {
     flexDirection: 'row',
