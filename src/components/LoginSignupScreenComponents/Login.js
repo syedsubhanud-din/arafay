@@ -13,8 +13,9 @@ import {useNavigation} from '@react-navigation/native';
 const Login = () => {
   const navigation = useNavigation();
   const [formData, setFormData] = useState({
-    email: '',
+    // email: '',
     password: '',
+    phone: '',
   });
 
   const handleChange = (name, value) => {
@@ -35,7 +36,7 @@ const Login = () => {
           </TouchableOpacity>
         </View>
         <View style={styles.formContainer}>
-          <View style={styles.textFieldContainer}>
+          {/* <View style={styles.textFieldContainer}>
             <TextInput
               style={styles.textInput}
               placeholder="Email / Phone"
@@ -43,6 +44,16 @@ const Login = () => {
               name="email"
               value={formData.email}
               onChangeText={text => handleChange('email', text)}
+            />
+          </View> */}
+          <View style={styles.textFieldContainer}>
+            <TextInput
+              style={styles.textInput}
+              placeholder="Phone"
+              placeholderTextColor={'#7E7B7B'}
+              name="phone"
+              value={formData.phone}
+              onChangeText={text => handleChange('phone', text)}
             />
           </View>
           <View style={styles.textFieldContainer}>
@@ -194,7 +205,7 @@ const styles = StyleSheet.create({
   buttonFieldContainer: {
     backgroundColor: '#005E9D',
     fontSize: 12,
-    width: "70%",
+    width: '70%',
     borderRadius: 10,
     textAlign: 'center',
     elevation: 10,

@@ -15,6 +15,7 @@ const Signup = () => {
   const [isSelected, setSelection] = useState(false);
   const navigation = useNavigation();
   const [formData, setFormData] = useState({
+    name: '',
     email: '',
     password: '',
     confirmPassword: '',
@@ -41,7 +42,17 @@ const Signup = () => {
           <View style={styles.textFieldContainer}>
             <TextInput
               style={styles.textInput}
-              placeholder="Email / Phone"
+              placeholder="Name"
+              placeholderTextColor={'#7E7B7B'}
+              name="name"
+              value={formData.name}
+              onChangeText={text => handleChange('name', text)}
+            />
+          </View>
+          <View style={styles.textFieldContainer}>
+            <TextInput
+              style={styles.textInput}
+              placeholder="Phone"
               placeholderTextColor={'#7E7B7B'}
               name="email"
               value={formData.email}

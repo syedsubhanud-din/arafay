@@ -11,7 +11,6 @@ import UploadIcon from 'react-native-vector-icons/Feather';
 
 const ClaimForm = () => {
   const [formData, setFormData] = useState({
-    name: '',
     cnic: '',
     masjidDocument: '',
   });

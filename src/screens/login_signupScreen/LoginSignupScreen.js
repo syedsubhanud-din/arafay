@@ -1,4 +1,4 @@
-import {StyleSheet, View} from 'react-native';
+import {ScrollView, StyleSheet, View} from 'react-native';
 import React, {useState} from 'react';
 import AppBar from '../../components/LoginSignupScreenComponents/AppBar';
 import Login from '../../components/LoginSignupScreenComponents/Login';
@@ -8,11 +8,8 @@ const LoginSignupScreen = () => {
   const [state, setState] = useState('signup');
   return (
     <View style={styles.main}>
-      <AppBar
-        state={state}
-        setState={setState}
-      />
-      {state === 'signup' ? <Signup /> : <Login />}
+      <AppBar state={state} setState={setState} />
+      <ScrollView>{state === 'signup' ? <Signup /> : <Login />}</ScrollView>
     </View>
   );
 };

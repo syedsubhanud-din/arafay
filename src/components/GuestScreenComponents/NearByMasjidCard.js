@@ -27,9 +27,9 @@ const NearByMasjidCard = ({item, showPopUp, setShowPopUp}) => {
           <TouchableOpacity onPress={() => setShowPopUp(!showPopUp)}>
             <Text style={styles.textTheme}>Show on Map</Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => navigatation.navigate('Register')}>
+          {/* <TouchableOpacity onPress={() => navigatation.navigate('Register')}>
             <Text style={styles.textTheme}>Get Registered</Text>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
         </View>
       </View>
     </View>
