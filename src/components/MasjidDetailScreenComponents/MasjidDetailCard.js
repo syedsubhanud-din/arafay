@@ -3,11 +3,17 @@ import React from 'react';
 import MasjidDetailHeader from './MasjidDetailHeader';
 import MasjidDetailContent from './MasjidDetailContent';
 import {useNavigation} from '@react-navigation/native';
+import PencilIcon from 'react-native-vector-icons/SimpleLineIcons';
 
 const MasjidDetailCard = () => {
   const navigation = useNavigation();
   return (
     <View style={styles.masjidDetailsContainer}>
+      <TouchableOpacity
+        onPress={() => navigation.navigate('Edit_Masjid_Details')}
+        style={styles.button}>
+        <PencilIcon name="pencil" size={20} style={styles.icon} />
+      </TouchableOpacity>
       <View style={styles.masjidDetailsSection}>
         <MasjidDetailHeader />
         <MasjidDetailContent />
@@ -36,6 +42,21 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
     backgroundColor: 'rgb(255, 255, 255)',
+    position: 'relative',
+  },
+  button: {
+    height: 50,
+    width: 50,
+    borderRadius: 40,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#fff',
+    position: 'absolute',
+    top: -110,
+    right: 20,
+  },
+  icon: {
+    color: '#007AC7',
   },
   masjidDetailsSection: {
     flex: 1,

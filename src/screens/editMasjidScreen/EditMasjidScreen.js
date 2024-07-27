@@ -1,4 +1,10 @@
-import {ScrollView, StyleSheet, View} from 'react-native';
+import {
+  ImageBackground,
+  KeyboardAvoidingView,
+  ScrollView,
+  StyleSheet,
+  View,
+} from 'react-native';
 import React from 'react';
 import AppBar from '../../components/EditMasjidDetailsScreenComponents/AppBar';
 import EditMasjidDetailForm from '../../components/EditMasjidDetailsScreenComponents/EditMasjidDetailForm';
@@ -14,6 +20,13 @@ const EditMasjidScreen = () => {
         <ScrollView>
           <EditMasjidDetailForm />
         </ScrollView>
+        {/* <KeyboardAvoidingView
+          behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+          style={styles.KeyboardContainer}>
+          <View>
+            <EditMasjidDetailForm />
+          </View>
+        </KeyboardAvoidingView> */}
       </ImageBackground>
     </View>
   );
@@ -37,5 +50,8 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     opacity: 0.7,
+  },
+  KeyboardContainer: {
+    flex: 1,
   },
 });
