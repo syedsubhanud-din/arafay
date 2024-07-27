@@ -32,21 +32,9 @@ const ClaimForm = () => {
         request
       </Text>
       <View>
-        <View style={styles.textFieldContainer}>
-          <Text style={[styles.textGray, styles.textLabels]}>Full Name</Text>
-          <TextInput
-            placeholder="name (required)"
-            placeholderTextColor={'#B8B1B1'}
-            style={styles.textInput}
-            required
-            name="name"
-            value={formData.name}
-            onChangeText={text => handleChange('name', text)}
-          />
-        </View>
-        <View style={styles.textFieldContainer}>
+        <View>
           <Text style={[styles.textGray, styles.textLabels]}>CNIC</Text>
-          <View style = {{flexDirection: 'row'}}>
+          <View style={styles.textFieldContainer}>
             <TextInput
               placeholder="CNIC (required)"
               placeholderTextColor={'#B8B1B1'}
@@ -56,13 +44,34 @@ const ClaimForm = () => {
               value={formData.cnic}
               onChangeText={text => handleChange('cnic', text)}
             />
-            <TouchableOpacity onPress={() => handleFileUpload('cnic')}>
-              <UploadIcon name="upload" size={20} style={{color: 'black'}} />
+            <TouchableOpacity
+              onPress={() => handleFileUpload('cnic')}
+              style={styles.uploadIcon}>
+              <UploadIcon name="upload" size={20} style={{color: '#08568B'}} />
+            </TouchableOpacity>
+          </View>
+        </View>
+        <View>
+          <Text style={[styles.textGray, styles.textLabels]}>Masjid Document</Text>
+          <View style={styles.textFieldContainer}>
+            <TextInput
+              placeholder="Masjid Document (required)"
+              placeholderTextColor={'#B8B1B1'}
+              style={styles.textInput}
+              required
+              name="masjidDocument"
+              value={formData.cnic}
+              onChangeText={text => handleChange('masjidDocument', text)}
+            />
+            <TouchableOpacity
+              onPress={() => handleFileUpload('cnic')}
+              style={styles.uploadIcon}>
+              <UploadIcon name="upload" size={20} style={{color: '#08568B'}} />
             </TouchableOpacity>
           </View>
         </View>
 
-        <View style={styles.loginContainer}>
+        <View style={styles.claimContainer}>
           <View style={styles.buttonFieldContainer}>
             <TouchableOpacity onPress={handleFileUpload}>
               <Text style={[styles.buttonText, styles.textBlack]}>
@@ -82,13 +91,6 @@ const styles = StyleSheet.create({
   container: {
     padding: 20,
   },
-  pageHeading: {
-    fontSize: 30,
-    // fontWeight: 'bold',
-    marginBottom: 20,
-    color: '#594C3B',
-    textAlign: 'center',
-  },
   pageDescription: {
     fontSize: 13,
     marginBottom: 20,
@@ -96,60 +98,28 @@ const styles = StyleSheet.create({
   },
   textFieldContainer: {
     marginBottom: 20,
-  },
-  textGoogleFieldContainer: {
-    borderWidth: 1,
-    borderColor: '#594C3B',
-    paddingHorizontal: 20,
-    paddingVertical: 10,
-    borderRadius: 3,
-    marginBottom: 20,
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 5,
-  },
-  googleImageContainer: {
-    width: 25,
-    height: 20,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 50,
-  },
-  googleImage: {
-    width: 18,
-    height: 18,
-  },
-  divider: {
+    backgroundColor: 'white',
+    borderTopRightRadius: 10,
+    borderBottomLeftRadius: 10,
+    elevation: 10,
     flex: 1,
     flexDirection: 'row',
-    justifyContent: 'center',
     alignItems: 'center',
-    gap: 10,
-    marginBottom: 20,
   },
-  subDivider: {
-    width: '30%',
-    height: 1.5,
-    backgroundColor: '#594C3B',
-  },
-  dividerText: {
-    fontWeight: '600',
+  uploadIcon: {
+    paddingHorizontal: 10,
   },
   textLabels: {
     marginBottom: 5,
     fontSize: 12,
   },
   textInput: {
-    backgroundColor: 'white',
     color: '#594C3B',
     fontSize: 12,
     paddingLeft: 10,
-    borderTopRightRadius: 10,
-    borderBottomLeftRadius: 10,
-    elevation: 10,
-    flex: 1
+    flex: 1,
   },
-  loginContainer: {
+  claimContainer: {
     flexDirection: 'row',
     justifyContent: 'center',
   },
