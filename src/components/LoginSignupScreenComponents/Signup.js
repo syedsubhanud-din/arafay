@@ -11,14 +11,18 @@ import UserIcon from 'react-native-vector-icons/FontAwesome';
 import PencilIcon from 'react-native-vector-icons/SimpleLineIcons';
 import CheckIcon from 'react-native-vector-icons/Feather';
 import {useNavigation} from '@react-navigation/native';
+import { useDispatch } from 'react-redux';
+import { register } from '../../store/Slices/UserDataSlice';
 const Signup = () => {
   const [isSelected, setSelection] = useState(false);
+  const dispatch = useDispatch()
   const navigation = useNavigation();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     password: '',
     confirmPassword: '',
+    phone_number: '',
   });
 
   const handleChange = (name, value) => {
@@ -27,6 +31,7 @@ const Signup = () => {
   };
 
   const handleSubmit = () => {
+    dispatch(register(formData));
     console.log('Form submitted with data:', formData);
   };
   return (
@@ -45,6 +50,7 @@ const Signup = () => {
               placeholder="Name"
               placeholderTextColor={'#7E7B7B'}
               name="name"
+              required
               value={formData.name}
               onChangeText={text => handleChange('name', text)}
             />
@@ -53,6 +59,17 @@ const Signup = () => {
             <TextInput
               style={styles.textInput}
               placeholder="Phone"
+              placeholderTextColor={'#7E7B7B'}
+              name="phone_number"
+              required
+              value={formData.phone_number}
+              onChangeText={text => handleChange('phone_number', text)}
+            />
+          </View>
+          <View style={styles.textFieldContainer}>
+            <TextInput
+              style={styles.textInput}
+              placeholder="Email"
               placeholderTextColor={'#7E7B7B'}
               name="email"
               value={formData.email}
@@ -65,6 +82,8 @@ const Signup = () => {
               placeholder="Password (required)"
               placeholderTextColor={'#7E7B7B'}
               name="password"
+              secureTextEntry={true}
+              required
               value={formData.password}
               onChangeText={text => handleChange('password', text)}
             />
@@ -75,6 +94,8 @@ const Signup = () => {
               placeholder="Re-Enter Password (required)"
               placeholderTextColor={'#7E7B7B'}
               name="confirmPassword"
+              secureTextEntry={true}
+              required
               value={formData.confirmPassword}
               onChangeText={text => handleChange('confirmPassword', text)}
             />

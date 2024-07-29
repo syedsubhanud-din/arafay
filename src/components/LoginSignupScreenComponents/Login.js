@@ -11,7 +11,8 @@ import UserIcon from 'react-native-vector-icons/FontAwesome';
 import PencilIcon from 'react-native-vector-icons/SimpleLineIcons';
 import {useNavigation} from '@react-navigation/native';
 import {useDispatch, useSelector} from 'react-redux';
-import {login} from '../../store/Slices/getUserDataSlice';
+import {login} from '../../store/Slices/UserDataSlice';
+import {Toast} from 'toastify-react-native';
 const Login = () => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
@@ -31,8 +32,12 @@ const Login = () => {
     setFormData({...formData, [name]: value});
   };
 
+  const showToasts = () => {
+    Toast.success('Login successful');
+  };
   const handleSubmit = () => {
     dispatch(login(formData));
+    showToasts();
   };
   return (
     <View style={styles.main}>

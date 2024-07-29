@@ -14,7 +14,7 @@ export const login = createAsyncThunk(
   'auth/login',
   async (credentials, thunkAPI) => {
     const {phone_number, password} = credentials;
-    console.log('Credentials' , credentials);
+    console.log('Credentials', credentials);
     try {
       const response = await axios.get(
         `http://${IP_ADDRESS}:3000/api/auth/login?phone_number=${phone_number}&password=${password}`,
@@ -27,11 +27,29 @@ export const login = createAsyncThunk(
   },
 );
 
+export const register = createAsyncThunk(
+  'auth/register',
+  async (credentials, thunkAPI) => {
+    const {name , phone_number, password, email} = credentials;
+    console.log('Credentials', credentials);
+    try {
+      const response = await axios.post(
+        `http://${IP_ADDRESS}:3000/api/auth/register?name=${name}&phone_number=${phone_number}&password=${password}&email=${email}`,
+      );
+      console.log(response);
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data);
+    }
+  },
+);
+
 const getUserData = createSlice({
   name: 'GetUserData',
   initialState: state,
   reducers: {
     logout: state => {
+      state.error = null;
       state.user = null;
       state.token = null;
       state.isLoggedIn = false;

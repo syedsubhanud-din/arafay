@@ -5,8 +5,10 @@ import ForwardIcon from 'react-native-vector-icons/Ionicons';
 import ArrowForwardIcon from 'react-native-vector-icons/FontAwesome6';
 import UserIcon from 'react-native-vector-icons/AntDesign';
 import {useNavigation} from '@react-navigation/native';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
+import {logout} from '../../store/Slices/UserDataSlice';
 const Drawer = ({drawer, setDrawer}) => {
+  const dispatch = useDispatch();
   const {isLoggedIn} = useSelector(state => state.UserInfo);
   const navigation = useNavigation();
   const name = useSelector(state => state?.UserInfo?.user?.name);
@@ -74,6 +76,15 @@ const Drawer = ({drawer, setDrawer}) => {
             </TouchableOpacity>
           )}
         </View>
+        {isLoggedIn && (
+          <View style={styles.logoutBtnContainer}>
+            <TouchableOpacity
+              style={styles.logoutBtn}
+              onPress={() => dispatch(logout())}>
+              <Text style={styles.logoutBtnText}>Logout</Text>
+            </TouchableOpacity>
+          </View>
+        )}
       </View>
     </View>
   );
@@ -94,6 +105,9 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 30,
     borderBottomRightRadius: 30,
     overflow: 'hidden',
+  },
+  container: {
+    flex: 1,
   },
 
   topBar: {
@@ -132,7 +146,7 @@ const styles = StyleSheet.create({
   },
   navLinksContainer: {
     paddingHorizontal: 20,
-    paddingVertical: 20,
+    flex: 1,
   },
   navLink: {
     flexDirection: 'row',
@@ -144,6 +158,27 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     paddingVertical: 20,
     gap: 20,
+  },
+  logoutBtnContainer: {
+    paddingHorizontal: 20,
+    marginBottom: 20,
+  },
+  logoutBtn: {
+    width: '100%',
+    height: 40,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#00609D',
+    paddingHorizontal: 20,
+    paddingVertical: 5,
+    marginBottom: 10,
+    shadowRadius: 3,
+    elevation: 3,
+  },
+  logoutBtnText: {
+    color: '#FFF',
+    fontWeight: 'bold',
+    fontSize: 15,
   },
   textBlack: {
     color: '#000',

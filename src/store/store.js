@@ -1,6 +1,6 @@
-import { configureStore } from '@reduxjs/toolkit';
+import {configureStore} from '@reduxjs/toolkit';
 import getMasjidDataSlice from './Slices/getMasjidDataSlice';
-import getUserDataSlice from './Slices/getUserDataSlice';
+import getUserDataSlice from './Slices/UserDataSlice';
 
 const store = configureStore({
   reducer: {
