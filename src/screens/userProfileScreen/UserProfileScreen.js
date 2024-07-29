@@ -1,20 +1,24 @@
-import {StyleSheet, Text, View} from 'react-native';
+import {ScrollView, StyleSheet, View} from 'react-native';
 import React from 'react';
+import AppBar from '../../components/UserProfileScreenComponents/AppBar';
+import Profile from '../../components/UserProfileScreenComponents/Profile';
 
-const UserProfileScreen = () => {
+const LoginSignupScreen = () => {
   return (
-    <View style = {styles.container}>
-      <Text style={{color: '#000'}}>UserProfileScreen</Text>
+    <View style={styles.main}>
+      <AppBar />
+      <ScrollView>
+        <Profile />
+      </ScrollView>
     </View>
   );
 };
 
-export default UserProfileScreen;
+export default LoginSignupScreen;
 
 const styles = StyleSheet.create({
-  container: {
+  main: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    backgroundColor: '#F5F5F5',
   },
 });

@@ -1,4 +1,7 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
+import {IP_ADDRESS} from '../../config/constants';
+import axios from 'axios';
+
 const state = {
   isLoggedIn: false,
   user: null,
@@ -11,12 +14,12 @@ export const login = createAsyncThunk(
   'auth/login',
   async (credentials, thunkAPI) => {
     const {phone_number, password} = credentials;
-    console.log('Credentials' , phone_number)
+    console.log('Credentials' , credentials);
     try {
-      const response = await axios.post(
-        `http://192.168.2.107:3000/api/auth/login?phone_number=${phone_number}&password=${password}`,
+      const response = await axios.get(
+        `http://${IP_ADDRESS}:3000/api/auth/login?phone_number=${phone_number}&password=${password}`,
       );
-      console.log(response.data);
+      // console.log(response);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data);
@@ -45,7 +48,7 @@ const getUserData = createSlice({
         state.user = user;
         state.token = token;
         state.isLoggedIn = true;
-        console.log({...state})
+        console.log({...state});
       })
       .addCase(login.rejected, (state, action) => {
         state.error = action.payload;
@@ -53,6 +56,5 @@ const getUserData = createSlice({
   },
 });
 
-// export const {increment, decrement, incrementByAmount} = counterSlice.actions;
 export const {logout} = getUserData.actions;
 export default getUserData.reducer;

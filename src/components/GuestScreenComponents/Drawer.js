@@ -7,8 +7,9 @@ import UserIcon from 'react-native-vector-icons/AntDesign';
 import {useNavigation} from '@react-navigation/native';
 import {useSelector} from 'react-redux';
 const Drawer = ({drawer, setDrawer}) => {
-  const isLoggedIn = useSelector(state => state.UserInfo.isLoggedIn);
+  const {isLoggedIn} = useSelector(state => state.UserInfo);
   const navigation = useNavigation();
+  const name = useSelector(state => state?.UserInfo?.user?.name);
   return (
     <View style={styles.main}>
       <View style={styles.backDrop}></View>
@@ -29,7 +30,7 @@ const Drawer = ({drawer, setDrawer}) => {
                 style={styles.image}
               />
             </View>
-            <Text style={styles.usernameText}>Username</Text>
+            <Text style={styles.usernameText}>{name}</Text>
           </View>
         )}
         <View style={styles.navLinksContainer}>

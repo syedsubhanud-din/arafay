@@ -6,7 +6,7 @@ import {
   TextInput,
   Image,
 } from 'react-native';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import UserIcon from 'react-native-vector-icons/FontAwesome';
 import PencilIcon from 'react-native-vector-icons/SimpleLineIcons';
 import {useNavigation} from '@react-navigation/native';
@@ -15,19 +15,23 @@ import {login} from '../../store/Slices/getUserDataSlice';
 const Login = () => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
+  const {isLoggedIn} = useSelector(state => state.UserInfo);
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigation.navigate('guest');
+    }
+  }, [isLoggedIn]);
+
   const [formData, setFormData] = useState({
-    // email: '',
     password: '',
     phone_number: '',
   });
 
   const handleChange = (name, value) => {
     setFormData({...formData, [name]: value});
-    console.log(formData);
   };
 
   const handleSubmit = () => {
-    console.log('Form submitted with data:', formData);
     dispatch(login(formData));
   };
   return (
@@ -40,16 +44,6 @@ const Login = () => {
           </TouchableOpacity>
         </View>
         <View style={styles.formContainer}>
-          {/* <View style={styles.textFieldContainer}>
-            <TextInput
-              style={styles.textInput}
-              placeholder="Email / Phone"
-              placeholderTextColor={'#7E7B7B'}
-              name="email"
-              value={formData.email}
-              onChangeText={text => handleChange('email', text)}
-            />
-          </View> */}
           <View style={styles.textFieldContainer}>
             <TextInput
               style={styles.textInput}
@@ -65,6 +59,7 @@ const Login = () => {
               style={styles.textInput}
               placeholder="Password (required)"
               placeholderTextColor={'#7E7B7B'}
+              secureTextEntry={true}
               name="password"
               value={formData.password}
               onChangeText={text => handleChange('password', text)}

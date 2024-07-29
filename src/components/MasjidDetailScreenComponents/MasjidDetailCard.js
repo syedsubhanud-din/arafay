@@ -4,16 +4,18 @@ import MasjidDetailHeader from './MasjidDetailHeader';
 import MasjidDetailContent from './MasjidDetailContent';
 import {useNavigation} from '@react-navigation/native';
 import PencilIcon from 'react-native-vector-icons/SimpleLineIcons';
+import { useSelector } from 'react-redux';
 
 const MasjidDetailCard = () => {
   const navigation = useNavigation();
+  const {isLoggedIn} = useSelector((state) => state.UserInfo)
   return (
     <View style={styles.masjidDetailsContainer}>
-      <TouchableOpacity
+      {<TouchableOpacity
         onPress={() => navigation.navigate('Edit_Masjid_Details')}
         style={styles.button}>
         <PencilIcon name="pencil" size={20} style={styles.icon} />
-      </TouchableOpacity>
+      </TouchableOpacity>}
       <View style={styles.masjidDetailsSection}>
         <MasjidDetailHeader />
         <MasjidDetailContent />
@@ -23,11 +25,11 @@ const MasjidDetailCard = () => {
             onPress={() => navigation.navigate('guest')}>
             <Text style={styles.mapViewButtonText}>View Location on Map</Text>
           </TouchableOpacity>
-          <TouchableOpacity
+          {isLoggedIn && <TouchableOpacity
             style={styles.mapViewButton}
             onPress={() => navigation.navigate('Claim')}>
             <Text style={styles.mapViewButtonText}>Claim Masjid</Text>
-          </TouchableOpacity>
+          </TouchableOpacity>}
         </View>
       </View>
     </View>
