@@ -4,18 +4,20 @@ import MasjidDetailHeader from './MasjidDetailHeader';
 import MasjidDetailContent from './MasjidDetailContent';
 import {useNavigation} from '@react-navigation/native';
 import PencilIcon from 'react-native-vector-icons/SimpleLineIcons';
-import { useSelector } from 'react-redux';
+import {useSelector} from 'react-redux';
 
 const MasjidDetailCard = () => {
   const navigation = useNavigation();
-  const {isLoggedIn} = useSelector((state) => state.UserInfo)
+  const {isLoggedIn, user} = useSelector(state => state.UserInfo);
   return (
     <View style={styles.masjidDetailsContainer}>
-      {<TouchableOpacity
-        onPress={() => navigation.navigate('Edit_Masjid_Details')}
-        style={styles.button}>
-        <PencilIcon name="pencil" size={20} style={styles.icon} />
-      </TouchableOpacity>}
+      {isLoggedIn && user?.role === 'owner' && (
+        <TouchableOpacity
+          onPress={() => navigation.navigate('Edit_Masjid_Details')}
+          style={styles.button}>
+          <PencilIcon name="pencil" size={20} style={styles.icon} />
+        </TouchableOpacity>
+      )}
       <View style={styles.masjidDetailsSection}>
         <MasjidDetailHeader />
         <MasjidDetailContent />
@@ -25,11 +27,13 @@ const MasjidDetailCard = () => {
             onPress={() => navigation.navigate('guest')}>
             <Text style={styles.mapViewButtonText}>View Location on Map</Text>
           </TouchableOpacity>
-          {isLoggedIn && <TouchableOpacity
-            style={styles.mapViewButton}
-            onPress={() => navigation.navigate('Claim')}>
-            <Text style={styles.mapViewButtonText}>Claim Masjid</Text>
-          </TouchableOpacity>}
+          {isLoggedIn && user?.role === 'user' && (
+            <TouchableOpacity
+              style={styles.mapViewButton}
+              onPress={() => navigation.navigate('Claim')}>
+              <Text style={styles.mapViewButtonText}>Claim Masjid</Text>
+            </TouchableOpacity>
+          )}
         </View>
       </View>
     </View>

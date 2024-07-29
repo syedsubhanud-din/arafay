@@ -12,7 +12,7 @@ import {useNavigation} from '@react-navigation/native';
 import {useSelector} from 'react-redux';
 const Profile = () => {
   const navigation = useNavigation();
-  const {name, email, phone_number} = useSelector(
+  const {name, email, phone_number , role} = useSelector(
     state => state?.UserInfo?.user,
   );
   const [formData, setFormData] = useState({
@@ -75,11 +75,11 @@ const Profile = () => {
               onChangeText={text => handleChange('phone_number', text)}
             />
           </View>
-          <View style={styles.claimedTextContainer}>
+          {role === 'owner' && <View style={styles.claimedTextContainer}>
             <TouchableOpacity onPress={() => navigation.navigate('Claim')}>
               <Text style={styles.claimedText}>View Your Claimed Masjid</Text>
             </TouchableOpacity>
-          </View>
+          </View>}
         </View>
       </View>
     </View>
