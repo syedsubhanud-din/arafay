@@ -8,17 +8,21 @@ const AppBar = ({state, setState}) => {
   return (
     <View style={styles.main}>
       <View style={styles.container}>
-        <TouchableOpacity onPress={() => navigation.navigate('guest')}>
+        <TouchableOpacity
+          onPress={() => navigation.navigate('guest')}
+          style={styles.backIcon}>
           <BackIcon name="keyboard-backspace" size={30} color="black" />
         </TouchableOpacity>
-        <Text
-          style={
-            state === 'login'
-              ? [styles.tabButtonText, styles.tabButtonActive]
-              : styles.tabButtonText
-          }>
-          Login
-        </Text>
+        <View style={styles.headingContainer}>
+          <Text
+            style={
+              state === 'login'
+                ? [styles.tabButtonText, styles.tabButtonActive]
+                : styles.tabButtonText
+            }>
+            User Profile
+          </Text>
+        </View>
       </View>
       <View></View>
     </View>
@@ -34,6 +38,19 @@ const styles = StyleSheet.create({
     // justifyContent: 'center',
     alignItems: 'center',
     padding: 22,
+    position: 'relative',
+    marginTop: 20
+  },
+  backIcon: {
+    position: 'absolute',
+    left: 20,
+    zIndex: 100
+  },
+  headingContainer: {
+    flex: 1,
+    // borderWidth: 2,
+    flexDirection: 'row',
+    justifyContent: 'center',
   },
   tabButtonsContainer: {
     flex: 1,

@@ -20,5 +20,6 @@ const styles = StyleSheet.create({
   main: {
     flex: 1,
     backgroundColor: '#F5F5F5',
+    gap: 20
   },
 });
