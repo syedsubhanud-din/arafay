@@ -9,12 +9,16 @@ import {
 import React, {useState} from 'react';
 import EditIcon from 'react-native-vector-icons/Feather';
 import {useNavigation} from '@react-navigation/native';
+import {useSelector} from 'react-redux';
 const Profile = () => {
   const navigation = useNavigation();
+  const {name, email, phone_number} = useSelector(
+    state => state?.UserInfo?.user,
+  );
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone_number: '',
+    name,
+    email,
+    phone_number,
   });
 
   const handleChange = (name, value) => {
@@ -22,9 +26,6 @@ const Profile = () => {
     console.log(formData);
   };
 
-  const handleSubmit = () => {
-    console.log('Form submitted with data:', formData);
-  };
   return (
     <View style={styles.main}>
       <View style={styles.container}>
