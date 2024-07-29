@@ -3,7 +3,6 @@ const state = {
   isLoggedIn: false,
   user: null,
   token: null,
-  loading: false,
   error: null,
 };
 
@@ -12,11 +11,12 @@ export const login = createAsyncThunk(
   'auth/login',
   async (credentials, thunkAPI) => {
     const {phone_number, password} = credentials;
+    console.log('Credentials' , phone_number)
     try {
       const response = await axios.post(
-        `http://192.168.80.79:3000/api/auth/login?phone_number=${phone_number}&password=${password}`,
+        `http://192.168.2.107:3000/api/auth/login?phone_number=${phone_number}&password=${password}`,
       );
-      console.log(response.data)
+      console.log(response.data);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data);
@@ -25,7 +25,7 @@ export const login = createAsyncThunk(
 );
 
 const getUserData = createSlice({
-  name: 'UserData',
+  name: 'GetUserData',
   initialState: state,
   reducers: {
     logout: state => {
@@ -37,17 +37,17 @@ const getUserData = createSlice({
   extraReducers: builder => {
     builder
       .addCase(login.pending, state => {
-        state.loading = true;
         state.error = null;
       })
       .addCase(login.fulfilled, (state, action) => {
-        state.loading = false;
-        state.user = action.payload.user;
-        state.token = action.payload.token;
-        state.isLoggedIn = action.payload.isLoggedIn;
+        console.log(action.payload);
+        const {user, token} = action.payload;
+        state.user = user;
+        state.token = token;
+        state.isLoggedIn = true;
+        console.log({...state})
       })
       .addCase(login.rejected, (state, action) => {
-        state.loading = false;
         state.error = action.payload;
       });
   },

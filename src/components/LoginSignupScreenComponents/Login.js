@@ -10,12 +10,15 @@ import React, {useState} from 'react';
 import UserIcon from 'react-native-vector-icons/FontAwesome';
 import PencilIcon from 'react-native-vector-icons/SimpleLineIcons';
 import {useNavigation} from '@react-navigation/native';
+import {useDispatch, useSelector} from 'react-redux';
+import {login} from '../../store/Slices/getUserDataSlice';
 const Login = () => {
   const navigation = useNavigation();
+  const dispatch = useDispatch();
   const [formData, setFormData] = useState({
     // email: '',
     password: '',
-    phone: '',
+    phone_number: '',
   });
 
   const handleChange = (name, value) => {
@@ -25,6 +28,7 @@ const Login = () => {
 
   const handleSubmit = () => {
     console.log('Form submitted with data:', formData);
+    dispatch(login(formData));
   };
   return (
     <View style={styles.main}>
@@ -51,9 +55,9 @@ const Login = () => {
               style={styles.textInput}
               placeholder="Phone"
               placeholderTextColor={'#7E7B7B'}
-              name="phone"
-              value={formData.phone}
-              onChangeText={text => handleChange('phone', text)}
+              name="phone_number"
+              value={formData.phone_number}
+              onChangeText={text => handleChange('phone_number', text)}
             />
           </View>
           <View style={styles.textFieldContainer}>
