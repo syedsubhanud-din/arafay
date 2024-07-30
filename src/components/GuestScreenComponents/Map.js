@@ -1,10 +1,11 @@
 import {Image, StyleSheet, Text, View} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import MapView, {Marker, PROVIDER_GOOGLE, Polyline} from 'react-native-maps';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import Geolocation from '@react-native-community/geolocation';
 import MapViewDirections from 'react-native-maps-directions';
 import {GOOGLE_MAPS_API_KEY} from '../../config/constants';
+import {getMasjidDetails} from '../../store/Slices/MasjidDataSlice';
 
 // const API_KEY = 'YOUR_GOOGLE_MAPS_API_KEY'; // Replace with your Google Maps API key
 
@@ -18,43 +19,45 @@ const truncateText = (text, maxLength) => {
 const Map = () => {
   const [location, setLocation] = useState({myLat: 24.9204, myLong: 67.1344});
   const [destination, setDestination] = useState(null);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     Geolocation.getCurrentPosition(
-      info =>
-        setLocation({
-          myLat: info.coords.latitude,
-          myLong: info.coords.longitude,
-        }),
+      // info => {
+      //   setLocation({
+      //     myLat: info.coords.latitude,
+      //     myLong: info.coords.longitude,
+      //   });
+      //   console.log(info);
+      //   // dispatch(location);
+      // },
+      info => console.log(info),
       error => console.log(error),
-      {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000},
+      {enableHighAccuracy: true, timeout: 30000, maximumAge: 1000},
     );
   }, []);
 
-  console.log(location);
-
   const MasjidData = useSelector(state => state.masjidInfo);
-
   const handleMarkerPress = marker => {
     setDestination({
-      latitude: marker.location.latitude,
-      longitude: marker.location.longitude,
+      latitude: marker.latitude,
+      longitude: marker.longitude,
     });
   };
 
   const allMarkers = MasjidData.map(marker => (
     <Marker
       coordinate={{
-        latitude: marker.location.latitude,
-        longitude: marker.location.longitude,
+        latitude: marker.latitude,
+        longitude: marker.longitude,
       }}
       title={marker.name}
-      key={marker._id}
+      key={marker.id}
       onPress={() => handleMarkerPress(marker)}>
       <View style={styles.markerView}>
         <Image
           source={require('../../assets/images/MarkerIcon.png')}
-          style={{width: 15, height: 15}} // Adjust the width and height to your desired size
+          style={{width: 15, height: 15}}
         />
         <Text style={styles.markerText}>{truncateText(marker.name, 20)}</Text>
       </View>
@@ -86,7 +89,7 @@ const Map = () => {
             origin={{latitude: location.myLat, longitude: location.myLong}}
             destination={destination}
             apikey={GOOGLE_MAPS_API_KEY}
-            strokeWidth={2}
+            strokeWidth={3}
             strokeColor="#0075B7"
           />
         )}

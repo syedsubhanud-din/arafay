@@ -4,27 +4,138 @@ import {
   View,
   TouchableOpacity,
   TextInput,
-  Image,
+  Alert,
 } from 'react-native';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import UploadIcon from 'react-native-vector-icons/Feather';
+import {useSelector} from 'react-redux';
+import axios from 'axios';
+import DocumentPicker from 'react-native-document-picker';
 
 const ClaimForm = () => {
-  const [formData, setFormData] = useState({
-    cnic: '',
-    masjidDocument: '',
-  });
+  const {token} = useSelector(state => state?.UserInfo);
+  // const [formData, setFormData] = useState({cnic: '', file: null});
+  const [cnic, setCnic] = useState(null);
+  const [fileData, setFileData] = useState(null);
 
-  const handleChange = (name, value) => {
-    setFormData({
-      ...formData,
-      [name]: value,
+  // const handleChange = (name, value) => {
+  //   setFormData(prevState => ({
+  //     ...prevState,
+  //     [name]: value,
+  //   }));
+  //   console.log(formData);
+  // };
+
+  // const handleFilePick = async () => {
+  //   try {
+  //     const res = await DocumentPicker.pick({
+  //       type: [DocumentPicker.types.allFiles], // You can specify types here
+  //     });
+  //     setFormData(prevState => ({
+  //       ...prevState,
+  //       file: res[0], // Use the first file picked
+  //     }));
+  //   } catch (err) {
+  //     if (DocumentPicker.isCancel(err)) {
+  //       Alert.alert('Cancelled', 'File selection was cancelled.');
+  //     } else {
+  //       console.error(err);
+  //       Alert.alert('Error', 'An error occurred while selecting the file.');
+  //     }
+  //   }
+  // };
+
+  // ? File Pick Code
+  const handleFilePick = async () => {
+    try {
+      const res = await DocumentPicker.pick({
+        type: [DocumentPicker.types.allFiles],
+      });
+      setFileData(res[0]);
+      console.log(fileData);
+      // uploadFile(res);
+    } catch (err) {
+      if (DocumentPicker.isCancel(err)) {
+        console.log('User cancelled the picker');
+      } else {
+        throw err;
+      }
+    }
+  };
+
+  const uploadFormData = async (file) => {
+    const formData = new FormData();
+    console.log(formData._parts[0]);
+    formData.append({
+      uri: fileData?.uri,
+      name: fileData?.name,
+      type: fileData?.type,
+      cnic: cnic,
     });
+    // formData[0].append(cnic);
+    const formDataObj = formData._parts[0][0]
+    console.log(formDataObj)
+
+    // try {
+    //   const response = await axios.post(
+    //     'http://192.168.80.19:3000/api/5cb2208c-57dc-49e1-bb67-a1976d2e7b99/claim',
+    //     formDataObj,
+    //     {
+    //       headers: {
+    //         'Content-Type': 'multipart/form-data',
+    //         Authorization: `Bearer ${token}`,
+    //       },
+    //     },
+    //   );
+    //   console.log(response);
+    // } catch (error) {
+    //   console.error('File upload failed', error);
+    // }
   };
 
-  const handleFileUpload = field => {
-    // Logic to handle file upload
-  };
+  // const handleFileUpload = async () => {
+  //   const {cnic, file} = formData;
+  //   if (cnic && file) {
+  //     const uploadData = new FormData();
+  //     uploadData.append('file', {
+  //       uri: file.uri,
+  //       type: file.type,
+  //       name: file.name,
+  //     });
+  //     uploadData.append('cnic', cnic);
+
+  //     try {
+  //       const response = await axios.post(
+  //         'http://192.168.80.19:3000/api/5cb2208c-57dc-49e1-bb67-a1976d2e7b99/claim',
+  //         uploadData,
+  //         {
+  //           headers: {
+  //             ContentType: 'multipart/form-data',
+  //             Authorization: `Bearer ${token}`,
+  //           },
+  //         },
+  //       );
+
+  //       if (response.status === 200) {
+  //         Alert.alert('Upload Success', response.data.message);
+  //       } else {
+  //         Alert.alert('Upload Failed', response.data.message);
+  //       }
+  //     } catch (error) {
+  //       console.error(error);
+  //       Alert.alert(
+  //         'Upload Failed',
+  //         'An error occurred while uploading the file.',
+  //       );
+  //     }
+  //   } else {
+  //     Alert.alert(
+  //       'Missing Information',
+  //       'Please provide your CNIC and select a file.',
+  //     );
+  //   }
+  // };
+
   return (
     <View style={styles.container}>
       <Text style={[styles.pageDescription, styles.textGray]}>
@@ -37,43 +148,37 @@ const ClaimForm = () => {
           <View style={styles.textFieldContainer}>
             <TextInput
               placeholder="CNIC (required)"
-              placeholderTextColor={'#B8B1B1'}
+              placeholderTextColor="#B8B1B1"
               style={styles.textInput}
-              required
-              name="cnic"
-              value={formData.cnic}
-              onChangeText={text => handleChange('cnic', text)}
+              value={cnic}
+              onChangeText={text => {
+                setCnic(text);
+                // console.log(cnic);
+              }}
             />
-            <TouchableOpacity
-              onPress={() => handleFileUpload('cnic')}
-              style={styles.uploadIcon}>
-              <UploadIcon name="upload" size={20} style={{color: '#08568B'}} />
-            </TouchableOpacity>
           </View>
         </View>
         <View>
-          <Text style={[styles.textGray, styles.textLabels]}>Masjid Document</Text>
+          <Text style={[styles.textGray, styles.textLabels]}>
+            Masjid Document
+          </Text>
           <View style={styles.textFieldContainer}>
-            <TextInput
-              placeholder="Masjid Document (required)"
-              placeholderTextColor={'#B8B1B1'}
-              style={styles.textInput}
-              required
-              name="masjidDocument"
-              value={formData.cnic}
-              onChangeText={text => handleChange('masjidDocument', text)}
-            />
+            <Text style={styles.uploadButtonText}>
+              {/* {formData[0]?.name
+                ? formData[0]?.name
+                : 'Masjid Document (required)'} */}
+              Masjid Document (required)
+            </Text>
             <TouchableOpacity
-              onPress={() => handleFileUpload('cnic')}
+              onPress={handleFilePick}
               style={styles.uploadIcon}>
-              <UploadIcon name="upload" size={20} style={{color: '#08568B'}} />
+              <UploadIcon name="upload" size={20} color="#08568B" />
             </TouchableOpacity>
           </View>
         </View>
-
         <View style={styles.claimContainer}>
           <View style={styles.buttonFieldContainer}>
-            <TouchableOpacity onPress={handleFileUpload}>
+            <TouchableOpacity onPress={uploadFormData}>
               <Text style={[styles.buttonText, styles.textBlack]}>
                 Proceed Claim
               </Text>
@@ -117,6 +222,13 @@ const styles = StyleSheet.create({
     color: '#594C3B',
     fontSize: 12,
     paddingLeft: 10,
+    flex: 1,
+  },
+  uploadButtonText: {
+    color: '#B8B1B1',
+    fontSize: 12,
+    paddingLeft: 10,
+    paddingVertical: 15,
     flex: 1,
   },
   claimContainer: {
