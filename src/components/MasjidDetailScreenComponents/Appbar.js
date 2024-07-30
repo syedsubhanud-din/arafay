@@ -1,11 +1,12 @@
-import {StyleSheet, View, TouchableOpacity} from 'react-native';
-import React, { useState } from 'react';
+import {StyleSheet, View, TouchableOpacity, Text} from 'react-native';
+import React, {useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import IconBell from 'react-native-vector-icons/MaterialCommunityIcons';
-import IconBellRing from 'react-native-vector-icons/MaterialCommunityIcons';
+import IconMenu from 'react-native-vector-icons/MaterialCommunityIcons';
 const AppBar = () => {
-  const [alert, setAlert] = useState(false);
+  const [menu, setMenu] = useState(true);
+  console.log(menu);
   const navigation = useNavigation();
   return (
     <View style={styles.bar}>
@@ -14,7 +15,7 @@ const AppBar = () => {
         style={styles.button}>
         <Icon name="arrow-back" size={18} style={styles.icon}></Icon>
       </TouchableOpacity>
-      {!alert ? (
+      {/* {!alert ? (
         <TouchableOpacity
           style={styles.button}
           onPress={() => setAlert(!alert)}>
@@ -29,7 +30,25 @@ const AppBar = () => {
             size={18}
             style={styles.iconAlert}></IconBellRing>
         </TouchableOpacity>
-      )}
+      )} */}
+      <TouchableOpacity
+        style={[styles.button, styles.menuBtn]}
+        onPress={() => setMenu(!menu)}>
+        <IconMenu name="dots-vertical" size={18} style={styles.icon} />
+        {menu && (
+          <View style={styles.menu}>
+            <TouchableOpacity style={styles.menuItem}>
+              <Text style={styles.menuItemText}>Report</Text>
+            </TouchableOpacity>
+            <View style={styles.divider}>
+              <View style={styles.subDivider}></View>
+            </View>
+            <TouchableOpacity style={styles.menuItem}>
+              <Text style={styles.menuItemText}>Reclaim</Text>
+            </TouchableOpacity>
+          </View>
+        )}
+      </TouchableOpacity>
     </View>
   );
 };
@@ -55,6 +74,40 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#fff',
+  },
+  menuBtn: {
+    position: 'relative',
+  },
+  menu: {
+    position: 'absolute',
+    backgroundColor: 'white',
+    top: 50,
+    right: 0,
+    borderRadius: 20,
+    width: 150,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    overflow: 'hidden',
+  },
+  menuItem: {
+    backgroundColor: 'white',
+    elevation: 10,
+    paddingVertical: 15,
+  },
+  menuItemText: {
+    textAlign: 'center',
+    color: '#00609D',
+  },
+  divider: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    gap: 10,
+  },
+  subDivider: {
+    flex: 1,
+    height: 1.5,
+    backgroundColor: '#00609D',
   },
   icon: {
     color: '#007AC7',
