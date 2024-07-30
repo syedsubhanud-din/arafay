@@ -2,10 +2,9 @@ import {StyleSheet, View, TouchableOpacity, Text} from 'react-native';
 import React, {useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Ionicons';
-import IconBell from 'react-native-vector-icons/MaterialCommunityIcons';
 import IconMenu from 'react-native-vector-icons/MaterialCommunityIcons';
 const AppBar = () => {
-  const [menu, setMenu] = useState(true);
+  const [menu, setMenu] = useState(false);
   console.log(menu);
   const navigation = useNavigation();
   return (
@@ -15,22 +14,6 @@ const AppBar = () => {
         style={styles.button}>
         <Icon name="arrow-back" size={18} style={styles.icon}></Icon>
       </TouchableOpacity>
-      {/* {!alert ? (
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => setAlert(!alert)}>
-          <IconBell name="bell" size={18} style={styles.icon}></IconBell>
-        </TouchableOpacity>
-      ) : (
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => setAlert(!alert)}>
-          <IconBellRing
-            name="bell-ring"
-            size={18}
-            style={styles.iconAlert}></IconBellRing>
-        </TouchableOpacity>
-      )} */}
       <TouchableOpacity
         style={[styles.button, styles.menuBtn]}
         onPress={() => setMenu(!menu)}>
