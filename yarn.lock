@@ -4084,6 +4084,11 @@ locate-path@^6.0.0:
 lodash.debounce@^4.0.8:
   version "4.0.8"
 
+lodash.isequal@^4.5.0:
+  version "4.5.0"
+  resolved "https://registry.npmjs.org/lodash.isequal/-/lodash.isequal-4.5.0.tgz"
+  integrity sha512-pDo3lu8Jhfjqls6GkMgpahsF9kCyayhgykjyLMNFTKWrpVdAQtYyB4muAMWozBB4ig/dtWAmsMxLEI8wuz+DYQ==
+
 lodash.merge@^4.6.2:
   version "4.6.2"
 
@@ -4724,7 +4729,7 @@ prompts@^2.0.1, prompts@^2.4.2:
     kleur "^3.0.3"
     sisteransi "^1.0.5"
 
-prop-types@^15.6.1, prop-types@^15.6.2, prop-types@^15.7.2, prop-types@^15.8.1:
+prop-types@^15.6.0, prop-types@^15.6.1, prop-types@^15.6.2, prop-types@^15.7.2, prop-types@^15.8.1:
   version "15.8.1"
   dependencies:
     loose-envify "^1.4.0"
@@ -4840,7 +4845,15 @@ react-native-iphone-x-helper@^1.3.1:
   resolved "https://registry.npmjs.org/react-native-iphone-x-helper/-/react-native-iphone-x-helper-1.3.1.tgz"
   integrity sha512-HOf0jzRnq2/aFUcdCJ9w9JGzN3gdEg0zFE4FyYlp4jtidqU03D5X7ZegGKfT1EWteR0gPBGp9ye5T5FvSWi9Yg==
 
-react-native-maps@^1.15.6:
+react-native-maps-directions@^1.9.0:
+  version "1.9.0"
+  resolved "https://registry.npmjs.org/react-native-maps-directions/-/react-native-maps-directions-1.9.0.tgz"
+  integrity sha512-68SrMOUg4WQ5PmpS9sNOTZaYtdyVYJnnjQOOhABrgiKnb5BXCZRU2gDoS11gYf23hjUBjq8JXzgfn37WcINLwA==
+  dependencies:
+    lodash.isequal "^4.5.0"
+    prop-types "^15.6.0"
+
+react-native-maps@^1.15.6, react-native-maps@>=1.0.0:
   version "1.15.6"
   resolved "https://registry.npmjs.org/react-native-maps/-/react-native-maps-1.15.6.tgz"
   integrity sha512-RRyjMvpMoV3249kJ9PA1JjZE/8FmYYHrHuloI/Vzkg/DjxFtJAbFnCnhg5AyS/LI5/n2riulbVl4qpiKpuO22Q==
@@ -4854,6 +4867,11 @@ react-native-modal@*:
   dependencies:
     prop-types "^15.6.2"
     react-native-animatable "1.3.3"
+
+react-native-permissions@^4.1.5:
+  version "4.1.5"
+  resolved "https://registry.npmjs.org/react-native-permissions/-/react-native-permissions-4.1.5.tgz"
+  integrity sha512-r6VMRacASmtRHS+GZ+5HQCp9p9kiE+UU9magHOZCXZLTJitdTuVHWZRrb4v4oqZGU+zAp3mZhTQftuMMv+WLUg==
 
 react-native-reanimated@^3.14.0:
   version "3.14.0"
@@ -4924,7 +4942,7 @@ react-native-vector-icons@^10.1.0:
     prop-types "^15.7.2"
     yargs "^16.1.1"
 
-react-native@*, "react-native@^0.0.0-0 || >=0.60 <1.0", "react-native@>= 0.59", "react-native@>= 0.64.3", react-native@>=0.42.0, react-native@>=0.59.0, react-native@>=0.65.0, react-native@0.74.3:
+react-native@*, "react-native@^0.0.0-0 || >=0.60 <1.0", "react-native@>= 0.59", "react-native@>= 0.64.3", react-native@>=0.42.0, react-native@>=0.59.0, react-native@>=0.65.0, react-native@>=0.70.0, react-native@0.74.3:
   version "0.74.3"
   dependencies:
     "@jest/create-cache-key-function" "^29.6.3"
@@ -4989,7 +5007,7 @@ react-test-renderer@18.2.0:
     react-shallow-renderer "^16.15.0"
     scheduler "^0.23.0"
 
-react@*, "react@^16.0.0 || ^17.0.0 || ^18.0.0", "react@^16.8.0 || ^17.0.0 || ^18.0.0", "react@^16.9.0 || ^17.0.0 || ^18", react@^18.0, react@^18.2.0, "react@>= 17.0.1", react@>=15.0.0, react@>=16.8, react@>=17.0.0, react@18.2.0:
+react@*, "react@^16.0.0 || ^17.0.0 || ^18.0.0", "react@^16.8.0 || ^17.0.0 || ^18.0.0", "react@^16.9.0 || ^17.0.0 || ^18", react@^18.0, react@^18.2.0, "react@>= 17.0.1", react@>=15.0.0, react@>=16.8, react@>=17.0.0, react@>=18.1.0, react@18.2.0:
   version "18.2.0"
   dependencies:
     loose-envify "^1.1.0"
