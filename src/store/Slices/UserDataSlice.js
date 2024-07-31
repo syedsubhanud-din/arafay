@@ -19,7 +19,6 @@ export const login = createAsyncThunk(
       const response = await axios.get(
         `http://${IP_ADDRESS}:3000/api/auth/login?phone_number=${phone_number}&password=${password}`,
       );
-      // console.log(response);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data);
@@ -30,13 +29,12 @@ export const login = createAsyncThunk(
 export const register = createAsyncThunk(
   'auth/register',
   async (credentials, thunkAPI) => {
-    const {name , phone_number, password, email} = credentials;
+    const {name, phone_number, password, email} = credentials;
     console.log('Credentials', credentials);
     try {
       const response = await axios.post(
         `http://${IP_ADDRESS}:3000/api/auth/register?name=${name}&phone_number=${phone_number}&password=${password}&email=${email}`,
       );
-      console.log(response);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data);
@@ -61,12 +59,11 @@ const getUserData = createSlice({
         state.error = null;
       })
       .addCase(login.fulfilled, (state, action) => {
-        console.log(action.payload);
+        console.log(action.payload)
         const {user, token} = action.payload;
         state.user = user;
         state.token = token;
         state.isLoggedIn = true;
-        console.log({...state});
       })
       .addCase(login.rejected, (state, action) => {
         state.error = action.payload;

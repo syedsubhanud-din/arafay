@@ -5,7 +5,10 @@ import {useDispatch, useSelector} from 'react-redux';
 import Geolocation from '@react-native-community/geolocation';
 import MapViewDirections from 'react-native-maps-directions';
 import {GOOGLE_MAPS_API_KEY} from '../../config/constants';
-import {getMasjidDetails} from '../../store/Slices/MasjidDataSlice';
+import {
+  getAllMasjidDetails,
+  getMasjidDetails,
+} from '../../store/Slices/MasjidDataSlice';
 
 // const API_KEY = 'YOUR_GOOGLE_MAPS_API_KEY'; // Replace with your Google Maps API key
 
@@ -17,27 +20,32 @@ const truncateText = (text, maxLength) => {
 };
 
 const Map = () => {
-  const [location, setLocation] = useState({myLat: 24.9204, myLong: 67.1344});
+  const [location, setLocation] = useState({myLat: 24.827, myLong: 67.0251});
   const [destination, setDestination] = useState(null);
   const dispatch = useDispatch();
 
+  // useEffect(() => {
+  //   Geolocation.getCurrentPosition(
+  //     info => {
+  //       setLocation({
+  //         myLat: info.coords.latitude,
+  //         myLong: info.coords.longitude,
+  //       });
+  //       console.log(info);
+  //       // dispatch(location);
+  //     },
+  //     // info => console.log(info),
+  //     error => console.log(error),
+  //     {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000},
+  //   );r
+  // }, []);
+
   useEffect(() => {
-    Geolocation.getCurrentPosition(
-      // info => {
-      //   setLocation({
-      //     myLat: info.coords.latitude,
-      //     myLong: info.coords.longitude,
-      //   });
-      //   console.log(info);
-      //   // dispatch(location);
-      // },
-      info => console.log(info),
-      error => console.log(error),
-      {enableHighAccuracy: true, timeout: 30000, maximumAge: 1000},
-    );
+    dispatch(getAllMasjidDetails(location));
   }, []);
 
-  const MasjidData = useSelector(state => state.masjidInfo);
+  const {MasjidsDetails} = useSelector(state => state.masjidSlice);
+
   const handleMarkerPress = marker => {
     setDestination({
       latitude: marker.latitude,
@@ -45,14 +53,14 @@ const Map = () => {
     });
   };
 
-  const allMarkers = MasjidData.map(marker => (
+  const allMarkers = MasjidsDetails?.map(marker => (
     <Marker
       coordinate={{
-        latitude: marker.latitude,
-        longitude: marker.longitude,
+        latitude: marker?.latitude,
+        longitude: marker?.longitude,
       }}
-      title={marker.name}
-      key={marker.id}
+      title={marker?.name}
+      key={marker?.id}
       onPress={() => handleMarkerPress(marker)}>
       <View style={styles.markerView}>
         <Image

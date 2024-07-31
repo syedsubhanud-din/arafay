@@ -1,38 +1,44 @@
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
-import {useNavigation} from '@react-navigation/native';
 
 const NearByMasjidCard = ({item, showPopUp, setShowPopUp}) => {
-  const navigatation = useNavigation();
   return (
-    <View style={styles.container}>
-      <View style={styles.imageContainer}>
-        {/* <Image source={require(`${item.ImageSource}`)} style={styles.image} /> */}
-        {/* <Image source={{ uri: item.ImageSource }} style={styles.image} /> */}
-        <Image
-          source={require('../../assets/images/Masjid.png')}
-          style={styles.image}
-        />
-      </View>
-      <View style={styles.textContainer}>
-        <View>
-          <Text style={styles.textBlack} numberOfLines={1} ellipsizeMode="tail">
-            {item.name}
-          </Text>
-          <Text style={styles.textBlack} numberOfLines={1} ellipsizeMode="tail">
-            {item.address}
-          </Text>
+    <TouchableOpacity onPress={() => setShowPopUp(!showPopUp)}>
+      <View style={styles.container}>
+        <View style={styles.imageContainer}>
+          {/* <Image source={require(`${item.ImageSource}`)} style={styles.image} /> */}
+          {item.images ? (
+            <Image source={{uri: item.image}} style={styles.image} />
+          ) : (
+            <Image
+              source={require('../../assets/images/Masjid.png')}
+              style={styles.image}
+            />
+          )}
         </View>
-        <View style={styles.getRegistered}>
-          <TouchableOpacity onPress={() => setShowPopUp(!showPopUp)}>
-            <Text style={styles.textTheme}>Show on Map</Text>
-          </TouchableOpacity>
-          {/* <TouchableOpacity onPress={() => navigatation.navigate('Register')}>
-            <Text style={styles.textTheme}>Get Registered</Text>
-          </TouchableOpacity> */}
+        <View style={styles.textContainer}>
+          <View>
+            <Text
+              style={styles.textBlack}
+              numberOfLines={1}
+              ellipsizeMode="tail">
+              {item.name}
+            </Text>
+            <Text
+              style={styles.textBlack}
+              numberOfLines={1}
+              ellipsizeMode="tail">
+              {item.address}
+            </Text>
+          </View>
+          <View style={styles.getRegistered}>
+            <TouchableOpacity onPress={() => setShowPopUp(!showPopUp)}>
+              <Text style={styles.textTheme}>Show on Map</Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 

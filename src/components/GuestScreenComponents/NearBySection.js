@@ -6,7 +6,7 @@ import Popup from './Popup';
 
 const NearBySection = () => {
   const [showPopUp, setShowPopUp] = useState(false);
-  const MasjidData = useSelector(state => state.masjidInfo);
+  const {MasjidsDetails} = useSelector(state => state.masjidSlice);
   return (
     <>
       <View style={styles.container}>
@@ -21,8 +21,8 @@ const NearBySection = () => {
             Masjid's Near by
           </Text>
           <FlatList
-            data={MasjidData.slice(0, 5)}
-            keyExtractor={item => item._id}
+            data={MasjidsDetails.slice(0, 5)}
+            keyExtractor={item => item.id}
             renderItem={({item}) => (
               <NearByMasjidCard
                 item={item}
