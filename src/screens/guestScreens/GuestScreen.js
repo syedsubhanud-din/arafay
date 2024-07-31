@@ -19,7 +19,7 @@ const GuestScreen = () => {
   // const {MasjidDetails} = useSelector(state => state.masjidDetails);
   // console.log('selector', MasjidDetails);
   // const [location, setLocation] = useState(null);
-
+  const {loading} = useSelector(state => state.masjidSlice);
   useEffect(() => {
     // const getLocation = () => {
     //   Geolocation.getCurrentPosition(
@@ -86,14 +86,9 @@ const GuestScreen = () => {
 
   return (
     <View style={styles.main}>
-      {/* {console.log(location)} */}
       <AppBar />
       <Map />
       <NearBySection />
-      {/* <KeyboardAvoidingView
-        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
-        <NearBySection />
-      </KeyboardAvoidingView> */}
     </View>
   );
 };

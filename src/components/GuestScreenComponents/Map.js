@@ -9,6 +9,7 @@ import {
   getAllMasjidDetails,
   getMasjidDetails,
 } from '../../store/Slices/MasjidDataSlice';
+import LoadingScreen from '../../screens/loadingScreen/LoadingScreen';
 
 // const API_KEY = 'YOUR_GOOGLE_MAPS_API_KEY'; // Replace with your Google Maps API key
 
@@ -59,6 +60,7 @@ const Map = () => {
         latitude: marker?.latitude,
         longitude: marker?.longitude,
       }}
+      tracksViewChanges = {false}
       title={marker?.name}
       key={marker?.id}
       onPress={() => handleMarkerPress(marker)}>
