@@ -1,9 +1,16 @@
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
+import {useDispatch} from 'react-redux';
+import {getSpecificMasjidDetails} from '../../store/Slices/MasjidDataSlice';
 
 const NearByMasjidCard = ({item, showPopUp, setShowPopUp}) => {
+  const dispatch = useDispatch();
   return (
-    <TouchableOpacity onPress={() => setShowPopUp(!showPopUp)}>
+    <TouchableOpacity
+      onPress={() => {
+        setShowPopUp(!showPopUp);
+        dispatch(getSpecificMasjidDetails(item.id));
+      }}>
       <View style={styles.container}>
         <View style={styles.imageContainer}>
           {/* <Image source={require(`${item.ImageSource}`)} style={styles.image} /> */}

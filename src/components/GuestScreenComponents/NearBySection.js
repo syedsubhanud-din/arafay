@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 30,
     paddingHorizontal: 10,
     paddingVertical: 10,
-    height: 430,
+    height: 400,
   },
   nextPrayerBox: {
     backgroundColor: 'rgb( 118 ,158 ,209)',

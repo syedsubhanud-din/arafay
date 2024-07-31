@@ -34,13 +34,16 @@ const PrayerTimesData = [
   },
 ];
 
-const PrayerTimes = () => {
-  return (
+
+
+const PrayerTimes = ({specificMasjidTimings}) => {
+  // console.log(specificMasjidTimings)
+  return ( 
     <View style={styles.namazTimingsContainer}>
       {PrayerTimesData.map((item, index) => (
         <View key={item.id}>
           <View style={styles.namazTimeIcon}>
-            <Image source={item.image} style={styles.namazTimeIconImage} />
+            <Image source={PrayerTimesData[index].image} style={styles.namazTimeIconImage} />
           </View>
           <Text style={styles.textBlack}>
             <Text style={styles.namazTimeLabel}>{item.prayer}</Text>

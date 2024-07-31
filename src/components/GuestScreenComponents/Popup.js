@@ -9,8 +9,10 @@ import React from 'react';
 import Icon from 'react-native-vector-icons/AntDesign';
 import PrayerTimes from './PrayerTimes';
 import {useNavigation} from '@react-navigation/native';
+import {useSelector} from 'react-redux';
 const Popup = ({showPopUp, setShowPopUp}) => {
   const navigation = useNavigation();
+  const {specificMasjidDetails} = useSelector(state => state.masjidSlice);
   return (
     <View style={styles.main}>
       <View style={styles.overlay}></View>
@@ -39,7 +41,7 @@ const Popup = ({showPopUp, setShowPopUp}) => {
             </View>
           </View>
         </ImageBackground>
-        <PrayerTimes />
+        <PrayerTimes specificMasjidTimings = {specificMasjidDetails.timings}/>
         <View style={styles.viewDetailsContainer}>
           <TouchableOpacity
             onPress={() => {
