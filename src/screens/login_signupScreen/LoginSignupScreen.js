@@ -12,7 +12,7 @@ const LoginSignupScreen = () => {
       <ScrollView>
         {state === 'signup' ? (
           <ScrollView>
-            <Signup />
+            <Signup state={state} setState={setState}/>
           </ScrollView>
         ) : (
           <ScrollView>

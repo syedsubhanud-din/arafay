@@ -11,11 +11,11 @@ import UserIcon from 'react-native-vector-icons/FontAwesome';
 import PencilIcon from 'react-native-vector-icons/SimpleLineIcons';
 import CheckIcon from 'react-native-vector-icons/Feather';
 import {useNavigation} from '@react-navigation/native';
-import { useDispatch } from 'react-redux';
-import { register } from '../../store/Slices/UserDataSlice';
-const Signup = () => {
+import {useDispatch} from 'react-redux';
+import {register} from '../../store/Slices/UserDataSlice';
+const Signup = ({setState}) => {
   const [isSelected, setSelection] = useState(false);
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const navigation = useNavigation();
   const [formData, setFormData] = useState({
     name: '',
@@ -31,7 +31,7 @@ const Signup = () => {
   };
 
   const handleSubmit = () => {
-    dispatch(register(formData));
+    dispatch(register({...formData, setState}));
     console.log('Form submitted with data:', formData);
   };
   return (
@@ -166,7 +166,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    paddingBottom: 30
+    paddingBottom: 30,
   },
   container: {
     flex: 1,
