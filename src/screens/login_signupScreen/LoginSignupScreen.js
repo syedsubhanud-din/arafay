@@ -9,7 +9,17 @@ const LoginSignupScreen = () => {
   return (
     <View style={styles.main}>
       <AppBar state={state} setState={setState} />
-      <ScrollView>{state === 'signup' ? <Signup /> : <Login />}</ScrollView>
+      <ScrollView>
+        {state === 'signup' ? (
+          <ScrollView>
+            <Signup />
+          </ScrollView>
+        ) : (
+          <ScrollView>
+            <Login />
+          </ScrollView>
+        )}
+      </ScrollView>
     </View>
   );
 };

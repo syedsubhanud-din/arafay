@@ -166,6 +166,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    paddingBottom: 30
   },
   container: {
     flex: 1,
@@ -197,7 +198,7 @@ const styles = StyleSheet.create({
     width: '80%',
     padding: 10,
     gap: 10,
-    marginTop: 40,
+    marginTop: 10,
   },
   textFieldContainer: {
     borderWidth: 1,
