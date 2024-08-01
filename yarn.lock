@@ -2545,6 +2545,11 @@ data-view-byte-offset@^1.0.0:
     es-errors "^1.3.0"
     is-data-view "^1.0.1"
 
+date-fns@^3.6.0:
+  version "3.6.0"
+  resolved "https://registry.npmjs.org/date-fns/-/date-fns-3.6.0.tgz"
+  integrity sha512-fRHTG8g/Gif+kSh50gaGEdToemgfj74aRX3swtiouboip5JDLAyDE9F11nHMIcvOaXeOC6D7SpNhi7uFyB7Uww==
+
 dayjs@^1.8.15:
   version "1.11.11"
 
@@ -4383,6 +4388,18 @@ mkdirp@^0.5.1:
 mkdirp@^1.0.4:
   version "1.0.4"
 
+moment-hijri@^2.30.0:
+  version "2.30.0"
+  resolved "https://registry.npmjs.org/moment-hijri/-/moment-hijri-2.30.0.tgz"
+  integrity sha512-A3Ss8ASkhkT160laK9gXv+Yle0jA6eg92o8Uw78mU3OlUyaWjW2ntMd04kutawFb01KR0GIeJ8lqgIABGbWj7g==
+  dependencies:
+    moment "^2.30.1"
+
+moment@^2.30.1:
+  version "2.30.1"
+  resolved "https://registry.npmjs.org/moment/-/moment-2.30.1.tgz"
+  integrity sha512-uEmtNhbDOrWPFS+hdjFCBfy9f2YoyzRpwcl+DqpC6taX21FzsTLQVbMV/W7PzNSX6x/bhC1zA3c2UQ5NzH6how==
+
 ms@2.0.0:
   version "2.0.0"
 
@@ -4840,6 +4857,11 @@ react-native-fs@^2.20.0:
   dependencies:
     base-64 "^0.1.0"
     utf8 "^3.0.0"
+
+react-native-geocoding@^0.5.0:
+  version "0.5.0"
+  resolved "https://registry.npmjs.org/react-native-geocoding/-/react-native-geocoding-0.5.0.tgz"
+  integrity sha512-peTXRpRxPLiZpbTW43AOvoXXAEoS+eLnSo4KRY0hcL9F2hulWE5r7o5KiaLx8AWj35c6EJP3fdGHe754q2Gd2Q==
 
 react-native-gesture-handler@^2.17.1:
   version "2.17.1"

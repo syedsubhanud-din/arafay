@@ -5,43 +5,105 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import Icon from 'react-native-vector-icons/AntDesign';
 import PrayerTimes from './PrayerTimes';
 import {useNavigation} from '@react-navigation/native';
 import {useSelector} from 'react-redux';
+import moment from 'moment';
+import momentHijri from 'moment-hijri';
+import Geocoder from 'react-native-geocoding';
+import {GOOGLE_MAPS_API_KEY} from '../../config/constants';
+
+// Initialize the Geocoder for reverse geocoding
+// Geocoder.init(GOOGLE_MAPS_API_KEY);
+
+// const locationObj = Geocoder.from({
+//   latitude: 24.9172,
+//   longitude: 67.0924,
+// });
+// // console.log(locationObj._j.results[1].address_components[4].long_name);
+// console.log(locationObj);
+
+// Define the English locale for Hijri dates
+momentHijri.updateLocale('en', {
+  iMonths: [
+    'Muharram',
+    'Safar',
+    'Rabiʻ al-awwal',
+    'Rabiʻ al-thani',
+    'Jumada al-awwal',
+    'Jumada al-thani',
+    'Rajab',
+    'Shaʻban',
+    'Ramadan',
+    'Shawwal',
+    'Dhuʻl-Qiʻdah',
+    'Dhuʻl-Hijjah',
+  ],
+  iMonthsShort: [
+    'Muh',
+    'Saf',
+    'Rab1',
+    'Rab2',
+    'Jum1',
+    'Jum2',
+    'Raj',
+    'Sha',
+    'Ram',
+    'Shaw',
+    'DhuQ',
+    'DhuH',
+  ],
+});
+
 const Popup = ({showPopUp, setShowPopUp}) => {
+  const [currentTime, setCurrentTime] = useState(moment().format('LT'));
+  const [currentHijriDate, setCurrentHijriDate] = useState(
+    momentHijri().format('iYYYY/iM/iD'),
+  );
   const navigation = useNavigation();
   const {specificMasjidDetails} = useSelector(state => state.masjidSlice);
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setCurrentTime(moment().format('LT'));
+      setCurrentHijriDate(momentHijri().format('iMMMM iD, iYYYY [AH]'));
+    }, 1000);
+    return () => clearInterval(intervalId);
+  }, []);
   return (
     <View style={styles.main}>
       <View style={styles.overlay}></View>
       <View style={styles.container}>
-        <ImageBackground
-          source={require('../../assets/images/MasjidPopup.png')}
-          style={styles.background}>
-          <View style={styles.dateTimeContainer}>
-            <View style={{width: '100%'}}>
-              <View style={styles.closePopupIcon}>
-                <TouchableOpacity
-                  style={styles.close}
-                  onPress={() => setShowPopUp(!showPopUp)}>
-                  <Icon name="close" size={24} color="white" />
-                </TouchableOpacity>
-              </View>
-              <View style={styles.dateTime}>
-                <Text style={styles.islamicDate}>Muharram 5, 1446 AH</Text>
-                <Text style={styles.location}>Karachi, Pakistan</Text>
-                <View style={styles.divider}></View>
-                <Text style={styles.time}>04:41 am</Text>
-                <Text style={styles.remainingTime}>
-                  Fajr 3 hours 9 min left
-                </Text>
+        <View style={styles.imageContainer}>
+          <ImageBackground
+            source={require('../../assets/images/MasjidPopup.png')}
+            style={styles.background}>
+            <View style={styles.dateTimeContainer}>
+              <View style={{width: '100%'}}>
+                <View style={styles.closePopupIcon}>
+                  <TouchableOpacity
+                    style={styles.close}
+                    onPress={() => setShowPopUp(!showPopUp)}>
+                    <Icon name="close" size={24} color="white" />
+                  </TouchableOpacity>
+                </View>
+                <View style={styles.dateTime}>
+                  {/* <Text style={styles.islamicDate}>Muharram 5, 1446 AH</Text> */}
+                  <Text style={styles.islamicDate}>{currentHijriDate}</Text>
+                  <Text style={styles.location}>Karachi, Pakistan</Text>
+                  {/* <Text style={styles.location}>{moment().format('')}</Text> */}
+                  <View style={styles.divider}></View>
+                  <Text style={styles.time}>{currentTime}</Text>
+                  <Text style={styles.remainingTime}>
+                    Fajr 3 hours 9 min left
+                  </Text>
+                </View>
               </View>
             </View>
-          </View>
-        </ImageBackground>
-        <PrayerTimes specificMasjidTimings = {specificMasjidDetails.timings}/>
+          </ImageBackground>
+        </View>
+        <PrayerTimes specificMasjidTimings={specificMasjidDetails.timings} />
         <View style={styles.viewDetailsContainer}>
           <TouchableOpacity
             onPress={() => {
@@ -85,9 +147,14 @@ const styles = StyleSheet.create({
     right: 0,
     opacity: 0.5,
   },
+  imageContainer: {
+    width: 300,
+    height: 300,
+  },
   background: {
     overflow: 'hidden',
-    height: 300,
+    height: '100%',
+    width: '100%',
   },
   dateTimeContainer: {
     flexDirection: 'row',
