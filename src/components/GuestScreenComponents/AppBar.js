@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
     backgroundColor: 'rgba(0,0,0,0.5)',
-    zIndex: 2,
+    zIndex: 3,
   },
   bar: {
     flexDirection: 'row',
@@ -78,6 +78,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: 20,
     marginHorizontal: 10,
+    position: 'relative',
+    zIndex: 2,
   },
   button: {
     padding: 18,

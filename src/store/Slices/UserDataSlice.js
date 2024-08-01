@@ -1,7 +1,7 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import {IP_ADDRESS} from '../../config/constants';
 import axios from 'axios';
-
+import {ToastAndroid} from 'react-native';
 const state = {
   isLoggedIn: false,
   user: null,
@@ -19,6 +19,7 @@ export const login = createAsyncThunk(
       const response = await axios.get(
         `http://${IP_ADDRESS}:3000/api/auth/login?phone_number=${phone_number}&password=${password}`,
       );
+      ToastAndroid.show('Login successful!', ToastAndroid.LONG);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data);
@@ -36,6 +37,7 @@ export const register = createAsyncThunk(
         `http://${IP_ADDRESS}:3000/api/auth/register?name=${name}&phone_number=${phone_number}&password=${password}&email=${email}`,
       );
       setState('login');
+      ToastAndroid.show('Successfully Signed up!', ToastAndroid.LONG);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data);

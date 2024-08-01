@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   TextInput,
   Image,
+  ToastAndroid,
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
 import UserIcon from 'react-native-vector-icons/FontAwesome';
@@ -12,13 +13,19 @@ import PencilIcon from 'react-native-vector-icons/SimpleLineIcons';
 import {useNavigation} from '@react-navigation/native';
 import {useDispatch, useSelector} from 'react-redux';
 import {login} from '../../store/Slices/UserDataSlice';
-import {Toast} from 'toastify-react-native';
+// import {Toast} from 'toastify-react-native';
 const Login = () => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
   const {isLoggedIn} = useSelector(state => state.UserInfo);
   useEffect(() => {
     if (isLoggedIn) {
+      // ToastAndroid.showWithGravity(
+      //   'Login successful!',
+      //   ToastAndroid.SHORT,   
+      //   ToastAndroid.BOTTOM,
+      // );
+      // ToastAndroid.show('Login successful!', ToastAndroid.LONG);
       navigation.navigate('guest');
     }
   }, [isLoggedIn]);
@@ -32,12 +39,12 @@ const Login = () => {
     setFormData({...formData, [name]: value});
   };
 
-  const showToasts = () => {
-    Toast.success('Login successful');
-  };
+  // const showToasts = () => {
+  //   Toast.success('Login successful');
+  // };
   const handleSubmit = () => {
     dispatch(login(formData));
-    showToasts();
+    // showToasts();
   };
   return (
     <View style={styles.main}>
