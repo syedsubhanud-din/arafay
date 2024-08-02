@@ -64,7 +64,6 @@ const Popup = ({showPopUp, setShowPopUp}) => {
   );
   const navigation = useNavigation();
   const {specificMasjidDetails} = useSelector(state => state.masjidSlice);
-  console.log(specificMasjidDetails);
   useEffect(() => {
     const intervalId = setInterval(() => {
       setCurrentTime(moment().format('LT'));

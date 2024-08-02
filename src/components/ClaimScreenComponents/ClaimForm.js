@@ -8,12 +8,17 @@ import {
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
 import UploadIcon from 'react-native-vector-icons/Feather';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import axios from 'axios';
 import DocumentPicker from 'react-native-document-picker';
+import { claim } from '../../store/Slices/ClaimUserSlice';
 
 const ClaimForm = () => {
   const {token} = useSelector(state => state?.UserInfo);
+  const masjidId = useSelector(state => state?.masjidSlice.specificMasjidDetails.id);
+  const dispatch = useDispatch();
+  // console.log(token)
+  // console.log(specificMasjidDetails.id)
   // const [formData, setFormData] = useState({cnic: '', file: null});
   const [cnic, setCnic] = useState(null);
   const [fileData, setFileData] = useState(null);
@@ -63,18 +68,24 @@ const ClaimForm = () => {
     }
   };
 
-  const uploadFormData = async (file) => {
+  const uploadFormData = async file => {
     const formData = new FormData();
-    console.log(formData._parts[0]);
+    // console.log(formData._parts[0]);
     formData.append({
-      uri: fileData?.uri,
-      name: fileData?.name,
-      type: fileData?.type,
+      // name: fileData?.name,
+      // type: fileData?.type,
       cnic: cnic,
+      // document: fileData?.uri,
     });
     // formData[0].append(cnic);
-    const formDataObj = formData._parts[0][0]
-    console.log(formDataObj)
+    const formDataObj = formData._parts[0][0];
+
+    let formDataa = {
+      cnic: cnic,
+      // document: file.uri,
+    }
+    // console.log(formDataObj);
+    dispatch(claim({formDataa , masjidId , token}))
 
     // try {
     //   const response = await axios.post(

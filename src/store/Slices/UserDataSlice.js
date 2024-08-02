@@ -1,5 +1,5 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
-import {IP_ADDRESS} from '../../config/constants';
+import {BASE_URL, IP_ADDRESS} from '../../config/constants';
 import axios from 'axios';
 import {ToastAndroid} from 'react-native';
 const state = {
@@ -16,8 +16,11 @@ export const login = createAsyncThunk(
     const {phone_number, password} = credentials;
     console.log('Credentials', credentials);
     try {
+      // const response = await axios.get(
+      //   `http://${IP_ADDRESS}:3000/api/auth/login?phone_number=${phone_number}&password=${password}`,
+      // );
       const response = await axios.get(
-        `http://${IP_ADDRESS}:3000/api/auth/login?phone_number=${phone_number}&password=${password}`,
+        `${BASE_URL}/api/auth/login?phone_number=${phone_number}&password=${password}`,
       );
       ToastAndroid.show('Login successful!', ToastAndroid.LONG);
       return response.data;
@@ -33,8 +36,11 @@ export const register = createAsyncThunk(
     const {name, phone_number, password, email, setState} = credentials;
     console.log('Credentials', credentials);
     try {
+      // const response = await axios.post(
+      //   `http://${IP_ADDRESS}:3000/api/auth/register?name=${name}&phone_number=${phone_number}&password=${password}&email=${email}`,
+      // );
       const response = await axios.post(
-        `http://${IP_ADDRESS}:3000/api/auth/register?name=${name}&phone_number=${phone_number}&password=${password}&email=${email}`,
+        `${BASE_URL}/api/auth/register?name=${name}&phone_number=${phone_number}&password=${password}&email=${email}`,
       );
       setState('login');
       ToastAndroid.show('Successfully Signed up!', ToastAndroid.LONG);
