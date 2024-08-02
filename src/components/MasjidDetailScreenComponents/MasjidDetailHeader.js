@@ -2,7 +2,7 @@ import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import React, {useState} from 'react';
 import LocationIcon from 'react-native-vector-icons/Ionicons';
 import Heart from 'react-native-vector-icons/Ionicons';
-import { useSelector } from 'react-redux';
+import {useSelector} from 'react-redux';
 
 const MasjidDetailHeader = () => {
   const [favorite, setFavorite] = useState(false);
@@ -54,7 +54,8 @@ const styles = StyleSheet.create({
     paddingLeft: 20,
   },
   sectionHeading: {
-    fontSize: 25,
+    fontSize: 20,
+    width: 200,
     fontFamily: 'Poppins-Medium',
     fontWeight: 'bold',
   },

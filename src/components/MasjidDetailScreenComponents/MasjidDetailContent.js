@@ -35,13 +35,17 @@ const MasjidDetailContent = () => {
           reprehenderit in voluptate velit ess
         </Text>
       </View>
-      <PrayerTimes specificMasjidDetails = {specificMasjidDetails}/>
+      <PrayerTimes specificMasjidDetails={specificMasjidDetails} />
       <TouchableOpacity
         style={styles.viewMoreBtn}
         onPress={() => setViewTable(!viewTable)}>
-        <Text style={styles.viewMore}>View More</Text>
+        <Text style={styles.viewMore}>
+          {viewTable ? 'View Less' : 'View More'}
+        </Text>
       </TouchableOpacity>
-      {viewTable && <NamazTimingsTable specificMasjidDetails = {specificMasjidDetails}/>}
+      {viewTable && (
+        <NamazTimingsTable specificMasjidDetails={specificMasjidDetails} />
+      )}
       <View>
         <Text style={[styles.textgray, styles.pictureText]}>Pictures</Text>
         <ImagesSlider />

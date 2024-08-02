@@ -69,7 +69,7 @@ const Map = () => {
           source={require('../../assets/images/MarkerIcon.png')}
           style={{width: 15, height: 15}}
         />
-        <Text style={styles.markerText}>{truncateText(marker.name, 20)}</Text>
+        {/* <Text style={styles.markerText}>{truncateText(marker.name, 20)}</Text> */}
       </View>
     </Marker>
   ));
