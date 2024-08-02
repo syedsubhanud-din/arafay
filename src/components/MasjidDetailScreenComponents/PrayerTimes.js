@@ -34,18 +34,21 @@ const PrayerTimesData = [
   },
 ];
 
-const PrayerTimes = () => {
+const PrayerTimes = ({specificMasjidDetails}) => {
   return (
     <View style={styles.namazTimingsContainer}>
-      {PrayerTimesData.map((item, index) => (
+      {specificMasjidDetails.result.map((item, index) => (
         <View key={item.id}>
           <View style={styles.namazTimeIcon}>
-            <Image source={item.image} style={styles.namazTimeIconImage} />
+            <Image
+              source={PrayerTimesData[index].image}
+              style={styles.namazTimeIconImage}
+            />
           </View>
           <Text style={styles.textBlack}>
             <Text style={styles.namazTimeLabel}>
               {item.prayer} {'\n'}
-              {item.time}
+              {item.jamat}
             </Text>
           </Text>
         </View>
@@ -63,7 +66,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingTop: 30,
     backgroundColor: '#fff',
-    marginBottom: 5
+    marginBottom: 5,
   },
   namazTimeIconContainer: {
     flexDirection: 'column',

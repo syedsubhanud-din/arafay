@@ -2,14 +2,16 @@ import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import React, {useState} from 'react';
 import LocationIcon from 'react-native-vector-icons/Ionicons';
 import Heart from 'react-native-vector-icons/Ionicons';
+import { useSelector } from 'react-redux';
 
 const MasjidDetailHeader = () => {
   const [favorite, setFavorite] = useState(false);
+  const {specificMasjidDetails} = useSelector(state => state.masjidSlice);
   return (
     <View style={styles.headerSection}>
       <View style={styles.sectionHeadingContainer}>
         <Text style={[styles.sectionHeading, styles.textBlack]}>
-          Al-Aqsa Masjid
+          {specificMasjidDetails.name}
         </Text>
         <Text style={[styles.location, styles.textgray]}>
           <Text>

@@ -5,16 +5,19 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
 // import GetRegisteredButton from './Buttons/GetRegisteredButton';
 // import ApprovedButton from './Buttons/ApprovedButton';
 // import RequestPendingButton from './Buttons/RequestPendingButton';
 // import EditDetailsButton from './Buttons/EditDetailsButton';
 import PrayerTimes from './PrayerTimes';
 import ImagesSlider from './ImagesSlider';
-import EditableTable from './EditableTable';
+import NamazTimingsTable from './NamazTimingsTable';
+import {useSelector} from 'react-redux';
 
 const MasjidDetailContent = () => {
+  const [viewTable, setViewTable] = useState(false);
+  const {specificMasjidDetails} = useSelector(state => state.masjidSlice);
   return (
     <View style={styles.container}>
       {/* <View style={styles.status}>
@@ -32,8 +35,13 @@ const MasjidDetailContent = () => {
           reprehenderit in voluptate velit ess
         </Text>
       </View>
-      <PrayerTimes />
-      {/* <EditableTable /> */}
+      <PrayerTimes specificMasjidDetails = {specificMasjidDetails}/>
+      <TouchableOpacity
+        style={styles.viewMoreBtn}
+        onPress={() => setViewTable(!viewTable)}>
+        <Text style={styles.viewMore}>View More</Text>
+      </TouchableOpacity>
+      {viewTable && <NamazTimingsTable specificMasjidDetails = {specificMasjidDetails}/>}
       <View>
         <Text style={[styles.textgray, styles.pictureText]}>Pictures</Text>
         <ImagesSlider />
@@ -58,6 +66,16 @@ const styles = StyleSheet.create({
 
   content: {
     marginTop: 10,
+  },
+  viewMoreBtn: {
+    marginVertical: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  viewMore: {
+    color: '#00609D',
+    borderBottomColor: '#00609D',
+    borderBottomWidth: 1,
   },
   pictureText: {
     textAlign: 'start',
