@@ -69,7 +69,7 @@ const MasjidDataSlice = createSlice({
         state.error = null;
       })
       .addCase(getSpecificMasjidDetails.fulfilled, (state, action) => {
-        state.specificMasjidDetails = action.payload.result;
+        state.specificMasjidDetails = action.payload;
         state.loading = false;
         state.error = null;
       })

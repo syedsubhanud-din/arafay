@@ -89,10 +89,8 @@ const Popup = ({showPopUp, setShowPopUp}) => {
                   </TouchableOpacity>
                 </View>
                 <View style={styles.dateTime}>
-                  {/* <Text style={styles.islamicDate}>Muharram 5, 1446 AH</Text> */}
                   <Text style={styles.islamicDate}>{currentHijriDate}</Text>
                   <Text style={styles.location}>Karachi, Pakistan</Text>
-                  {/* <Text style={styles.location}>{moment().format('')}</Text> */}
                   <View style={styles.divider}></View>
                   <Text style={styles.time}>{currentTime}</Text>
                   <Text style={styles.remainingTime}>
@@ -103,7 +101,7 @@ const Popup = ({showPopUp, setShowPopUp}) => {
             </View>
           </ImageBackground>
         </View>
-        <PrayerTimes specificMasjidTimings={specificMasjidDetails.timings} />
+        <PrayerTimes specificMasjidTimings={specificMasjidDetails.result} />
         <View style={styles.viewDetailsContainer}>
           <TouchableOpacity
             onPress={() => {
