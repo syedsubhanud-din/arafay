@@ -140,96 +140,16 @@ const EditMasjidDetailForm = () => {
         details
       </Text>
 
-      {/* <OtherTimingsTable /> */}
-
       <View>
         <EditMasjidDescription />
         <EditMasjidTimings />
         <EditAndAddOtherTimingsTable />
         <AddAndDeleteMasjidImages />
-        {/* <View>
-          <Text style={[styles.textGray, styles.textLabels]}>Pictures</Text>
-          <View style={styles.imagesContainer}>
-            {formData.images.map((item, index) => {
-              return (
-                <View style={styles.imageContainer} key={item.id}>
-                  <Image source={item.source} style={styles.image} />
-                  <TouchableOpacity
-                    style={styles.deleteIconContainer}
-                    onPress={() => deleteImage(item.id)}>
-                    <TrashIcon
-                      name="trash"
-                      color="#00609D"
-                      fontSize={20}
-                      style={styles.deleteIcon}
-                    />
-                  </TouchableOpacity>
-                </View>
-              );
-            })}
-          </View>
-          <TouchableOpacity style={styles.addImageBtn}>
-            <Text style={styles.addImageText}>Add More</Text>
-          </TouchableOpacity>
-        </View> */}
-        {/* <View>
-          <View style={styles.tableHeadingContainer}>
-            <Text style={[styles.textGray, styles.textLabels]}>
-              Namaz Timings
-            </Text>
-            <TouchableOpacity>
-              <PencilPlusIcon
-                name="pencil-plus"
-                color="#00609D"
-                fontSize={20}
-                style={styles.deleteIcon}
-              />
-            </TouchableOpacity>
-          </View>
-          <View style={styles.tableContainer}>
-            <View style={styles.header}>
-              <Text style={[styles.cell, styles.headerCell]}>Title</Text>
-              <Text style={[styles.cell, styles.headerCell]}>Jamat</Text>
-              <Text style={[styles.cell, styles.headerCell]}>Start Time</Text>
-              <Text style={[styles.cell, styles.headerCell]}>End Time</Text>
-            </View>
-            {data.map((item, index) => (
-              <View key={item.id} style={styles.row}>
-                <TextInput
-                  style={styles.cell}
-                  value={item.title}
-                  onChangeText={text => handleInputChange(text, index, 'title')}
-                />
-                <TextInput
-                  style={styles.cell}
-                  value={item.jamat}
-                  onChangeText={text => handleInputChange(text, index, 'jamat')}
-                />
-                <TextInput
-                  style={styles.cell}
-                  value={item.startTime}
-                  onChangeText={text =>
-                    handleInputChange(text, index, 'startTime')
-                  }
-                />
-                <TextInput
-                  style={styles.cell}
-                  value={item.endTime}
-                  onChangeText={text =>
-                    handleInputChange(text, index, 'endTime')
-                  }
-                />
-              </View>
-            ))}
-          </View>
-        </View> */}
 
         <View style={styles.changeButtonContainer}>
           <View style={styles.buttonFieldContainer}>
             <TouchableOpacity onPress={handleFileUpload}>
-              <Text style={[styles.buttonText, styles.textBlack]}>
-                Save Changes
-              </Text>
+              <Text style={styles.buttonText}>Save Changes</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -339,7 +259,7 @@ const styles = StyleSheet.create({
     marginVertical: 20,
   },
   buttonFieldContainer: {
-    backgroundColor: 'white',
+    backgroundColor: '#00609D',
     fontSize: 12,
     paddingHorizontal: 40,
     paddingVertical: 10,
@@ -348,6 +268,11 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     elevation: 10,
     color: 'black',
+  },
+  buttonText: {
+    color: 'white',
+    fontWeight: 'bold',
+    fontSize: 12,
   },
   textGray: {
     color: '#594C3B',
