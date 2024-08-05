@@ -1,5 +1,6 @@
 import {FlatList, StyleSheet, Text, View} from 'react-native';
 import React, {useState} from 'react';
+import SectionHeading from './SectionHeading';
 
 const othertimings = [
   {
@@ -34,10 +35,11 @@ const renderItems = ({item, index}) => (
   </View>
 );
 
-const AddOtherTimingsTable = () => {
+const EditAndAddOtherTimingsTable = () => {
   const [otherTimings, setOtherTimings] = useState(othertimings);
   return (
     <View>
+      <SectionHeading Heading={"Other Timings"} SubHeading={"tap to edit add namaz timings below"}/>
       <View style={styles.tableBox}>
         <View style={styles.tableHeader}>
           <Text style={styles.tableHeaderCell}>Title</Text>
@@ -58,14 +60,14 @@ const AddOtherTimingsTable = () => {
   );
 };
 
-export default AddOtherTimingsTable;
+export default EditAndAddOtherTimingsTable;
 
 const styles = StyleSheet.create({
   tableBox: {
     backgroundColor: '#fff',
     borderRadius: 10,
     padding: 10,
-    marginVertical: 20,
+    marginBottom: 20,
   },
   tableHeader: {
     flexDirection: 'row',
