@@ -37,7 +37,7 @@ const PrayerTimesData = [
 const PrayerTimes = ({specificMasjidDetails}) => {
   return (
     <View style={styles.namazTimingsContainer}>
-      {specificMasjidDetails.result.map((item, index) => (
+      {specificMasjidDetails?.result?.map((item, index) => (
         <View key={item.id}>
           <View style={styles.namazTimeIcon}>
             <Image
