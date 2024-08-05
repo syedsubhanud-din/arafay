@@ -28,6 +28,11 @@ const AddAndDeleteMasjidImages = () => {
     //   source: require('../../assets/images/Slide1.jpeg'),
     // },
   ]);
+
+  const deleteImage = id => {
+    const newImages = images.filter(image => image.id !== id);
+    setImages(newImages);
+  };
   return (
     <View>
       <SectionHeading

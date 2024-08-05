@@ -66,11 +66,12 @@ const styles = StyleSheet.create({
   tableBox: {
     backgroundColor: '#fff',
     borderRadius: 10,
-    padding: 10,
+    // padding: 10,
     marginBottom: 20,
   },
   tableHeader: {
     flexDirection: 'row',
+    position: 'relative'
     // backgroundColor: '#f1f1f1',
   },
   tableHeaderCell: {
