@@ -1,5 +1,10 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
-import {BASE_URL, IP_ADDRESS} from '../../config/constants';
+import {
+  BASE_URL,
+  HOME_URL,
+  IP_ADDRESS,
+  OFFICE_URL,
+} from '../../config/constants';
 import axios from 'axios';
 
 const state = {
@@ -15,12 +20,15 @@ export const getAllMasjidDetails = createAsyncThunk(
   async (coords, thunkAPI) => {
     const {myLong, myLat} = coords;
     try {
-      // const response = await axios.get(
-      //   `http://${IP_ADDRESS}:3000/api/nearby?latitude=${myLat}&longitude=${myLong}&radius=5000`,
-      // );
       const response = await axios.get(
-        `${BASE_URL}/api/nearby?latitude=${myLat}&longitude=${myLong}&radius=5000`,
+        `${OFFICE_URL}/api/nearby?latitude=${myLat}&longitude=${myLong}&radius=5000`,
       );
+      // const response = await axios.get(
+      //   `${HOME_URL}/api/nearby?latitude=${myLat}&longitude=${myLong}&radius=5000`,
+      // );
+      // const response = await axios.get(
+      //   `${BASE_URL}/api/nearby?latitude=${myLat}&longitude=${myLong}&radius=5000`,
+      // );
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data);
@@ -33,10 +41,9 @@ export const getSpecificMasjidDetails = createAsyncThunk(
   'get/specificMasjidDetails',
   async (id, thunkAPI) => {
     try {
-      // const response = await axios.get(
-      //   `http://${IP_ADDRESS}:3000/api/timings?id=${id}`,
-      // );
-      const response = await axios.get(`${BASE_URL}/api/timings?id=${id}`);
+      const response = await axios.get(`${OFFICE_URL}/api/timings?id=${id}`);
+      // const response = await axios.get(`${HOME_URL}/api/timings?id=${id}`);
+      // const response = await axios.get(`${BASE_URL}/api/timings?id=${id}`);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data);
