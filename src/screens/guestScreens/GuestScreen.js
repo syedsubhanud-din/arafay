@@ -6,6 +6,7 @@ import {
   StyleSheet,
   View,
   Platform,
+  Text,
 } from 'react-native';
 import React, {useCallback, useEffect, useState} from 'react';
 import AppBar from '../../components/GuestScreenComponents/AppBar';
@@ -39,44 +40,56 @@ const GuestScreen = () => {
   //   );
   // };
 
+  // const getLocation = () => {
+  //   Geolocation.getCurrentPosition(
+  //     position => {
+  //       setLocation({
+  //         latitude: position.coords.latitude,
+  //         longitude: position.coords.longitude,
+  //         latitudeDelta: 0.01,
+  //         longitudeDelta: 0.01,
+  //       });
+  //       // console.log('position', position);
+  //     },
+  //     error => {
+  //       if (error.code === 3) {
+  //         // TIMEOUT error code
+  //         // Try again with lower accuracy
+  //         Geolocation.getCurrentPosition(
+  //           position => {
+  //             setLocation({
+  //               latitude: position.coords.latitude,
+  //               longitude: position.coords.longitude,
+  //               latitudeDelta: 0.01,
+  //               longitudeDelta: 0.01,
+  //             });
+  //             // console.log('lower accuracy', position);
+  //           },
+  //           error => {
+  //             Alert.alert(
+  //               'Error',
+  //               `Code ${error.code}, Message: ${error.message}`,
+  //             );
+  //           },
+  //           {enableHighAccuracy: false, timeout: 60000, maximumAge: 10000},
+  //         );
+  //       } else {
+  //         Alert.alert('Error', `Code ${error.code}, Message: ${error.message}`);
+  //       }
+  //     },
+  //     {enableHighAccuracy: true, timeout: 60000, maximumAge: 10000},
+  //   );
+  // };
+
   const getLocation = () => {
     Geolocation.getCurrentPosition(
       position => {
-        setLocation({
-          latitude: position.coords.latitude,
-          longitude: position.coords.longitude,
-          latitudeDelta: 0.01,
-          longitudeDelta: 0.01,
-        });
-        // console.log('position', position);
+        setLocation(position);
       },
       error => {
-        if (error.code === 3) {
-          // TIMEOUT error code
-          // Try again with lower accuracy
-          Geolocation.getCurrentPosition(
-            position => {
-              setLocation({
-                latitude: position.coords.latitude,
-                longitude: position.coords.longitude,
-                latitudeDelta: 0.01,
-                longitudeDelta: 0.01,
-              });
-              // console.log('lower accuracy', position);
-            },
-            error => {
-              Alert.alert(
-                'Error',
-                `Code ${error.code}, Message: ${error.message}`,
-              );
-            },
-            {enableHighAccuracy: false, timeout: 60000, maximumAge: 10000},
-          );
-        } else {
-          Alert.alert('Error', `Code ${error.code}, Message: ${error.message}`);
-        }
+        console.log(error.message);
       },
-      {enableHighAccuracy: true, timeout: 60000, maximumAge: 10000},
+      {enableHighAccuracy: false, timeout: 15000, maximumAge: 10000},
     );
   };
 
@@ -111,7 +124,9 @@ const GuestScreen = () => {
   }, []);
 
   useEffect(() => {
-    // console.log('location', location);
+    if (location) {
+      console.log('location', location.coords);
+    }
   }, [location]);
 
   useFocusEffect(
@@ -133,15 +148,25 @@ const GuestScreen = () => {
   return (
     <View style={styles.main}>
       <AppBar />
-      <Map
-        // locationCoords={location}
-        locationCoords={{
-          latitude: 24.8270,
-          longitude: 67.0251,
-          latitudeDelta: 0.01,
-          longitudeDelta: 0.01,
-        }}
-      />
+      {/* {location?.coords && (
+        <Map
+          locationCoords={location.coords}
+          // locationCoords={{
+          //   latitude: 24.827,
+          //   longitude: 67.0251,
+          //   latitudeDelta: 0.01,
+          //   longitudeDelta: 0.01,
+          // }}
+        />
+      )} */}
+
+      {location?.coords ? (
+        <Map locationCoords={location.coords} />
+      ) : (
+        <View>
+          <Text>Fetching location...</Text>
+        </View>
+      )}
       <NearBySection />
     </View>
   );
