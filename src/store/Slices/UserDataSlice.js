@@ -1,5 +1,10 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
-import {BASE_URL, IP_ADDRESS} from '../../config/constants';
+import {
+  BASE_URL,
+  HOME_URL,
+  IP_ADDRESS,
+  OFFICE_URL,
+} from '../../config/constants';
 import axios from 'axios';
 import {ToastAndroid} from 'react-native';
 const state = {
@@ -7,6 +12,22 @@ const state = {
   user: null,
   token: null,
   error: null,
+};
+const stateTesting = {
+  error: null,
+  isLoggedIn: true,
+  token:
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiYzQzZDZiMDQtMzc5Yi00ZGY2LTgxM2MtZTc0YWExNzRiODg1IiwibmFtZSI6IlJhZmF5Iiwicm9sZSI6InVzZXIifSwiaWF0IjoxNzIyNzIyMzU5LCJleHAiOjMzMjQ4NzY0NzU5fQ.UJ3fQnPb7Yn4CABebf915-L2TRxrf1DDFUe8xi0rQFQ',
+  user: {
+    createdAt: '2024-08-03T21:58:53.000Z',
+    email: 'arafay493@gmail.com',
+    id: 'c43d6b04-379b-4df6-813c-e74aa174b885',
+    name: 'Rafay',
+    password: '$2b$10$8WssILK/zlZIe5W80oSSieajjLTOq.sdluTwZOYZk6JgIoy6dqqeK',
+    phone_number: '+923173775920',
+    role: 'owner',
+    updatedAt: '2024-08-03T21:58:53.000Z',
+  },
 };
 
 // Create async thunk for login
@@ -17,11 +38,14 @@ export const login = createAsyncThunk(
     console.log('Credentials', credentials);
     try {
       // const response = await axios.get(
-      //   `http://${IP_ADDRESS}:3000/api/auth/login?phone_number=${phone_number}&password=${password}`,
+      //   `${OFFICE_URL}/api/auth/login?phone_number=${phone_number}&password=${password}`,
       // );
       const response = await axios.get(
-        `${BASE_URL}/api/auth/login?phone_number=${phone_number}&password=${password}`,
+        `${HOME_URL}/api/auth/login?phone_number=${phone_number}&password=${password}`,
       );
+      // const response = await axios.get(
+      //   `${BASE_URL}/api/auth/login?phone_number=${phone_number}&password=${password}`,
+      // );
       ToastAndroid.show('Login successful!', ToastAndroid.LONG);
       return response.data;
     } catch (error) {
@@ -37,11 +61,14 @@ export const register = createAsyncThunk(
     console.log('Credentials', credentials);
     try {
       // const response = await axios.post(
-      //   `http://${IP_ADDRESS}:3000/api/auth/register?name=${name}&phone_number=${phone_number}&password=${password}&email=${email}`,
+      //   `${OFFICE_URL}/api/auth/register?name=${name}&phone_number=${phone_number}&password=${password}&email=${email}`,
       // );
       const response = await axios.post(
-        `${BASE_URL}/api/auth/register?name=${name}&phone_number=${phone_number}&password=${password}&email=${email}`,
+        `${HOME_URL}/api/auth/register?name=${name}&phone_number=${phone_number}&password=${password}&email=${email}`,
       );
+      // const response = await axios.post(
+      //   `${BASE_URL}/api/auth/register?name=${name}&phone_number=${phone_number}&password=${password}&email=${email}`,
+      // );
       setState('login');
       ToastAndroid.show('Successfully Signed up!', ToastAndroid.LONG);
       return response.data;
@@ -53,7 +80,8 @@ export const register = createAsyncThunk(
 
 const getUserData = createSlice({
   name: 'GetUserData',
-  initialState: state,
+  // initialState: state,
+  initialState: stateTesting,
   reducers: {
     logout: state => {
       state.error = null;

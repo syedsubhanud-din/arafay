@@ -11,6 +11,11 @@ import React, {useState} from 'react';
 import TrashIcon from 'react-native-vector-icons/EvilIcons';
 import PencilPlusIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {ScrollView} from 'react-native-gesture-handler';
+import {useSelector} from 'react-redux';
+import PrayerTimes from './PrayerTimes';
+import OtherTimingsTable from './OtherTimingsTable';
+import AddOtherTimingsTable from './AddOtherTimingsTable';
+import EditMasjidTimings from './EditMasjidTimings';
 
 const initialData = [
   {
@@ -51,6 +56,8 @@ const initialData = [
 ];
 
 const EditMasjidDetailForm = () => {
+  const {specificMasjidDetails} = useSelector(state => state?.masjidSlice);
+
   const [data, setData] = useState(initialData);
   const [formData, setFormData] = useState({
     description:
@@ -85,6 +92,7 @@ const EditMasjidDetailForm = () => {
       ...formData,
       [name]: value,
     });
+    console.log(formData);
   };
 
   const handleFileUpload = field => {
@@ -129,6 +137,9 @@ const EditMasjidDetailForm = () => {
         You are now the Claimed admin of the masjid. Click below to edit the
         details
       </Text>
+
+      {/* <OtherTimingsTable /> */}
+
       <View>
         <View>
           <Text style={[styles.textGray, styles.textLabels]}>Description</Text>
@@ -146,6 +157,8 @@ const EditMasjidDetailForm = () => {
             />
           </View>
         </View>
+        <EditMasjidTimings />
+        <AddOtherTimingsTable />
         <View>
           <Text style={[styles.textGray, styles.textLabels]}>Pictures</Text>
           <View style={styles.imagesContainer}>
@@ -171,7 +184,7 @@ const EditMasjidDetailForm = () => {
             <Text style={styles.addImageText}>Add More</Text>
           </TouchableOpacity>
         </View>
-        <View>
+        {/* <View>
           <View style={styles.tableHeadingContainer}>
             <Text style={[styles.textGray, styles.textLabels]}>
               Namaz Timings
@@ -220,13 +233,8 @@ const EditMasjidDetailForm = () => {
                 />
               </View>
             ))}
-            {/* <FlatList
-                data={data}
-                renderItem={renderItem}
-                keyExtractor={item => item.id}
-              /> */}
           </View>
-        </View>
+        </View> */}
 
         <View style={styles.changeButtonContainer}>
           <View style={styles.buttonFieldContainer}>
