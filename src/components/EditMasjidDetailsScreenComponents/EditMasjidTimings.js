@@ -15,6 +15,7 @@ import SunIcon from 'react-native-vector-icons/Feather';
 import SunsetIcon from 'react-native-vector-icons/Feather';
 import MoonIcon from 'react-native-vector-icons/Ionicons';
 import PencilPlusIcon from 'react-native-vector-icons/MaterialCommunityIcons';
+import SectionHeading from './SectionHeading';
 
 const PrayerTimesData = [
   {
@@ -142,7 +143,10 @@ const EditMasjidTimings = () => {
 
   return (
     <View>
-        
+      <SectionHeading
+        Heading={'Namaz Timings'}
+        SubHeading={'tap to edit namaz timings below'}
+      />
       <FlatList
         data={data}
         keyExtractor={item => item.id}

@@ -14,8 +14,10 @@ import {ScrollView} from 'react-native-gesture-handler';
 import {useSelector} from 'react-redux';
 import PrayerTimes from './PrayerTimes';
 import OtherTimingsTable from './OtherTimingsTable';
-import AddOtherTimingsTable from './AddOtherTimingsTable';
+import EditAndAddOtherTimingsTable from './EditAndAddOtherTimingsTable';
 import EditMasjidTimings from './EditMasjidTimings';
+import EditMasjidDescription from './EditMasjidDescription';
+import AddAndDeleteMasjidImages from './AddAndDeleteMasjidImages';
 
 const initialData = [
   {
@@ -141,25 +143,11 @@ const EditMasjidDetailForm = () => {
       {/* <OtherTimingsTable /> */}
 
       <View>
-        <View>
-          <Text style={[styles.textGray, styles.textLabels]}>Description</Text>
-          <View style={styles.textFieldContainer}>
-            <TextInput
-              placeholder="CNIC (required)"
-              placeholderTextColor={'#B8B1B1'}
-              style={styles.textInput}
-              required
-              multiline
-              numberOfLines={10}
-              name="description"
-              value={formData.description}
-              onChangeText={text => handleChange('description', text)}
-            />
-          </View>
-        </View>
+        <EditMasjidDescription />
         <EditMasjidTimings />
-        <AddOtherTimingsTable />
-        <View>
+        <EditAndAddOtherTimingsTable />
+        <AddAndDeleteMasjidImages />
+        {/* <View>
           <Text style={[styles.textGray, styles.textLabels]}>Pictures</Text>
           <View style={styles.imagesContainer}>
             {formData.images.map((item, index) => {
@@ -183,7 +171,7 @@ const EditMasjidDetailForm = () => {
           <TouchableOpacity style={styles.addImageBtn}>
             <Text style={styles.addImageText}>Add More</Text>
           </TouchableOpacity>
-        </View>
+        </View> */}
         {/* <View>
           <View style={styles.tableHeadingContainer}>
             <Text style={[styles.textGray, styles.textLabels]}>
