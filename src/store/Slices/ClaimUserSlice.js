@@ -1,7 +1,7 @@
-import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
-import {BASE_URL, IP_ADDRESS} from '../../config/constants';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { BASE_URL, IP_ADDRESS } from '../../config/constants';
 import axios from 'axios';
-import {ToastAndroid} from 'react-native';
+import { ToastAndroid } from 'react-native';
 const state = {
   error: null,
   user: null,
@@ -9,7 +9,7 @@ const state = {
 
 export const claim = createAsyncThunk('user/claim', async (data, thunkAPI) => {
   console.log('data: ', data);
-  const {masjidId, token, formDataa} = data;
+  const { masjidId, token, formDataa } = data;
 
   // Create a form data object
   // const formData = new FormData();
@@ -68,5 +68,5 @@ const claimUserData = createSlice({
   },
 });
 
-export const {logout} = claimUserData.actions;
+export const { logout } = claimUserData.actions;
 export default claimUserData.reducer;

@@ -37,12 +37,12 @@ export const login = createAsyncThunk(
     const {phone_number, password} = credentials;
     console.log('Credentials', credentials);
     try {
-      // const response = await axios.get(
-      //   `${OFFICE_URL}/api/auth/login?phone_number=${phone_number}&password=${password}`,
-      // );
       const response = await axios.get(
-        `${HOME_URL}/api/auth/login?phone_number=${phone_number}&password=${password}`,
+        `${OFFICE_URL}/api/auth/login?phone_number=${phone_number}&password=${password}`,
       );
+      // const response = await axios.get(
+      //   `${HOME_URL}/api/auth/login?phone_number=${phone_number}&password=${password}`,
+      // );
       // const response = await axios.get(
       //   `${BASE_URL}/api/auth/login?phone_number=${phone_number}&password=${password}`,
       // );
@@ -60,12 +60,12 @@ export const register = createAsyncThunk(
     const {name, phone_number, password, email, setState} = credentials;
     console.log('Credentials', credentials);
     try {
-      // const response = await axios.post(
-      //   `${OFFICE_URL}/api/auth/register?name=${name}&phone_number=${phone_number}&password=${password}&email=${email}`,
-      // );
       const response = await axios.post(
-        `${HOME_URL}/api/auth/register?name=${name}&phone_number=${phone_number}&password=${password}&email=${email}`,
+        `${OFFICE_URL}/api/auth/register?name=${name}&phone_number=${phone_number}&password=${password}&email=${email}`,
       );
+      // const response = await axios.post(
+      //   `${HOME_URL}/api/auth/register?name=${name}&phone_number=${phone_number}&password=${password}&email=${email}`,
+      // );
       // const response = await axios.post(
       //   `${BASE_URL}/api/auth/register?name=${name}&phone_number=${phone_number}&password=${password}&email=${email}`,
       // );
