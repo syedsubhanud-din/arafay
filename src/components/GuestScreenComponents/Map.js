@@ -1,16 +1,16 @@
-import { Image, StyleSheet, Text, View } from 'react-native';
-import React, { useEffect, useState } from 'react';
-import MapView, { Marker, PROVIDER_GOOGLE, Polyline } from 'react-native-maps';
-import { useDispatch, useSelector } from 'react-redux';
+import {Image, StyleSheet, Text, View} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import MapView, {Marker, PROVIDER_GOOGLE, Polyline} from 'react-native-maps';
+import {useDispatch, useSelector} from 'react-redux';
 import Geolocation from '@react-native-community/geolocation';
 import MapViewDirections from 'react-native-maps-directions';
-import { GOOGLE_MAPS_API_KEY } from '../../config/constants';
+import {GOOGLE_MAPS_API_KEY} from '../../config/constants';
 import {
   getAllMasjidDetails,
   getMasjidDetails,
 } from '../../store/Slices/MasjidDataSlice';
 import LoadingScreen from '../../screens/loadingScreen/LoadingScreen';
-import { useRoute } from '@react-navigation/native';
+import {useRoute} from '@react-navigation/native';
 
 // const API_KEY = 'YOUR_GOOGLE_MAPS_API_KEY'; // Replace with your Google Maps API key
 
@@ -21,12 +21,16 @@ const truncateText = (text, maxLength) => {
   return text.substring(0, maxLength) + '...';
 };
 
-const Map = ({ locationCoords }) => {
-  const [location, setLocation] = useState({ myLat: locationCoords?.latitude, myLong: locationCoords?.longitude });
+const Map = ({locationCoords}) => {
+  const [location, setLocation] = useState({
+    myLat: locationCoords?.latitude,
+    myLong: locationCoords?.longitude,
+  });
+  const [testLocation, setTestLocation] = useState(null);
   const [destination, setDestination] = useState(null);
   const dispatch = useDispatch();
 
-  console.log('LOCATION!',locationCoords)
+  // console.log('LOCATION!',locationCoords)
 
   // useEffect(() => {
   //   Geolocation.getCurrentPosition(
@@ -44,11 +48,86 @@ const Map = ({ locationCoords }) => {
   //   );r
   // }, []);
 
+  // const getLocation = () => {
+  //   Geolocation.getCurrentPosition(
+  //     position => {
+  //       setLocation({
+  //         latitude: position.coords.latitude,
+  //         longitude: position.coords.longitude,
+  //         latitudeDelta: 0.01,
+  //         longitudeDelta: 0.01,
+  //       });
+  //       console.log('position', position);
+  //     },
+  //     error => {
+  //       if (error.code === 3) {
+  //         // TIMEOUT error code
+  //         // Try again with lower accuracy
+  //         Geolocation.getCurrentPosition(
+  //           position => {
+  //             setLocation({
+  //               latitude: position.coords.latitude,
+  //               longitude: position.coords.longitude,
+  //               latitudeDelta: 0.01,
+  //               longitudeDelta: 0.01,
+  //             });
+  //             console.log('lower accuracy', position);
+  //           },
+  //           error => {
+  //             Alert.alert(
+  //               'Error',
+  //               `Code ${error.code}, Message: ${error.message}`,
+  //             );
+  //           },
+  //           {enableHighAccuracy: false, timeout: 60000, maximumAge: 10000},
+  //         );
+  //       } else {
+  //         Alert.alert('Error', `Code ${error.code}, Message: ${error.message}`);
+  //       }
+  //     },
+  //     {enableHighAccuracy: true, timeout: 60000, maximumAge: 10000},
+  //   );
+  // };
+
+  // const requestLocationPermission = async () => {
+  //   if (Platform.OS === 'android') {
+  //     const granted = await PermissionsAndroid.request(
+  //       PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
+  //       {
+  //         title: 'Location Permission',
+  //         message:
+  //           'This app needs access to your location to show it on the map.',
+  //         buttonNeutral: 'Ask Me Later',
+  //         buttonNegative: 'Cancel',
+  //         buttonPositive: 'OK',
+  //       },
+  //     );
+  //     if (granted !== PermissionsAndroid.RESULTS.GRANTED) {
+  //       Alert.alert(
+  //         'Permission Denied',
+  //         'Location permission is required to show your location on the map.',
+  //       );
+  //     } else {
+  //       getLocation();
+  //     }
+  //   } else {
+  //     getLocation();
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   requestLocationPermission();
+  // }, []);
+
+  // useEffect(() => {
+  //   console.log('location', location);
+  // }, [location]);
+
   useEffect(() => {
     dispatch(getAllMasjidDetails(location));
   }, []);
 
-  const { MasjidsDetails } = useSelector(state => state.masjidSlice);
+  const {MasjidsDetails} = useSelector(state => state.masjidSlice);
 
   const handleMarkerPress = marker => {
     setDestination({
@@ -70,7 +149,7 @@ const Map = ({ locationCoords }) => {
       <View style={styles.markerView}>
         <Image
           source={require('../../assets/images/MarkerIcon.png')}
-          style={{ width: 15, height: 15 }}
+          style={{width: 15, height: 15}}
         />
         {/* <Text style={styles.markerText}>{truncateText(marker.name, 20)}</Text> */}
       </View>
@@ -99,7 +178,7 @@ const Map = ({ locationCoords }) => {
         {allMarkers}
         {destination && (
           <MapViewDirections
-            origin={{ latitude: location.myLat, longitude: location.myLong }}
+            origin={{latitude: location.myLat, longitude: location.myLong}}
             destination={destination}
             apikey={GOOGLE_MAPS_API_KEY}
             strokeWidth={3}

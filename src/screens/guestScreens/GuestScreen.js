@@ -7,19 +7,19 @@ import {
   View,
   Platform,
 } from 'react-native';
-import React, { useCallback, useEffect, useState } from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import AppBar from '../../components/GuestScreenComponents/AppBar';
 import NearBySection from '../../components/GuestScreenComponents/NearBySection';
 import Map from '../../components/GuestScreenComponents/Map';
-import { useFocusEffect } from '@react-navigation/native';
+import {useFocusEffect} from '@react-navigation/native';
 import Geolocation from '@react-native-community/geolocation';
-import { useDispatch, useSelector } from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 
 const GuestScreen = () => {
   const dispatch = useDispatch();
   // const {MasjidDetails} = useSelector(state => state.masjidDetails);
   const [location, setLocation] = useState(null);
-  const { loading } = useSelector(state => state.masjidSlice);
+  const {loading} = useSelector(state => state.masjidSlice);
 
   // const getLocation = () => {
   //   Geolocation.getCurrentPosition(
@@ -48,10 +48,11 @@ const GuestScreen = () => {
           latitudeDelta: 0.01,
           longitudeDelta: 0.01,
         });
-        console.log('position', position);
+        // console.log('position', position);
       },
       error => {
-        if (error.code === 3) { // TIMEOUT error code
+        if (error.code === 3) {
+          // TIMEOUT error code
           // Try again with lower accuracy
           Geolocation.getCurrentPosition(
             position => {
@@ -61,18 +62,21 @@ const GuestScreen = () => {
                 latitudeDelta: 0.01,
                 longitudeDelta: 0.01,
               });
-              console.log('lower accuracy', position);
+              // console.log('lower accuracy', position);
             },
             error => {
-              Alert.alert('Error', `Code ${error.code}, Message: ${error.message}`);
+              Alert.alert(
+                'Error',
+                `Code ${error.code}, Message: ${error.message}`,
+              );
             },
-            { enableHighAccuracy: false, timeout: 60000, maximumAge: 10000 },
+            {enableHighAccuracy: false, timeout: 60000, maximumAge: 10000},
           );
         } else {
           Alert.alert('Error', `Code ${error.code}, Message: ${error.message}`);
         }
       },
-      { enableHighAccuracy: true, timeout: 60000, maximumAge: 10000 },
+      {enableHighAccuracy: true, timeout: 60000, maximumAge: 10000},
     );
   };
 
@@ -82,7 +86,8 @@ const GuestScreen = () => {
         PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
         {
           title: 'Location Permission',
-          message: 'This app needs access to your location to show it on the map.',
+          message:
+            'This app needs access to your location to show it on the map.',
           buttonNeutral: 'Ask Me Later',
           buttonNegative: 'Cancel',
           buttonPositive: 'OK',
@@ -106,9 +111,8 @@ const GuestScreen = () => {
   }, []);
 
   useEffect(() => {
-    console.log('location', location)
-  }, [location])
-
+    // console.log('location', location);
+  }, [location]);
 
   useFocusEffect(
     useCallback(() => {
@@ -129,7 +133,15 @@ const GuestScreen = () => {
   return (
     <View style={styles.main}>
       <AppBar />
-      <Map locationCoords={location} />
+      <Map
+        // locationCoords={location}
+        locationCoords={{
+          latitude: 24.8270,
+          longitude: 67.0251,
+          latitudeDelta: 0.01,
+          longitudeDelta: 0.01,
+        }}
+      />
       <NearBySection />
     </View>
   );
