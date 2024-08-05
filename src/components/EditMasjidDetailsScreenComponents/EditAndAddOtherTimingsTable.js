@@ -109,7 +109,7 @@ const EditAndAddOtherTimingsTable = () => {
           value={item.jamat}
           onChangeText={text => handleInputChange(text, index, 'jamat')}
           //   onBlur={text => handleBlur(text)}
-          placeholder={`Enter Starting Time`}
+          placeholder={`Enter Jamat Time`}
           placeholderTextColor={'grey'}
           // name={item.prayer}
           textAlign="center"
@@ -122,7 +122,7 @@ const EditAndAddOtherTimingsTable = () => {
           value={item.ending}
           onChangeText={text => handleInputChange(text, index, 'ending')}
           //   onBlur={text => handleBlur(text)}
-          placeholder={`Enter Starting Time`}
+          placeholder={`Enter Ending Time`}
           placeholderTextColor={'grey'}
           // name={item.prayer}
           textAlign="center"

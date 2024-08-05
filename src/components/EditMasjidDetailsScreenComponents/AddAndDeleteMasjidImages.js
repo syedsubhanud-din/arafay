@@ -3,6 +3,7 @@ import React, {useState} from 'react';
 import TrashIcon from 'react-native-vector-icons/EvilIcons';
 import {useSelector} from 'react-redux';
 import SectionHeading from './SectionHeading';
+import DocumentPicker from 'react-native-document-picker';
 
 const AddAndDeleteMasjidImages = () => {
   const {specificMasjidDetails} = useSelector(state => state?.masjidSlice);
@@ -33,6 +34,28 @@ const AddAndDeleteMasjidImages = () => {
     const newImages = images.filter(image => image.id !== id);
     setImages(newImages);
   };
+
+  const handleAddImage = async () => {
+    try {
+      const res = await DocumentPicker.pick({
+        type: [DocumentPicker.types.images],
+      });
+
+      if (res && res.length > 0) {
+        const newImage = {
+          id: images.length + 1,
+          source: {uri: res[0].uri},
+        };
+        setImages([...images, newImage]);
+      }
+    } catch (err) {
+      if (DocumentPicker.isCancel(err)) {
+        console.log('User cancelled image picker');
+      } else {
+        console.log('DocumentPicker Error: ', err);
+      }
+    }
+  };
   return (
     <View>
       <SectionHeading
@@ -58,7 +81,9 @@ const AddAndDeleteMasjidImages = () => {
           );
         })}
       </View>
-      <TouchableOpacity style={styles.addImageBtn}>
+      <TouchableOpacity
+        style={styles.addImageBtn}
+        onPress={() => handleAddImage()}>
         <Text style={styles.addImageText}>Add More</Text>
       </TouchableOpacity>
     </View>
