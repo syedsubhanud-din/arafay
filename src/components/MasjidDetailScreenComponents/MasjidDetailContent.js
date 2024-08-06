@@ -26,15 +26,13 @@ const MasjidDetailContent = () => {
         <ApprovedButton />
         <EditDetailsButton />
       </View> */}
-      <View style={styles.content}>
-        <Text style={styles.textgray}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit ess
-        </Text>
-      </View>
+      {specificMasjidDetails?.description && (
+        <View style={styles.content}>
+          <Text style={styles.textgray}>
+            {specificMasjidDetails.description}
+          </Text>
+        </View>
+      )}
       <PrayerTimes specificMasjidDetails={specificMasjidDetails} />
       <TouchableOpacity
         style={styles.viewMoreBtn}
@@ -59,9 +57,7 @@ export default MasjidDetailContent;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // backgroundColor: '#F6F6F6',
     paddingHorizontal: 20,
-    // paddingVertical: 15,
   },
   status: {
     flexDirection: 'row',
