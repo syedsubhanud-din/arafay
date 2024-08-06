@@ -1,12 +1,14 @@
-import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
+import {StyleSheet, Text, View, TouchableOpacity, Image} from 'react-native';
 import React, {useState} from 'react';
 import LocationIcon from 'react-native-vector-icons/Ionicons';
-import Heart from 'react-native-vector-icons/Ionicons';
+// import Heart from 'react-native-vector-icons/Ionicons';
 import {useSelector} from 'react-redux';
+import {useNavigation} from '@react-navigation/native';
 
 const MasjidDetailHeader = () => {
   const [favorite, setFavorite] = useState(false);
   const {specificMasjidDetails} = useSelector(state => state.masjidSlice);
+  const navigation = useNavigation();
   return (
     <View style={styles.headerSection}>
       <View style={styles.sectionHeadingContainer}>
@@ -20,25 +22,29 @@ const MasjidDetailHeader = () => {
           <Text>Karachi, Pakistan</Text>
         </Text>
       </View>
-      <View style={styles.bullet}>
-        <View>
-          <Text style={[styles.textWhite, styles.distance]}>3.5 km</Text>
-          <Text style={[styles.textWhite]}>
-            from your current {'\n'} location
-          </Text>
+      <TouchableOpacity
+        onPress={() => navigation.navigate('MasjidLeaderBoard')}>
+        <View style={styles.bullet}>
+          <View>
+            {/* <Text style={[styles.textWhite, styles.distance]}>3.5 km</Text> */}
+            <Text style={[styles.textWhite]}>Masjid {'\n'}Leader Board</Text>
+          </View>
+          <View style={{paddingHorizontal: 5}}>
+            <Image source={require('../../assets/images/medals.png')} />
+          </View>
+          {/* <View style={{paddingLeft: 10}}>
+            {favorite ? (
+              <TouchableOpacity onPress={() => setFavorite(!favorite)}>
+                <Heart name="heart" size={25} color="#FFF" />
+              </TouchableOpacity>
+            ) : (
+              <TouchableOpacity onPress={() => setFavorite(!favorite)}>
+                <Heart name="heart-outline" size={25} color="#FFF" />
+              </TouchableOpacity>
+            )}
+          </View> */}
         </View>
-        <View style={{paddingLeft: 10}}>
-          {favorite ? (
-            <TouchableOpacity onPress={() => setFavorite(!favorite)}>
-              <Heart name="heart" size={25} color="#FFF" />
-            </TouchableOpacity>
-          ) : (
-            <TouchableOpacity onPress={() => setFavorite(!favorite)}>
-              <Heart name="heart-outline" size={25} color="#FFF" />
-            </TouchableOpacity>
-          )}
-        </View>
-      </View>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -89,7 +95,8 @@ const styles = StyleSheet.create({
   },
   textWhite: {
     color: 'white',
-    textAlign: 'center',
+    fontSize: 20,
+    // textAlign: 'center',
     fontSize: 8,
   },
   textgray: {
