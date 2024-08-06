@@ -18,7 +18,8 @@ import {useDispatch, useSelector} from 'react-redux';
 
 const GuestScreen = () => {
   const dispatch = useDispatch();
-  // const {MasjidDetails} = useSelector(state => state.masjidDetails);
+  const {searchCoords} = useSelector(state => state?.masjidSlice);
+  console.log("SearchCoords" , searchCoords);
   const [location, setLocation] = useState(null);
   const {loading} = useSelector(state => state.masjidSlice);
 
@@ -123,11 +124,11 @@ const GuestScreen = () => {
     requestLocationPermission();
   }, []);
 
-  useEffect(() => {
-    if (location) {
-      console.log('location', location.coords);
-    }
-  }, [location]);
+  // useEffect(() => {
+  //   if (location) {
+  //     console.log('location', location.coords);
+  //   }
+  // }, [location]);
 
   useFocusEffect(
     useCallback(() => {
@@ -160,7 +161,14 @@ const GuestScreen = () => {
         />
       )} */}
 
-      {location?.coords ? (
+      {searchCoords ? (
+        <Map
+          locationCoords={{
+            latitude: searchCoords?.lat,
+            longitude: searchCoords?.lng,
+          }}
+        />
+      ) : location?.coords ? (
         <Map locationCoords={location.coords} />
       ) : (
         <View>

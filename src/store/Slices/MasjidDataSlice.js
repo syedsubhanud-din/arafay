@@ -12,6 +12,7 @@ const state = {
   MasjidsDetails: [],
   specificMasjidDetails: {},
   error: null,
+  searchCoords: null
 };
 
 // Create async thunk for getAllMasjidDetails
@@ -55,10 +56,11 @@ const MasjidDataSlice = createSlice({
   name: 'MasjidDetails',
   initialState: state,
   reducers: {
-    // logout: state => {
-    //   //   state.error = null;
-    //   return state;
-    // },
+    searchPlace: (state , action) => {
+      console.log(action.payload)
+      state.searchCoords = action.payload;
+      return state;
+    },
   },
   extraReducers: builder => {
     builder
@@ -91,5 +93,5 @@ const MasjidDataSlice = createSlice({
   },
 });
 
-// export const {logout} = MasjidDataSlice.actions;
+export const {searchPlace} = MasjidDataSlice.actions;
 export default MasjidDataSlice.reducer;
