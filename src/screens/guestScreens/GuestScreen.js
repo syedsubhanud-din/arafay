@@ -8,7 +8,7 @@ import {
   Platform,
   Text,
 } from 'react-native';
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useRef, useState} from 'react';
 import AppBar from '../../components/GuestScreenComponents/AppBar';
 import NearBySection from '../../components/GuestScreenComponents/NearBySection';
 import Map from '../../components/GuestScreenComponents/Map';
@@ -19,9 +19,11 @@ import {useDispatch, useSelector} from 'react-redux';
 const GuestScreen = () => {
   const dispatch = useDispatch();
   const {searchCoords} = useSelector(state => state?.masjidSlice);
-  console.log("SearchCoords" , searchCoords);
+  console.log('SearchCoords', searchCoords);
   const [location, setLocation] = useState(null);
+  const [search, setSearch] = useState(searchCoords);
   const {loading} = useSelector(state => state.masjidSlice);
+  const mapRef = useRef(null);
 
   // const getLocation = () => {
   //   Geolocation.getCurrentPosition(
@@ -130,6 +132,26 @@ const GuestScreen = () => {
   //   }
   // }, [location]);
 
+  // //?Search Coords
+  useEffect(() => {
+    if (mapRef.current && searchCoords) {
+      mapRef.current.animateToRegion(
+        {
+          latitude: searchCoords.lat,
+          longitude: searchCoords.lng,
+          latitudeDelta: 0.0922,
+          longitudeDelta: 0.0421,
+        },
+        1000,
+      );
+    }
+  }, [searchCoords]);
+
+  // //?Search Coords
+  // useEffect(() => {}, [searchCoords]);
+  // //?Search Coords
+  // useEffect(() => {}, [search]);
+
   useFocusEffect(
     useCallback(() => {
       const backAction = () => {
@@ -161,7 +183,7 @@ const GuestScreen = () => {
         />
       )} */}
 
-      {searchCoords ? (
+      {/* {searchCoords ? (
         <Map
           locationCoords={{
             latitude: searchCoords?.lat,
@@ -170,6 +192,20 @@ const GuestScreen = () => {
         />
       ) : location?.coords ? (
         <Map locationCoords={location.coords} />
+      ) : (
+        <View>
+          <Text>Fetching location...</Text>
+        </View>
+      )} */}
+
+      {location?.coords ? (
+        <Map
+          locationCoords={
+            searchCoords
+              ? {latitude: searchCoords.lat, longitude: searchCoords.lng}
+              : location.coords
+          }
+        />
       ) : (
         <View>
           <Text>Fetching location...</Text>

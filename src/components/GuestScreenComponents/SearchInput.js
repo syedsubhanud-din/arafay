@@ -23,23 +23,22 @@ const SearchInput = () => {
         // .then(() => useDispatch(searchPlace(location)))
         .catch(error => console.warn(error));
     }
-  }, []);
+  }, [inputData]);
 
   return (
-    <>
-      <GooglePlacesAutocomplete
-        placeholder="Enter Location"
-        onPress={(data, details = null) => {
-          // console.log(data, details);
-          setInputData(data.description);
-        }}
-        query={{
-          key: GOOGLE_MAPS_API_KEY,
-          language: 'en',
-        }}
-        styles={styles}
-      />
-    </>
+    <GooglePlacesAutocomplete
+      placeholder="Enter Location"
+      onPress={(data, details = null) => {
+        // console.log(data, details);
+        setInputData(data.description);
+        console.log(inputData)
+      }}
+      query={{
+        key: GOOGLE_MAPS_API_KEY,
+        language: 'en',
+      }}
+      styles={styles}
+    />
   );
 };
 

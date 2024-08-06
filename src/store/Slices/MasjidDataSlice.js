@@ -59,7 +59,7 @@ const MasjidDataSlice = createSlice({
     searchPlace: (state , action) => {
       console.log(action.payload)
       state.searchCoords = action.payload;
-      return state;
+      // return state;
     },
   },
   extraReducers: builder => {
