@@ -8,11 +8,7 @@ import {
 import axios from 'axios';
 
 const state = {
-  loading: false,
-  MasjidsDetails: [],
-  specificMasjidDetails: {},
-  error: null,
-  searchCoords: null,
+  description: '',
 };
 
 // Create async thunk for getAllMasjidDetails
@@ -31,7 +27,7 @@ const state = {
 // );
 
 export const editSpecificMasjidDetails = createAsyncThunk(
-  'get/specificMasjidDetails',
+  'put/specificMasjidDetails',
   async (id, thunkAPI) => {
     try {
       const response = await axios.get(`${OFFICE_URL}/api/timings?id=${id}`);
@@ -56,19 +52,19 @@ const EditMasjidDataSlice = createSlice({
   },
   extraReducers: builder => {
     builder
-      .addCase(EditMasjidDataSlice.pending, state => {
+      .addCase(editSpecificMasjidDetails.pending, state => {
         // state.loading = true;
         // state.error = null;
       })
-      .addCase(EditMasjidDataSlice.fulfilled, (state, action) => {
-        state.MasjidsDetails = action.payload;
+      .addCase(editSpecificMasjidDetails.fulfilled, (state, action) => {
+        // state.MasjidsDetails = action.payload;
         // state.loading = false;
         // state.error = null;
       })
-      .addCase(EditMasjidDataSlice.rejected, (state, action) => {
+      .addCase(editSpecificMasjidDetails.rejected, (state, action) => {
         // state.loading = false;
         // state.error = action.payload;
-      })
+      });
   },
 });
 
