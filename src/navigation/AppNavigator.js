@@ -13,6 +13,7 @@ import ClaimScreen from '../screens/claimScreen/ClaimScreen';
 import LoginSignupScreen from '../screens/login_signupScreen/LoginSignupScreen';
 import UserProfileScreen from '../screens/userProfileScreen/UserProfileScreen';
 import EditMasjidScreen from '../screens/editMasjidScreen/EditMasjidScreen';
+import UserLeaderBoardScreen from '../screens/userLeaderboardScreen/UserLeaderBoardScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -34,6 +35,7 @@ function AppNavigator() {
         <Stack.Screen name="Login_SignUp" component={LoginSignupScreen} />
         <Stack.Screen name="Profile" component={UserProfileScreen} />
         <Stack.Screen name="Edit_Masjid_Details" component={EditMasjidScreen} />
+        <Stack.Screen name="UserLeaderBoard" component={UserLeaderBoardScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
