@@ -75,33 +75,19 @@ const ClaimForm = () => {
       // name: fileData?.name,
       // type: fileData?.type,
       cnic: cnic,
-      // document: fileData?.uri,
+      document: fileData?.uri,
     });
-    // formData[0].append(cnic);
     const formDataObj = formData._parts[0][0];
+    console.log(formDataObj)
+    dispatch(claim({ masjidId , token , cnic: formDataObj.cnic, document: formDataObj.document}))
+    // formData[0].append(cnic);
 
-    let formDataa = {
-      cnic: cnic,
-      // document: file.uri,
-    }
-    // console.log(formDataObj);
-    dispatch(claim({formDataa , masjidId , token}))
-
-    // try {
-    //   const response = await axios.post(
-    //     'http://192.168.80.19:3000/api/5cb2208c-57dc-49e1-bb67-a1976d2e7b99/claim',
-    //     formDataObj,
-    //     {
-    //       headers: {
-    //         'Content-Type': 'multipart/form-data',
-    //         Authorization: `Bearer ${token}`,
-    //       },
-    //     },
-    //   );
-    //   console.log(response);
-    // } catch (error) {
-    //   console.error('File upload failed', error);
+    // let formDataa = {
+    //   cnic: cnic,
+    //   document: file.uri,
     // }
+    // // console.log(formDataObj);
+    // dispatch(claim({formDataa , masjidId , token}))
   };
 
   // const handleFileUpload = async () => {

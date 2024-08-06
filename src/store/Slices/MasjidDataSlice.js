@@ -12,7 +12,7 @@ const state = {
   MasjidsDetails: [],
   specificMasjidDetails: {},
   error: null,
-  searchCoords: null
+  searchCoords: null,
 };
 
 // Create async thunk for getAllMasjidDetails
@@ -21,12 +21,12 @@ export const getAllMasjidDetails = createAsyncThunk(
   async (coords, thunkAPI) => {
     const {myLong, myLat} = coords;
     try {
-      // const response = await axios.get(
-      //   `${OFFICE_URL}/api/nearby?latitude=${myLat}&longitude=${myLong}&radius=5000`,
-      // );
       const response = await axios.get(
-        `${HOME_URL}/api/nearby?latitude=${myLat}&longitude=${myLong}&radius=5000`,
+        `${OFFICE_URL}/api/nearby?latitude=${myLat}&longitude=${myLong}&radius=5000`,
       );
+      // const response = await axios.get(
+      //   `${HOME_URL}/api/nearby?latitude=${myLat}&longitude=${myLong}&radius=5000`,
+      // );
       // const response = await axios.get(
       //   `${BASE_URL}/api/nearby?latitude=${myLat}&longitude=${myLong}&radius=5000`,
       // );
@@ -42,8 +42,8 @@ export const getSpecificMasjidDetails = createAsyncThunk(
   'get/specificMasjidDetails',
   async (id, thunkAPI) => {
     try {
-      // const response = await axios.get(`${OFFICE_URL}/api/timings?id=${id}`);
-      const response = await axios.get(`${HOME_URL}/api/timings?id=${id}`);
+      const response = await axios.get(`${OFFICE_URL}/api/timings?id=${id}`);
+      // const response = await axios.get(`${HOME_URL}/api/timings?id=${id}`);
       // const response = await axios.get(`${BASE_URL}/api/timings?id=${id}`);
       return response.data;
     } catch (error) {
@@ -56,8 +56,8 @@ const MasjidDataSlice = createSlice({
   name: 'MasjidDetails',
   initialState: state,
   reducers: {
-    searchPlace: (state , action) => {
-      console.log(action.payload)
+    searchPlace: (state, action) => {
+      console.log(action.payload);
       state.searchCoords = action.payload;
       // return state;
     },

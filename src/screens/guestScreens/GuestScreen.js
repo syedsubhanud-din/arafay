@@ -148,7 +148,19 @@ const GuestScreen = () => {
   }, [searchCoords]);
 
   // //?Search Coords
-  // useEffect(() => {}, [searchCoords]);
+  useEffect(() => {
+    if (mapRef.current && search) {
+      mapRef.current.animateToRegion(
+        {
+          latitude: search.latitude,
+          longitude: search.longitude,
+          latitudeDelta: 0.0922,
+          longitudeDelta: 0.0421,
+        },
+        1000,
+      );
+    }
+  }, [searchCoords]);
   // //?Search Coords
   // useEffect(() => {}, [search]);
 

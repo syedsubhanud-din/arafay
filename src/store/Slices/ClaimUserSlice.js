@@ -1,7 +1,7 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { BASE_URL, IP_ADDRESS } from '../../config/constants';
+import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
+import {BASE_URL, IP_ADDRESS, OFFICE_URL} from '../../config/constants';
 import axios from 'axios';
-import { ToastAndroid } from 'react-native';
+import {ToastAndroid} from 'react-native';
 const state = {
   error: null,
   user: null,
@@ -9,31 +9,29 @@ const state = {
 
 export const claim = createAsyncThunk('user/claim', async (data, thunkAPI) => {
   console.log('data: ', data);
-  const { masjidId, token, formDataa } = data;
-
-  // Create a form data object
-  // const formData = new FormData();
-  // formData.append('cnic', cnic);
-  // formData.append('document', document);
-
-  console.log('form Data: ', formDataa);
+  const {masjidId, token, cnic, document} = data;
+  const formData = new FormData();
+  formData.append('cnic', cnic);
+  formData.append('document', document);
+  console.log(masjidId)
 
   try {
     const response = await axios.post(
-      `${BASE_URL}/api/${masjidId}/claim`,
-      formDataa,
+      `${OFFICE_URL}/api/${masjidId}/claim`,
+      formData,
       {
         headers: {
           Authorization: `Bearer ${token}`,
-          // 'Content-Type': 'multipart/form-data',
-          // ...formData.getHeaders(),
+          'Content-Type': 'multipart/form-data',
+          // ...FormData.getHeaders(),
         },
       },
     );
-    console.log('response', response);
+    console.log('response', response.data);
     return response.data;
   } catch (error) {
-    console.log('error response', error);
+    // console.log('error response', error.response.data.message);
+    console.log('error response', error.response);
 
     return thunkAPI.rejectWithValue(error.response.data);
   }
@@ -56,7 +54,7 @@ const claimUserData = createSlice({
         // state.error = null;
       })
       .addCase(claim.fulfilled, (state, action) => {
-        console.log(action.payload);
+        // console.log(action.payload);
         // const {user, token} = action.payload;
         // state.user = user;
         // state.token = token;
@@ -68,5 +66,5 @@ const claimUserData = createSlice({
   },
 });
 
-export const { logout } = claimUserData.actions;
+export const {logout} = claimUserData.actions;
 export default claimUserData.reducer;

@@ -2,6 +2,7 @@ import {Text, StyleSheet, View, TouchableOpacity, Image} from 'react-native';
 import React from 'react';
 import BackIcon from 'react-native-vector-icons/Ionicons';
 import ForwardIcon from 'react-native-vector-icons/Ionicons';
+import ChartIcon from 'react-native-vector-icons/Ionicons';
 import ArrowForwardIcon from 'react-native-vector-icons/FontAwesome6';
 import UserIcon from 'react-native-vector-icons/AntDesign';
 import {useNavigation} from '@react-navigation/native';
@@ -32,7 +33,13 @@ const Drawer = ({drawer, setDrawer}) => {
                 style={styles.image}
               />
             </View>
-            <Text style={styles.usernameText}>{name}</Text>
+            <View>
+              <Text style={styles.usernameText}>{name}</Text>
+              <View style={styles.scorePointsContainer}>
+                <Text style={styles.scorePointsText}>Score points</Text>
+                <Image source={require('../../assets/images/coin.png')} />
+              </View>
+            </View>
           </View>
         )}
         <View style={styles.navLinksContainer}>
@@ -68,6 +75,23 @@ const Drawer = ({drawer, setDrawer}) => {
                 <View style={styles.navLinkTitle}>
                   <UserIcon name="user" size={20} color="#000" />
                   <Text style={styles.textBlack}>User Profile</Text>
+                </View>
+                <View>
+                  <ForwardIcon name="chevron-forward" size={20} color="#000" />
+                </View>
+              </View>
+            </TouchableOpacity>
+          )}
+          {isLoggedIn && (
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate('UserLeaderBoard');
+                setDrawer(!drawer);
+              }}>
+              <View style={styles.navLink}>
+                <View style={styles.navLinkTitle}>
+                  <ChartIcon name="bar-chart" size={20} color="#000" />
+                  <Text style={styles.textBlack}>User Leader Board</Text>
                 </View>
                 <View>
                   <ForwardIcon name="chevron-forward" size={20} color="#000" />
@@ -142,7 +166,17 @@ const styles = StyleSheet.create({
   },
   usernameText: {
     fontSize: 15,
+    fontWeight: 'bold',
     color: 'black',
+  },
+  scorePointsContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  scorePointsText: {
+    fontSize: 15,
+    fontWeight: 'bold',
+    color: '#00609D',
   },
   navLinksContainer: {
     paddingHorizontal: 20,

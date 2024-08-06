@@ -49,6 +49,7 @@ export const login = createAsyncThunk(
       ToastAndroid.show('Login successful!', ToastAndroid.LONG);
       return response.data;
     } catch (error) {
+      ToastAndroid.show(error.response.data.error, ToastAndroid.LONG);
       return thunkAPI.rejectWithValue(error.response.data);
     }
   },
@@ -73,6 +74,7 @@ export const register = createAsyncThunk(
       ToastAndroid.show('Successfully Signed up!', ToastAndroid.LONG);
       return response.data;
     } catch (error) {
+      ToastAndroid.show(error.response.data.message, ToastAndroid.LONG);
       return thunkAPI.rejectWithValue(error.response.data);
     }
   },
