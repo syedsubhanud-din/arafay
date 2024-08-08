@@ -31,7 +31,7 @@ function App() {
       {/* <PersistGate loading={null} persistor={persistor}>
         <AppNavigator />
       </PersistGate> */}
-      <LoadUserData />
+      {/* <LoadUserData /> */}
       <AppNavigator />
     </Provider>
   );

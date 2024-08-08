@@ -23,12 +23,12 @@ export const getAllMasjidDetails = createAsyncThunk(
     const {myLong, myLat} = coords;
     console.log(coords)
     try {
-      // const response = await axios.get(
-      //   `${OFFICE_URL}/api/nearby?latitude=${myLat}&longitude=${myLong}&radius=5000`,
-      // );
       const response = await axios.get(
-        `${HOME_URL}/api/nearby?latitude=${myLat}&longitude=${myLong}&radius=5000`,
+        `${OFFICE_URL}/api/nearby?latitude=${myLat}&longitude=${myLong}&radius=5000`,
       );
+      // const response = await axios.get(
+      //   `${HOME_URL}/api/nearby?latitude=${myLat}&longitude=${myLong}&radius=5000`,
+      // );
       console.log("response: " + response.data)
       // const response = await axios.get(
       //   `${BASE_URL}/api/nearby?latitude=${myLat}&longitude=${myLong}&radius=5000`,
