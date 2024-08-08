@@ -6,6 +6,7 @@ import {
   OFFICE_URL,
 } from '../../config/constants';
 import axios from 'axios';
+import { ToastAndroid } from 'react-native';
 
 const state = {
   loading: false,
@@ -45,8 +46,48 @@ export const getSpecificMasjidDetails = createAsyncThunk(
       const response = await axios.get(`${OFFICE_URL}/api/timings?id=${id}`);
       // const response = await axios.get(`${HOME_URL}/api/timings?id=${id}`);
       // const response = await axios.get(`${BASE_URL}/api/timings?id=${id}`);
+      console.log("Redux Specific MAsjid" , response.data)
       return response.data;
     } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data);
+    }
+  },
+);
+
+// Edit Specific Masjid Description
+export const editSpecificMasjidDescription = createAsyncThunk(
+  'put/specificMasjidDescription',
+  async (data, thunkAPI) => {
+    const {id, Description, token, user, resHandler} = data;
+    // console.log('masjidId', id);
+    // console.log('Description', Description);
+    // console.log('Token', token);
+    try {
+      const response = await axios.put(
+        `${OFFICE_URL}/api/masjid/${id}/description`,
+        {
+          description: Description,
+          user: user,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          params: {
+            id: id,
+          },
+        },
+      );
+      ToastAndroid.show('Description Successfully Edited', ToastAndroid.LONG);
+      // console.log(response.data);
+      if(response.status === 200) {
+        resHandler(response.data);
+      }
+      return response.data;
+      // const response = await axios.get(`${HOME_URL}/api/timings?id=${id}`);
+      // const response = await axios.get(`${BASE_URL}/api/timings?id=${id}`);
+    } catch (error) {
+      ToastAndroid.show(error.response.data.message, ToastAndroid.LONG);
       return thunkAPI.rejectWithValue(error.response.data);
     }
   },
@@ -89,6 +130,20 @@ const MasjidDataSlice = createSlice({
       .addCase(getSpecificMasjidDetails.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
+      })
+      .addCase(editSpecificMasjidDescription.pending, state => {
+        // state.loading = true;
+        // state.error = null;
+      })
+      .addCase(editSpecificMasjidDescription.fulfilled, (state, action) => {
+        state.specificMasjidDetails.description = action.payload.description;
+        // state.MasjidsDetails = action.payload;
+        // state.loading = false;
+        // state.error = null;
+      })
+      .addCase(editSpecificMasjidDescription.rejected, (state, action) => {
+        // state.loading = false;
+        // state.error = action.payload;
       });
   },
 });

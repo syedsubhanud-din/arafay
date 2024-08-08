@@ -8,12 +8,12 @@ const state = {
 };
 
 export const claim = createAsyncThunk('user/claim', async (data, thunkAPI) => {
-  console.log('data: ', data);
+  // console.log('data: ', data);
   const {masjidId, token, cnic, document} = data;
   const formData = new FormData();
   formData.append('cnic', cnic);
   formData.append('document', document);
-  console.log(masjidId)
+  // console.log(masjidId)
 
   try {
     const response = await axios.post(
@@ -27,7 +27,7 @@ export const claim = createAsyncThunk('user/claim', async (data, thunkAPI) => {
         },
       },
     );
-    console.log('response', response.data);
+    // console.log('response', response.data);
     return response.data;
   } catch (error) {
     // console.log('error response', error.response.data.message);

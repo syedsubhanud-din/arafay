@@ -9,9 +9,12 @@ import {useSelector} from 'react-redux';
 const MasjidDetailCard = () => {
   const navigation = useNavigation();
   const {isLoggedIn, user} = useSelector(state => state.UserInfo);
+  const {specificMasjidDetails} = useSelector(state => state.masjidSlice);
+  console.log('OwnerId', specificMasjidDetails);
+  console.log('UserId', user?.id);
   return (
     <View style={styles.masjidDetailsContainer}>
-      {isLoggedIn && user?.role === 'owner' && (
+      {isLoggedIn && user?.id == specificMasjidDetails?.ownerId && (
         <TouchableOpacity
           onPress={() => navigation.navigate('Edit_Masjid_Details')}
           style={styles.button}>

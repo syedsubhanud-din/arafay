@@ -9,7 +9,7 @@ import axios from 'axios';
 import {ToastAndroid} from 'react-native';
 
 const state = {
-  description: 'This is sample Description',
+  description: '',
 };
 
 // Create async thunk for getAllMasjidDetails
@@ -30,25 +30,28 @@ const state = {
 export const editSpecificMasjidDescription = createAsyncThunk(
   'put/specificMasjidDescription',
   async (data, thunkAPI) => {
-    const {id, Description, token} = data;
-    console.log('masjidId', id);
-    console.log('Description', Description);
-    console.log('Token', token);
+    const {id, Description, token, user} = data;
+    // console.log('masjidId', id);
+    // console.log('Description', Description);
+    // console.log('Token', token);
     try {
       const response = await axios.put(
         `${OFFICE_URL}/api/masjid/${id}/description`,
-        null,
+        {
+          description: Description,
+          user: user,
+        },
         {
           headers: {
             Authorization: `Bearer ${token}`,
           },
           params: {
-            description: Description, // sending as a URL parameter
+            id: id,
           },
         },
       );
       ToastAndroid.show('Description Successfully Edited', ToastAndroid.LONG);
-      console.log(response.data);
+      // console.log(response.data);
       return response.data;
       // const response = await axios.get(`${HOME_URL}/api/timings?id=${id}`);
       // const response = await axios.get(`${BASE_URL}/api/timings?id=${id}`);

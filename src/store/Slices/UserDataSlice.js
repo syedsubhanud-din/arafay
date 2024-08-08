@@ -35,7 +35,7 @@ export const login = createAsyncThunk(
   'auth/login',
   async (credentials, thunkAPI) => {
     const {phone_number, password} = credentials;
-    console.log('Credentials', credentials);
+    // console.log('Credentials', credentials);
     try {
       const response = await axios.get(
         `${OFFICE_URL}/api/auth/login?phone_number=${phone_number}&password=${password}`,
@@ -59,7 +59,7 @@ export const register = createAsyncThunk(
   'auth/register',
   async (credentials, thunkAPI) => {
     const {name, phone_number, password, email, setState} = credentials;
-    console.log('Credentials', credentials);
+    // console.log('Credentials', credentials);
     try {
       const response = await axios.post(
         `${OFFICE_URL}/api/auth/register?name=${name}&phone_number=${phone_number}&password=${password}&email=${email}`,
@@ -98,8 +98,9 @@ const getUserData = createSlice({
         state.error = null;
       })
       .addCase(login.fulfilled, (state, action) => {
-        console.log(action.payload);
+        // console.log(action.payload);
         const {user, token} = action.payload;
+        // console.log("Redux Token" , token)
         state.user = user;
         state.token = token;
         state.isLoggedIn = true;

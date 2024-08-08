@@ -8,18 +8,34 @@ import {
 import React, {useState} from 'react';
 import SectionHeading from './SectionHeading';
 import {useDispatch, useSelector} from 'react-redux';
-import {editSpecificMasjidDescription} from '../../store/Slices/EditMasjidDataSlice';
+import {
+  editSpecificMasjidDescription,
+  getSpecificMasjidDetails,
+} from '../../store/Slices/MasjidDataSlice';
 
 const EditMasjidDescription = () => {
-  const {description} = useSelector(state => state.editMasjidSlice);
+  const {specificMasjidDetails} = useSelector(state => state.masjidSlice);
+  const {user} = useSelector(state => state.UserInfo);
+  console.log('user: ', user);
   const {id} = useSelector(state => state.masjidSlice.specificMasjidDetails);
   const {token} = useSelector(state => state.UserInfo);
-  const [Description, setDescription] = useState(description);
+  const [Description, setDescription] = useState(
+    specificMasjidDetails.description,
+  );
   const dispatch = useDispatch();
   console.log(id, Description);
 
+  const resHandler = res => {
+    console.log('Response::::', res);
+    if (res.success === true) {
+      dispatch(getSpecificMasjidDetails(id));
+    }
+  };
+
   const handleEdit = () => {
-    dispatch(editSpecificMasjidDescription({token, Description, id}));
+    dispatch(
+      editSpecificMasjidDescription({token, Description, id, user, resHandler}),
+    );
   };
   return (
     <View>

@@ -31,7 +31,7 @@ const SearchInput = () => {
       onPress={(data, details = null) => {
         // console.log(data, details);
         setInputData(data.description);
-        console.log(inputData)
+        // console.log(inputData)
       }}
       query={{
         key: GOOGLE_MAPS_API_KEY,
