@@ -59,9 +59,42 @@ export const editSpecificMasjidDescription = createAsyncThunk(
   'put/specificMasjidDescription',
   async (data, thunkAPI) => {
     const {id, Description, token, user, resHandler} = data;
-    // console.log('masjidId', id);
-    // console.log('Description', Description);
-    // console.log('Token', token);
+    try {
+      const response = await axios.put(
+        `${OFFICE_URL}/api/masjid/${id}/description`,
+        {
+          description: Description,
+          user: user,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          params: {
+            id: id,
+          },
+        },
+      );
+      ToastAndroid.show('Description Successfully Edited', ToastAndroid.LONG);
+      // console.log(response.data);
+      if(response.status === 200) {
+        resHandler(response.data);
+      }
+      return response.data;
+      // const response = await axios.get(`${HOME_URL}/api/timings?id=${id}`);
+      // const response = await axios.get(`${BASE_URL}/api/timings?id=${id}`);
+    } catch (error) {
+      ToastAndroid.show(error.response.data.message, ToastAndroid.LONG);
+      return thunkAPI.rejectWithValue(error.response.data);
+    }
+  },
+);
+
+// Edit Specific Masjid Description
+export const editSpecificMasjidTimings = createAsyncThunk(
+  'put/specificMasjidDescription',
+  async (data, thunkAPI) => {
+    const {id, Description, token, user, resHandler} = data;
     try {
       const response = await axios.put(
         `${OFFICE_URL}/api/masjid/${id}/description`,

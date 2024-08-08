@@ -16,6 +16,7 @@ import SunsetIcon from 'react-native-vector-icons/Feather';
 import MoonIcon from 'react-native-vector-icons/Ionicons';
 import PencilPlusIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import SectionHeading from './SectionHeading';
+import { editSpecificMasjidTimings } from '../../store/Slices/MasjidDataSlice';
 
 const PrayerTimesData = [
   {
@@ -111,6 +112,14 @@ const EditMasjidTimings = () => {
   //     }
   //   };
 
+  const handleEdit = () => {
+    // dispatch(
+    //   editSpecificMasjidTimings({token, Description, id, user, resHandler}),
+    // );
+    
+    console.log("Handle Edit");
+  };
+
   const renderItem = ({item, index}) => (
     <View style={styles.item}>
       <View style={styles.namazTimeIcon}>
@@ -143,10 +152,15 @@ const EditMasjidTimings = () => {
 
   return (
     <View>
-      <SectionHeading
-        Heading={'Namaz Timings'}
-        SubHeading={'tap to edit namaz timings below'}
-      />
+      <View style={styles.headingSection}>
+        <SectionHeading
+          Heading={'Namaz Timings'}
+          SubHeading={'tap to edit namaz timings below'}
+        />
+        <TouchableOpacity onPress={() => handleEdit()}>
+          <Text style={styles.editText}>Save</Text>
+        </TouchableOpacity>
+      </View>
       <FlatList
         data={data}
         keyExtractor={item => item.id}
@@ -161,6 +175,14 @@ const EditMasjidTimings = () => {
 export default EditMasjidTimings;
 
 const styles = StyleSheet.create({
+  headingSection: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  editText: {
+    color: '#000',
+  },
   item: {
     flex: 1,
     flexDirection: 'column',
