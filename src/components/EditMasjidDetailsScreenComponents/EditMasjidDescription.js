@@ -7,20 +7,23 @@ import {
 } from 'react-native';
 import React, {useState} from 'react';
 import SectionHeading from './SectionHeading';
-import { useSelector } from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
+import {editSpecificMasjidDescription} from '../../store/Slices/EditMasjidDataSlice';
 
 const EditMasjidDescription = () => {
-  const [description, setDescription] = useState(
-    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit ess',
-  );
-  const selector = useSelector((state) => state)
+  const {description} = useSelector(state => state.editMasjidSlice);
+  const {id} = useSelector(state => state.masjidSlice.specificMasjidDetails);
+  const {token} = useSelector(state => state.UserInfo);
+  const [Description, setDescription] = useState(description);
+  const dispatch = useDispatch();
+  console.log(id, Description);
 
   const handleEdit = () => {
-    console.log("Handle Edit Pressed")
+    dispatch(editSpecificMasjidDescription({token, Description, id}));
   };
   return (
     <View>
-      <View style = {styles.headingSection}>
+      <View style={styles.headingSection}>
         <SectionHeading
           Heading={'Description'}
           SubHeading={'tap to edit the description below'}
@@ -38,7 +41,7 @@ const EditMasjidDescription = () => {
           multiline
           numberOfLines={10}
           name="description"
-          value={description}
+          value={Description}
           onChangeText={text => setDescription(text)}
         />
       </View>
@@ -51,11 +54,11 @@ export default EditMasjidDescription;
 const styles = StyleSheet.create({
   headingSection: {
     flexDirection: 'row',
-    justifyContent:'space-between',
-    alignItems: 'center'
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
   editText: {
-    color: "#000"
+    color: '#000',
   },
   textFieldContainer: {
     marginBottom: 20,

@@ -82,8 +82,8 @@ export const register = createAsyncThunk(
 
 const getUserData = createSlice({
   name: 'GetUserData',
-  // initialState: state,
-  initialState: stateTesting,
+  initialState: state,
+  // initialState: stateTesting,
   reducers: {
     logout: state => {
       state.error = null;
