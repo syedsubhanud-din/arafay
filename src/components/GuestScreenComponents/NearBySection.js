@@ -1,20 +1,36 @@
-import {StyleSheet, Text, View, FlatList} from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  FlatList,
+  Image,
+  TouchableOpacity,
+} from 'react-native';
 import React, {useState} from 'react';
 import NearByMasjidCard from './NearByMasjidCard';
 import {useSelector} from 'react-redux';
 import Popup from './Popup';
+import { useNavigation } from '@react-navigation/native';
 
 const NearBySection = () => {
   const [showPopUp, setShowPopUp] = useState(false);
   const {MasjidsDetails} = useSelector(state => state.masjidSlice);
+  const navigation = useNavigation();
   return (
     <>
       <View style={styles.container}>
         <View style={styles.nextPrayerBox}>
-          <Text style={[styles.textNextPrayer, styles.textWhite]}>
-            Next Prayer
-          </Text>
-          <Text style={[styles.textTime, styles.textWhite]}>12:52 pm</Text>
+          <View>
+            <Text style={[styles.textNextPrayer, styles.textWhite]}>
+              Next Prayer
+            </Text>
+            <Text style={[styles.textTime, styles.textWhite]}>12:52 pm</Text>
+          </View>
+          <View>
+            <TouchableOpacity onPress={() => navigation.navigate('QiblaScreen')}>
+              <Image source={require('../../assets/images/viewQibla.png')} />
+            </TouchableOpacity>
+          </View>
         </View>
         <View style={styles.masjidNearByBox}>
           <Text style={[styles.masjidNearByText, styles.textTheme]}>
@@ -50,6 +66,9 @@ const styles = StyleSheet.create({
     height: 400,
   },
   nextPrayerBox: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
     backgroundColor: 'rgb( 118 ,158 ,209)',
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,

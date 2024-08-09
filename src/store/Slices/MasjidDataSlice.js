@@ -21,6 +21,7 @@ export const getAllMasjidDetails = createAsyncThunk(
   'get/allMasjidDetails',
   async (coords, thunkAPI) => {
     const {myLong, myLat} = coords;
+    console.log(coords)
     try {
       // const response = await axios.get(
       //   `${OFFICE_URL}/api/nearby?latitude=${myLat}&longitude=${myLong}&radius=5000`,
