@@ -6,7 +6,7 @@ import {
   OFFICE_URL,
 } from '../../config/constants';
 import axios from 'axios';
-import { ToastAndroid } from 'react-native';
+import {ToastAndroid} from 'react-native';
 
 const state = {
   loading: false,
@@ -22,17 +22,20 @@ export const getAllMasjidDetails = createAsyncThunk(
   async (coords, thunkAPI) => {
     const {myLong, myLat} = coords;
     try {
-      const response = await axios.get(
-        `${OFFICE_URL}/api/nearby?latitude=${myLat}&longitude=${myLong}&radius=5000`,
-      );
       // const response = await axios.get(
-      //   `${HOME_URL}/api/nearby?latitude=${myLat}&longitude=${myLong}&radius=5000`,
+      //   `${OFFICE_URL}/api/nearby?latitude=${myLat}&longitude=${myLong}&radius=5000`,
       // );
+      const response = await axios.get(
+        `${HOME_URL}/api/nearby?latitude=${myLat}&longitude=${myLong}&radius=5000`,
+      );
+      console.log("response: " + response.data)
       // const response = await axios.get(
       //   `${BASE_URL}/api/nearby?latitude=${myLat}&longitude=${myLong}&radius=5000`,
       // );
+      ToastAndroid.show("Got the NearBy Masjids", ToastAndroid.LONG);
       return response.data;
     } catch (error) {
+      ToastAndroid.show(error.response.data.message, ToastAndroid.LONG);
       return thunkAPI.rejectWithValue(error.response.data);
     }
   },
@@ -43,10 +46,10 @@ export const getSpecificMasjidDetails = createAsyncThunk(
   'get/specificMasjidDetails',
   async (id, thunkAPI) => {
     try {
-      const response = await axios.get(`${OFFICE_URL}/api/timings?id=${id}`);
-      // const response = await axios.get(`${HOME_URL}/api/timings?id=${id}`);
+      // const response = await axios.get(`${OFFICE_URL}/api/timings?id=${id}`);
+      const response = await axios.get(`${HOME_URL}/api/timings?id=${id}`);
       // const response = await axios.get(`${BASE_URL}/api/timings?id=${id}`);
-      console.log("Redux Specific MAsjid" , response.data)
+      console.log('Redux Specific MAsjid', response.data);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data);
@@ -77,7 +80,7 @@ export const editSpecificMasjidDescription = createAsyncThunk(
       );
       ToastAndroid.show('Description Successfully Edited', ToastAndroid.LONG);
       // console.log(response.data);
-      if(response.status === 200) {
+      if (response.status === 200) {
         resHandler(response.data);
       }
       return response.data;
@@ -113,7 +116,7 @@ export const editSpecificMasjidTimings = createAsyncThunk(
       );
       ToastAndroid.show('Description Successfully Edited', ToastAndroid.LONG);
       // console.log(response.data);
-      if(response.status === 200) {
+      if (response.status === 200) {
         resHandler(response.data);
       }
       return response.data;
