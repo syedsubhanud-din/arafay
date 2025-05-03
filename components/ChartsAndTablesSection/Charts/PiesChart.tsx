@@ -107,7 +107,7 @@ const initialState: any = {
 
 const PiesChart = () => {
   return (
-    <Box display="flex" flexDirection={"column"} mb={2}>
+    <Box display="flex" flexDirection={"column"} justifyContent={"space-between"} mb={2}>
       <Box>
         <Typography variant="body1" fontSize={14} sx={{ color: "#A2AED0" }}>
           Daily Trafic

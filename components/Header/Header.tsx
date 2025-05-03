@@ -19,7 +19,12 @@ const Header: React.FC = () => {
       direction="row"
       spacing={2}
       justifyContent={"space-between"}
-      sx={{ width: "calc(100vw - 300px)", padding: "10px", marginTop: "10px", zIndex: 10 }}
+      sx={{
+        width: "calc(100vw - 300px)",
+        padding: "10px",
+        marginTop: "10px",
+        zIndex: 10,
+      }}
       className="navbar"
       position={"sticky"}
       top={0}
@@ -43,16 +48,15 @@ const Header: React.FC = () => {
         }}
       />
       <Stack direction="column">
-        <PageLink link={breadcrumbs[0].to} linkTitle={breadcrumbs[0].name} />
-        <PageTitle linkTitle={breadcrumbs[0].name} />
+        <PageLink link={breadcrumbs[0]?.to} linkTitle={breadcrumbs[0]?.name} />
+        <PageTitle linkTitle={breadcrumbs[0]?.name} />
       </Stack>
       {/* <Stack direction="row">
         <PageLink />
         <PageTitle />
       </Stack> */}
-        <PrimarySearchAppBar />
-      <Stack direction="row">
-      </Stack>
+      <PrimarySearchAppBar />
+      <Stack direction="row"></Stack>
     </Stack>
   );
 };

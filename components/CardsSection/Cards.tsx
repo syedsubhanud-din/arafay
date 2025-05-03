@@ -15,6 +15,7 @@ const Card = styled(Paper)({
   color: "#000",
   boxShadow: "0 3px 5px 2px rgba(105, 135, 255, .3)",
   borderRadius: "8px",
+  height: '100%'
 });
 
 const IconWrapper = styled("div")({

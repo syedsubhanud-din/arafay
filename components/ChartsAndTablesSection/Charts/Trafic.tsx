@@ -50,7 +50,7 @@ const initialState: any = {
         shade: "light",
         type: "vertical",
         shadeIntensity: 0.5,
-        gradientToColors: ["#7655FF", "#ffffff"], // end color
+        gradientToColors: ["#7655FF" , "#ffffff"], // end color
         inverseColors: true,
         opacityFrom: 1,
         opacityTo: 0.5,
